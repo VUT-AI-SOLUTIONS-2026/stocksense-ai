@@ -1,0 +1,62 @@
+name: Feature request
+description: Propose a new capability or an improvement to an existing one.
+title: "feat: "
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: Describe it from the shop owner's point of view, not as a solution.
+      placeholder: A manager cannot tell which reorder suggestions matter most, so they work down the list and run out of time.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What should we build?
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: How will we know it is done?
+      value: |
+        - [ ]
+        - [ ]
+    validations:
+      required: true
+
+  - type: dropdown
+    id: rubric
+    attributes:
+      label: Which rubric section does this support?
+      options:
+        - AI solution and theme relevance
+        - Business objectives
+        - Problem definition
+        - Machine learning approach
+        - Data
+        - Model evaluation and time series analysis
+        - Solution techniques
+        - NLP and speech
+        - Deep learning
+        - Chatbot
+        - Practical solution
+        - Poster or presentation
+        - None, engineering only
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - Must have, the solution is incomplete without it
+        - Should have, it clearly improves the solution
+        - Could have, if there is time
+    validations:
+      required: true

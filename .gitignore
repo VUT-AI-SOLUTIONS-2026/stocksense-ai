@@ -1,0 +1,52 @@
+# Business data never goes in here. See SECURITY.md.
+data/
+*.csv
+*.xlsx
+*.xls
+*.parquet
+*.db
+*.sqlite3
+
+# Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+
+# Trained models and generated artefacts
+artifacts/
+models/*.pkl
+models/*.joblib
+models/*.h5
+models/*.keras
+
+# Python
+__pycache__/
+*.py[cod]
+build/
+dist/
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Office temporary files
+~$*
+*.tmp
+
+# Editors and operating systems
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini

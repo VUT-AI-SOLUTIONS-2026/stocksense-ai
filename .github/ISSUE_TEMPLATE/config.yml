@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Project board
+    url: https://github.com/orgs/VUT-AI-SOLUTIONS-2026/projects
+    about: Check what is already planned or in progress before opening something new.
+  - name: Project documentation
+    url: https://github.com/VUT-AI-SOLUTIONS-2026/stocksense-ai/tree/main/docs
+    about: Every rubric section has a document. Start here if you are looking for what to write.
+  - name: Security or data privacy problem
+    url: https://github.com/VUT-AI-SOLUTIONS-2026/stocksense-ai/blob/main/SECURITY.md
+    about: Report these privately to the project lead, never as a public issue.

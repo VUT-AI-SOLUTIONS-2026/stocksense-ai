@@ -1,0 +1,56 @@
+name: Documentation
+description: Write or fix one of the assessed project documents.
+title: "docs: "
+labels: ["documentation", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this for anything in the `docs/` folder, the poster or the presentation.
+
+  - type: dropdown
+    id: document
+    attributes:
+      label: Which document?
+      options:
+        - 00 Declaration
+        - 01 AI solution and relevance to the theme
+        - 02 Business objectives
+        - 03 Problem definition
+        - 04 Machine learning approach
+        - 05 Data
+        - 06 Model evaluation and time series analysis
+        - 07 Solution techniques
+        - 08 NLP and speech
+        - 09 Deep learning
+        - 10 Chatbot
+        - 11 Practical solution
+        - 12 Poster
+        - 13 Presentation
+        - Submission checklist
+        - README or repository documentation
+    validations:
+      required: true
+
+  - type: textarea
+    id: what
+    attributes:
+      label: What needs writing or fixing?
+    validations:
+      required: true
+
+  - type: input
+    id: marks
+    attributes:
+      label: Marks at stake
+      description: Copy the mark allocation from the document header. It helps us prioritise.
+      placeholder: "25"
+
+  - type: checkboxes
+    id: standards
+    attributes:
+      label: Before this can be closed
+      options:
+        - label: Any word limits in the brief have been checked and are met
+        - label: Sources are referenced
+        - label: Someone who did not write it has read it

@@ -1,0 +1,74 @@
+name: Modelling or data task
+description: Train, tune, evaluate or investigate a model, a dataset or a feature.
+title: "model: "
+labels: ["machine-learning", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The point of this template is that the result can be repeated and compared. An experiment nobody can repeat is not evidence.
+
+  - type: textarea
+    id: question
+    attributes:
+      label: What question are we answering?
+      placeholder: Does adding public holiday and pay cycle features reduce forecast error on fast moving perishables?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Type of work
+      options:
+        - Exploratory data analysis
+        - Feature engineering
+        - Model training
+        - Hyperparameter tuning
+        - Model evaluation and backtesting
+        - Data quality or validation
+        - Time series analysis
+        - Deep learning experiment
+        - NLP or speech experiment
+    validations:
+      required: true
+
+  - type: textarea
+    id: data
+    attributes:
+      label: Data
+      description: Which dataset, which dates, how many rows, and any filtering applied.
+    validations:
+      required: true
+
+  - type: textarea
+    id: approach
+    attributes:
+      label: Approach
+      value: |
+        Method:
+
+        Validation strategy:
+
+        Baseline it has to beat:
+    validations:
+      required: true
+
+  - type: input
+    id: metric
+    attributes:
+      label: Success metric
+      description: State the metric and the threshold now, before running anything.
+      placeholder: Beat the seasonal naive baseline by at least 10 percent on the last 8 weeks
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: reproducibility
+    attributes:
+      label: Before this can be closed
+      options:
+        - label: The random seed and configuration are recorded
+          required: true
+        - label: The results are posted in this issue
+          required: true
