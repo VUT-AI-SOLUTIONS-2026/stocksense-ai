@@ -85,7 +85,7 @@ Ten members, which is the maximum the brief allows. Fill in your own row when yo
 | 2 | [@junior07-oss](https://github.com/junior07-oss) |write your full names here |add your student number here |role in the project |
 | 3 | [@Kimzo-2](https://github.com/Kimzo-2) |write your full names here | add your student number here |role in the project |
 | 4 | [@mazii14](https://github.com/mazii14) |write your full names here |add your student number here |role in the project |
-| 5 | [@Mick92-r](https://github.com/Mick92-r) |write your full names here |add your student number here |role in the project |
+| 5 | [@Mick92-r](https://github.com/Mick92-r) |Mick Ndaj Kongal |224342924 | Data Engineer / Data Collector |
 | 6 | [@NeoMokoena2214](https://github.com/NeoMokoena2214) |write your full names here |add your student number here |role in the project |
 | 7 | [@refiloemdluli75](https://github.com/refiloemdluli75) |write your full names here |add your student number here |role in the project |
 | 8 | [@SenamileNhlanhla](https://github.com/SenamileNhlanhla) |write your full names here |add your student number here |role in the project |
