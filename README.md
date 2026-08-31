@@ -74,27 +74,6 @@ A forecast only gets trusted once it has earned it. Every model is scored agains
 | Interface | FastAPI service, Streamlit dashboard, conversational assistant |
 | Engineering | GitHub Actions, Ruff, pytest, pre-commit |
 
-## Project documentation
-
-Everything the assessment asks for lives in [`docs/`](docs). Each file covers one section of the marking rubric, so nothing gets forgotten and everyone can see what is still missing.
-
-| Document | Rubric section | Marks |
-| --- | --- | --- |
-| [Declaration](docs/00-declaration.md) | Signed by every member, required before marking | Mandatory |
-| [AI solution](docs/01-ai-solution.md) | Relevance to the theme | 5 |
-| [Business objectives](docs/02-business-objectives.md) | Objectives, success criteria, background, requirements, constraints, risks, tools | 25 |
-| [Problem definition](docs/03-problem-definition.md) | The problem, in 250 words or fewer | 10 |
-| [Machine learning approach](docs/04-machine-learning-approach.md) | Algorithms and why they suit the problem | 5 |
-| [Data](docs/05-data.md) | Every form of data the solution needs | 5 |
-| [Model and time series analysis](docs/06-model-and-time-series.md) | How accuracy is measured, plus the time series analysis | 10 |
-| [Solution techniques](docs/07-solution-techniques.md) | How the model improves over time | 5 |
-| [NLP and speech](docs/08-nlp-and-speech.md) | Language, speech recognition or speech synthesis | 5 |
-| [Deep learning](docs/09-deep-learning.md) | Techniques and applications | 5 |
-| [Chatbot](docs/10-chatbot.md) | The softbot feature | 5 |
-| [Practical solution](docs/11-practical-solution.md) | The working demonstration | 10 |
-| [Poster](docs/12-poster.md) | Poster that sells the idea | 10 |
-| [Presentation](docs/13-presentation.md) | 20 minutes, plus 5 for questions | Assessed live |
-| [Submission checklist](docs/submission-checklist.md) | Everything that must be true before we submit | Mandatory |
 
 ## The team
 
