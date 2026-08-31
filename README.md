@@ -83,7 +83,7 @@ Ten members, which is the maximum the brief allows. Fill in your own row when yo
 | --- | --- | --- | --- | --- |
 | 1 | [@morrissambo18-oss](https://github.com/morrissambo18-oss) | Morris Sambo |240699874| Project lead |
 | 2 | [@junior07-oss](https://github.com/junior07-oss) |Percy Mduduzi Jr Dlamini |224057855 |AI Data Analyst |
-| 3 | [@Kimzo-2](https://github.com/Kimzo-2) |write your full names here | add your student number here |role in the project |
+| 3 | [@Kimzo-2](https://github.com/Kimzo-2) |Ungakimi Nkambule |222072385 |AI Evaluation Engineer |
 | 4 | [@mazii14](https://github.com/mazii14) |Wandile Samuel Mazibuko |224067737 |Data Analyst |
 | 5 | [@Mick92-r](https://github.com/Mick92-r) |Mick Ndaj Kongal |224342924 | Data Engineer / Data Collector |
 | 6 | [@NeoMokoena2214](https://github.com/NeoMokoena2214) |write your full names here |add your student number here |role in the project |
