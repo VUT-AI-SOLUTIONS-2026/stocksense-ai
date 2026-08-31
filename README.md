@@ -81,7 +81,7 @@ Ten members, which is the maximum the brief allows. Fill in your own row when yo
 
 | # | GitHub | Full name | Student number | Main responsibility |
 | --- | --- | --- | --- | --- |
-| 1 | [@morrissambo18-oss](https://github.com/morrissambo18-oss) | Morris Sambo | | Project lead |
+| 1 | [@morrissambo18-oss](https://github.com/morrissambo18-oss) | Morris Sambo |240699874| Project lead |
 | 2 | [@junior07-oss](https://github.com/junior07-oss) |write your full names here | |role in the project |
 | 3 | [@Kimzo-2](https://github.com/Kimzo-2) |write your full names here | |role in the project |
 | 4 | [@mazii14](https://github.com/mazii14) |write your full names here | |role in the project |
