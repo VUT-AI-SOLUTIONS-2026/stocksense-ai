@@ -90,7 +90,7 @@ Ten members, which is the maximum the brief allows. Fill in your own row when yo
 | 7 | [@refiloemdluli75](https://github.com/refiloemdluli75) |write your full names here |add your student number here |role in the project |
 | 8 | [@SenamileNhlanhla](https://github.com/SenamileNhlanhla) |write your full names here |add your student number here |role in the project |
 | 9 | [@SiboM2](https://github.com/SiboM2) |Sibongiseni John Mokobori |224133209 |Frontend/Dashboard developer |
-| 10 | [@zamajobe237](https://github.com/zamajobe237) |write your full names here |add your student number here |role in the project |
+| 10 | [@zamajobe237](https://github.com/zamajobe237) |Zama Angel Mtetwa |225039907 |Documentation/ Business Analyst |
 
 ## How we work
 
