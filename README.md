@@ -88,7 +88,7 @@ Ten members, which is the maximum the brief allows. Fill in your own row when yo
 | 5 | [@Mick92-r](https://github.com/Mick92-r) |Mick Ndaj Kongal |224342924 | Data Engineer / Data Collector |
 | 6 | [@NeoMokoena2214](https://github.com/NeoMokoena2214) |write your full names here |add your student number here |role in the project |
 | 7 | [@refiloemdluli75](https://github.com/refiloemdluli75) |write your full names here |add your student number here |role in the project |
-| 8 | [@SenamileNhlanhla](https://github.com/SenamileNhlanhla) |write your full names here |add your student number here |role in the project |
+| 8 | [@SenamileNhlanhla](https://github.com/SenamileNhlanhla) |Senamile Nhlanhla |224110519 |Presentation / Business Lead |
 | 9 | [@SiboM2](https://github.com/SiboM2) |Sibongiseni John Mokobori |224133209 |Frontend/Dashboard developer |
 | 10 | [@zamajobe237](https://github.com/zamajobe237) |Zama Angel Mtetwa |225039907 |Documentation/ Business Analyst |
 
