@@ -19,6 +19,7 @@ Download the [Store Item Demand Forecasting dataset](https://www.kaggle.com/comp
 .\.venv\Scripts\python.exe -m scripts.prepare_data
 .\.venv\Scripts\python.exe -m scripts.evaluate_forecasters
 .\.venv\Scripts\python.exe -m scripts.train_forecasters
+.\.venv\Scripts\python.exe -m scripts.train_assistant
 .\.venv\Scripts\python.exe -m scripts.forecast_baseline --item 1
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
 .\.venv\Scripts\python.exe -m streamlit run app.py
@@ -42,7 +43,15 @@ Raw data, prepared CSVs and generated outputs stay local and are ignored by Git.
 
 ## Next milestone
 
-Add the small LSTM comparison and text assistant, then fix model choices before the final 2017 test. Complete a second-laptop rehearsal and collect the final report, poster and presentation evidence.
+Add the small LSTM comparison, then fix model choices before the final 2017 test. Complete a second-laptop rehearsal and collect the final report, poster and presentation evidence.
+
+## Ask StockSense
+
+The dashboard includes a small text assistant for forecasts, replenishment, recent sales, model performance and help. It recognises the question type and retrieves the selected item's displayed results. Calculate a stock order before asking about replenishment. To ask about another item, change the Item selector first.
+
+Try "Show the sales forecast", "How much should I order?", "Show recent sales history", "Show model performance" or "How do I get started?". Questions below the confidence threshold show supported options. Stock results persist when asking questions and are cleared when the item changes or an invalid stock calculation is submitted.
+
+Training uses the question sets in `resources/assistant_questions.json`. The saved classifier and detailed evaluation stay in `artifacts/assistant/`. On a fresh curated check it recognised 24 of 25 supported questions and rejected 8 of 8 unrelated questions. This is a small language test; group testing with new phrasings is still needed. See [assistant results](docs/assistant-results.md).
 
 ## Documents
 
@@ -52,6 +61,7 @@ Add the small LSTM comparison and text assistant, then fix model choices before 
 - [Prototype build plan](docs/prototype-plan.md)
 - [Baseline validation results](docs/baseline-results.md)
 - [Prototype and random forest results](docs/prototype-results.md)
+- [Text assistant results](docs/assistant-results.md)
 
 ## Working together
 

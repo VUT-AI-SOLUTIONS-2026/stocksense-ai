@@ -32,7 +32,7 @@ Each task below has an open GitHub issue assigned to its owner. All ten members 
 | Sibongiseni | Design the dashboard layout and input messages. | A simple layout showing history, forecast, stock inputs and assistant; clear date labels and validation messages. | Senamile | [#31](https://github.com/VUT-AI-SOLUTIONS-2026/stocksense-ai/issues/31) |
 | Zama | Review and update the report against the implemented baseline. | Explain the 6.320-unit validation MAE in plain language, distinguish validation from final testing and correct unsupported claims. | Percy | [#41](https://github.com/VUT-AI-SOLUTIONS-2026/stocksense-ai/issues/41) |
 
-The assistant's intent examples and held-out questions will be a shared later task. Record who writes or corrects each set rather than assigning every member credit automatically.
+The assistant's initial question sets and measured results are now available in [the question corpus](../resources/assistant_questions.json) and [assistant results](assistant-results.md). The shared next task is to review the wording and test independently written questions. Record who supplies or corrects each set and keep new test questions separate from training examples.
 
 ## Working from one PC
 

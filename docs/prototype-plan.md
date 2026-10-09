@@ -1,6 +1,6 @@
 # StockSense AI prototype plan
 
-Plan updated 9 October 2026. Data preparation, the weekly benchmark, random forest comparison, stock calculation and dashboard are implemented. The first working milestone is complete; the LSTM experiment, text assistant, final test and group rehearsal remain pending. See [prototype results](prototype-results.md).
+Plan updated 9 October 2026. Data preparation, the weekly benchmark, random forest comparison, stock calculation, dashboard and text assistant are implemented. The LSTM experiment, final forecasting test and group rehearsal remain pending. See [prototype results](prototype-results.md) and [assistant results](assistant-results.md).
 
 ## Purpose and scope
 

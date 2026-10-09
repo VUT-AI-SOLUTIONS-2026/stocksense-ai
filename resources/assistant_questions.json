@@ -1,0 +1,578 @@
+{
+  "train": [
+    {
+      "intent": "forecast",
+      "text": "Show the sales forecast"
+    },
+    {
+      "intent": "forecast",
+      "text": "What are predicted sales next week"
+    },
+    {
+      "intent": "forecast",
+      "text": "How many units will sell"
+    },
+    {
+      "intent": "forecast",
+      "text": "Give me seven day demand estimates"
+    },
+    {
+      "intent": "forecast",
+      "text": "Predict sales for this item"
+    },
+    {
+      "intent": "forecast",
+      "text": "What is the expected demand"
+    },
+    {
+      "intent": "forecast",
+      "text": "Show future sales quantities"
+    },
+    {
+      "intent": "forecast",
+      "text": "How much will we sell next week"
+    },
+    {
+      "intent": "forecast",
+      "text": "What is the forecast total"
+    },
+    {
+      "intent": "forecast",
+      "text": "Estimate demand for the coming week"
+    },
+    {
+      "intent": "forecast",
+      "text": "Tell me predicted units"
+    },
+    {
+      "intent": "forecast",
+      "text": "What sales do you expect"
+    },
+    {
+      "intent": "reorder",
+      "text": "How much should I order"
+    },
+    {
+      "intent": "reorder",
+      "text": "Suggest a stock order"
+    },
+    {
+      "intent": "reorder",
+      "text": "What is the reorder quantity"
+    },
+    {
+      "intent": "reorder",
+      "text": "How many units should we replenish"
+    },
+    {
+      "intent": "reorder",
+      "text": "Do I need more stock"
+    },
+    {
+      "intent": "reorder",
+      "text": "Calculate my replenishment"
+    },
+    {
+      "intent": "reorder",
+      "text": "What should I buy from the supplier"
+    },
+    {
+      "intent": "reorder",
+      "text": "Explain the suggested order"
+    },
+    {
+      "intent": "reorder",
+      "text": "Will stock run out before delivery"
+    },
+    {
+      "intent": "reorder",
+      "text": "Do outstanding orders cover demand"
+    },
+    {
+      "intent": "reorder",
+      "text": "What inventory should I purchase"
+    },
+    {
+      "intent": "reorder",
+      "text": "Tell me the stock recommendation"
+    },
+    {
+      "intent": "history",
+      "text": "Show recent sales history"
+    },
+    {
+      "intent": "history",
+      "text": "What were past sales"
+    },
+    {
+      "intent": "history",
+      "text": "How many units sold recently"
+    },
+    {
+      "intent": "history",
+      "text": "Give me historical sales"
+    },
+    {
+      "intent": "history",
+      "text": "What sold over the last 28 days"
+    },
+    {
+      "intent": "history",
+      "text": "Show the observed sales total"
+    },
+    {
+      "intent": "history",
+      "text": "What is the recent daily sales average"
+    },
+    {
+      "intent": "history",
+      "text": "Tell me last month's sales"
+    },
+    {
+      "intent": "history",
+      "text": "Summarise previous sales"
+    },
+    {
+      "intent": "history",
+      "text": "How much did we sell in the past"
+    },
+    {
+      "intent": "history",
+      "text": "What were actual sales last month"
+    },
+    {
+      "intent": "history",
+      "text": "Show observed demand history"
+    },
+    {
+      "intent": "performance",
+      "text": "How accurate is the model"
+    },
+    {
+      "intent": "performance",
+      "text": "Show model performance"
+    },
+    {
+      "intent": "performance",
+      "text": "What is the validation error"
+    },
+    {
+      "intent": "performance",
+      "text": "Explain the model MAE"
+    },
+    {
+      "intent": "performance",
+      "text": "Tell me the RMSE"
+    },
+    {
+      "intent": "performance",
+      "text": "How well did the forecast model perform"
+    },
+    {
+      "intent": "performance",
+      "text": "What is the average prediction error"
+    },
+    {
+      "intent": "performance",
+      "text": "Give the evaluation results"
+    },
+    {
+      "intent": "performance",
+      "text": "Show validation accuracy results"
+    },
+    {
+      "intent": "performance",
+      "text": "How large is the weekly total error"
+    },
+    {
+      "intent": "performance",
+      "text": "Compare model errors"
+    },
+    {
+      "intent": "performance",
+      "text": "What error did the selected model achieve"
+    },
+    {
+      "intent": "help",
+      "text": "How do I use the application"
+    },
+    {
+      "intent": "help",
+      "text": "Help me use StockSense"
+    },
+    {
+      "intent": "help",
+      "text": "What can you do"
+    },
+    {
+      "intent": "help",
+      "text": "Show the instructions"
+    },
+    {
+      "intent": "help",
+      "text": "How do I get started"
+    },
+    {
+      "intent": "help",
+      "text": "Explain how this dashboard works"
+    },
+    {
+      "intent": "help",
+      "text": "What questions can I ask"
+    },
+    {
+      "intent": "help",
+      "text": "Give me a quick guide"
+    },
+    {
+      "intent": "help",
+      "text": "I need help using the app"
+    },
+    {
+      "intent": "help",
+      "text": "What features are available"
+    },
+    {
+      "intent": "help",
+      "text": "How does the stock planner work"
+    },
+    {
+      "intent": "help",
+      "text": "Where should I start"
+    }
+  ],
+  "validation": [
+    {
+      "intent": "forecast",
+      "text": "What is the forecast for item 2"
+    },
+    {
+      "intent": "forecast",
+      "text": "How much demand is predicted"
+    },
+    {
+      "intent": "reorder",
+      "text": "How much stock must I reorder"
+    },
+    {
+      "intent": "reorder",
+      "text": "Will I have a shortage before delivery"
+    },
+    {
+      "intent": "history",
+      "text": "How many units sold in the recent period"
+    },
+    {
+      "intent": "history",
+      "text": "Tell me about previous sales history"
+    },
+    {
+      "intent": "performance",
+      "text": "Tell me the forecasting model performance"
+    },
+    {
+      "intent": "performance",
+      "text": "What is the daily absolute error"
+    },
+    {
+      "intent": "help",
+      "text": "Please show me how to use this app"
+    },
+    {
+      "intent": "help",
+      "text": "Which questions do you support"
+    },
+    {
+      "intent": "unsupported",
+      "text": "What is tomorrow's weather"
+    },
+    {
+      "intent": "unsupported",
+      "text": "Write a love poem"
+    },
+    {
+      "intent": "unsupported",
+      "text": "Tell me a joke"
+    },
+    {
+      "intent": "unsupported",
+      "text": "Who won the football match"
+    },
+    {
+      "intent": "unsupported",
+      "text": "Change my account password"
+    }
+  ],
+  "test": [
+    {
+      "intent": "forecast",
+      "text": "Please give the expected sales for the coming seven days"
+    },
+    {
+      "intent": "forecast",
+      "text": "I want to see a demand forecast for this product"
+    },
+    {
+      "intent": "forecast",
+      "text": "What quantity of sales is predicted for the week ahead"
+    },
+    {
+      "intent": "forecast",
+      "text": "Could you tell me the total expected units"
+    },
+    {
+      "intent": "forecast",
+      "text": "Show the forecast quantities for item 4"
+    },
+    {
+      "intent": "reorder",
+      "text": "Suggest how many units to purchase for replenishment"
+    },
+    {
+      "intent": "reorder",
+      "text": "Will the current stock last until delivery"
+    },
+    {
+      "intent": "reorder",
+      "text": "Please explain the recommended stock order"
+    },
+    {
+      "intent": "reorder",
+      "text": "What quantity should I order from my supplier"
+    },
+    {
+      "intent": "reorder",
+      "text": "Is more inventory needed to cover the demand"
+    },
+    {
+      "intent": "history",
+      "text": "Report the units we sold during the displayed history"
+    },
+    {
+      "intent": "history",
+      "text": "Please show the past month of observed sales"
+    },
+    {
+      "intent": "history",
+      "text": "What was the daily average of previous sales"
+    },
+    {
+      "intent": "history",
+      "text": "How many units were actually sold in this recent period"
+    },
+    {
+      "intent": "history",
+      "text": "Give me a summary of historical demand for item 5"
+    },
+    {
+      "intent": "performance",
+      "text": "Show the forecast models average absolute error"
+    },
+    {
+      "intent": "performance",
+      "text": "Please report RMSE for the chosen model"
+    },
+    {
+      "intent": "performance",
+      "text": "How did the forecasting method score in validation"
+    },
+    {
+      "intent": "performance",
+      "text": "Give me the model evaluation statistics"
+    },
+    {
+      "intent": "performance",
+      "text": "How big was the error in predicted weekly totals"
+    },
+    {
+      "intent": "help",
+      "text": "Can you explain the steps for using StockSense"
+    },
+    {
+      "intent": "help",
+      "text": "I need instructions for this dashboard"
+    },
+    {
+      "intent": "help",
+      "text": "Which features can I use in the application"
+    },
+    {
+      "intent": "help",
+      "text": "Please guide me through getting started"
+    },
+    {
+      "intent": "help",
+      "text": "What types of question does this assistant understand"
+    }
+  ],
+  "unsupported_test": [
+    {
+      "intent": "unsupported",
+      "text": "Who wrote Hamlet"
+    },
+    {
+      "intent": "unsupported",
+      "text": "Is it raining in Durban"
+    },
+    {
+      "intent": "unsupported",
+      "text": "Book a flight to Cape Town"
+    },
+    {
+      "intent": "unsupported",
+      "text": "Make a recipe for chocolate cake"
+    },
+    {
+      "intent": "unsupported",
+      "text": "What is the largest planet"
+    },
+    {
+      "intent": "unsupported",
+      "text": "Play my favourite song"
+    },
+    {
+      "intent": "unsupported",
+      "text": "How tall is Mount Everest"
+    },
+    {
+      "intent": "unsupported",
+      "text": "Write an essay about dinosaurs"
+    }
+  ],
+  "development_check": [
+    {
+      "intent": "forecast",
+      "text": "What are the forecast sales"
+    },
+    {
+      "intent": "forecast",
+      "text": "How many units are expected to sell next week"
+    },
+    {
+      "intent": "forecast",
+      "text": "Can I see the next seven days predictions"
+    },
+    {
+      "intent": "forecast",
+      "text": "Tell me the predicted sales total"
+    },
+    {
+      "intent": "forecast",
+      "text": "What demand should we expect for item 3"
+    },
+    {
+      "intent": "reorder",
+      "text": "How much should we order"
+    },
+    {
+      "intent": "reorder",
+      "text": "What is my suggested replenishment quantity"
+    },
+    {
+      "intent": "reorder",
+      "text": "How many units do I need to buy"
+    },
+    {
+      "intent": "reorder",
+      "text": "Is there a stock shortage before the supplier arrives"
+    },
+    {
+      "intent": "reorder",
+      "text": "What order do you recommend for item 1"
+    },
+    {
+      "intent": "history",
+      "text": "What were the recent sales"
+    },
+    {
+      "intent": "history",
+      "text": "How much did this item sell over the past 28 days"
+    },
+    {
+      "intent": "history",
+      "text": "What is the average observed sales per day"
+    },
+    {
+      "intent": "history",
+      "text": "Tell me the historical sales total"
+    },
+    {
+      "intent": "history",
+      "text": "Summarise the last month of actual sales"
+    },
+    {
+      "intent": "performance",
+      "text": "How well did the model perform"
+    },
+    {
+      "intent": "performance",
+      "text": "What was the average forecast error"
+    },
+    {
+      "intent": "performance",
+      "text": "Show the selected model validation results"
+    },
+    {
+      "intent": "performance",
+      "text": "What are the MAE and RMSE"
+    },
+    {
+      "intent": "performance",
+      "text": "How accurate were the predictions in validation"
+    },
+    {
+      "intent": "help",
+      "text": "How do I use the application dashboard"
+    },
+    {
+      "intent": "help",
+      "text": "Help me get started with StockSense"
+    },
+    {
+      "intent": "help",
+      "text": "What can I ask you about"
+    },
+    {
+      "intent": "help",
+      "text": "Show me a guide to the features"
+    },
+    {
+      "intent": "help",
+      "text": "What steps should I follow to use this tool"
+    }
+  ],
+  "development_unsupported": [
+    {
+      "intent": "unsupported",
+      "text": "What is the capital of France"
+    },
+    {
+      "intent": "unsupported",
+      "text": "Who is the president"
+    },
+    {
+      "intent": "unsupported",
+      "text": "Write a birthday greeting"
+    },
+    {
+      "intent": "unsupported",
+      "text": "Translate this into French"
+    },
+    {
+      "intent": "unsupported",
+      "text": "What is two plus two"
+    },
+    {
+      "intent": "unsupported",
+      "text": "How can I reset my password"
+    },
+    {
+      "intent": "unsupported",
+      "text": "Tell me today's weather"
+    },
+    {
+      "intent": "unsupported",
+      "text": "Recommend a movie"
+    }
+  ]
+}
