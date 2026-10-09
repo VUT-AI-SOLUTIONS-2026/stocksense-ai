@@ -48,6 +48,8 @@ Compare random forest forecasts against the same validation weeks, then add the 
 
 Track tasks on GitHub Projects. Give each task an owner, work on a branch and have another member review changes before merging.
 
+The [team page](docs/team.md) contains proposed tasks for all ten members, reviewers and the contribution record. Credit actual contributions using the member's confirmed GitHub-linked commit email. The baseline was developed with OpenAI Codex under Morris's direction; its group review is pending.
+
 Reference sources and keep passwords, private business data and customer records out of the repository.
 
 ## Dates

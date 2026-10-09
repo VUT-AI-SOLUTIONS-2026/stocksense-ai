@@ -2,7 +2,7 @@
 
 VUT AI Solutions · Diploma: Information Technology
 
-+| # | GitHub | Full name | Student number | Main responsibility |
+| # | GitHub | Full name | Student number | Main responsibility |
 | --- | --- | --- | --- | --- |
 | 1 | [@morrissambo18-oss](https://github.com/morrissambo18-oss) | Morris Sambo |240699874| Project lead/ AI Engineer |
 | 2 | [@junior07-oss](https://github.com/junior07-oss) |Percy Mduduzi Jr Dlamini |224057855 |AI Data Analyst |
@@ -14,3 +14,53 @@ VUT AI Solutions · Diploma: Information Technology
 | 8 | [@SenamileNhlanhla](https://github.com/SenamileNhlanhla) |Senamile Nhlanhla |224110519 |Presentation / Business Lead |
 | 9 | [@SiboM2](https://github.com/SiboM2) |Sibongiseni John Mokobori |224133209 |Frontend/Dashboard developer |
 | 10 | [@zamajobe237](https://github.com/zamajobe237) |Zama Angel Mtetwa |225039907 |Documentation/ Business Analyst |
+
+## Next contributions
+
+These are proposed tasks based on the existing roles. Members should confirm or exchange tasks before starting. No task below is recorded as completed.
+
+| Owner | Contribution to make | Evidence to provide | Reviewer |
+| --- | --- | --- | --- |
+| Morris | Specify the stock calculation and integrate the prototype components. | A written calculation with delivery assumptions and examples; integration changes after review. | Zama |
+| Percy | Analyse the five items using development data through 2016 and recommend forecasting features. | Short findings with calculations, feature choices and reasons. | Mick |
+| Ungakimi | Review the benchmark evaluation and define the model comparison. | Check the 52 scored weeks, excluded dates and error calculations; prepare the comparison table and corrections. | Wandile |
+| Wandile | Design application and stock calculation tests. | At least 10 input/expected-output cases, including invalid inputs, sufficient stock and shortages before delivery. | Ungakimi |
+| Mick | Check the dataset preparation against the original CSV. | Record the source hash, row counts, date coverage and results of running preparation; identify corrections if needed. | Percy |
+| Neo | Specify and review the random forest and small LSTM experiments. | Explain model inputs, starting settings and a limited validation comparison; review the resulting implementation. | Ungakimi |
+| Buhle | Verify the installation and repeatable run process. | A checked setup guide, actual package versions and a run log; organise the later rehearsal on another laptop. | Morris |
+| Senamile | Connect the retailer's problem to the demonstration and presentation. | A short business explanation, proposed demo sequence and poster outline; replace planned outcomes with measured results later. | Zama |
+| Sibongiseni | Design the dashboard layout and input messages. | A simple layout showing history, forecast, stock inputs and assistant; clear date labels and validation messages. | Senamile |
+| Zama | Review and update the report against the implemented baseline. | Explain the 6.320-unit validation MAE in plain language, distinguish validation from final testing and correct unsupported claims. | Percy |
+
+The assistant's intent examples and held-out questions will be a shared later task. Record who writes or corrects each set rather than assigning every member credit automatically.
+
+## Working from one PC
+
+1. The owner produces the requirements, analysis, examples, tests, text or code for their task. They can work on Morris's PC or send their contribution for integration.
+2. Keep the submitted contribution with the task: a file, suggested changes or notes that lead to a specific change. Codex can help implement and explain it.
+3. The reviewer checks the result and records findings. Fix the issues and run the relevant checks before committing.
+4. Commit the completed contribution with an accurate description, then push it from the authorised account. Human task ownership, commit authorship and the account pushing a commit are separate things.
+
+Members can also open issues or review pull requests through their own GitHub accounts. Repository members need the appropriate access for the actions they perform. Commit attribution alone does not grant repository access.
+
+## Commit credit
+
+Keep Morris as the current commit identity until the group supplies attribution details. Before crediting a member, obtain their preferred commit name, a GitHub-linked email or GitHub-provided noreply address, their agreement to its use, and the specific contribution being credited. Do not guess an email from a username.
+
+The group's preferred names are the full names in the member table. Morris has requested student email addresses formed from each student number and the school's email domain. The exact domain and each address's GitHub association still need confirmation before those identities are configured.
+
+Use the member as author for a contribution they authored. Use `Co-authored-by` trailers when several people contributed to the change. Record review findings separately; being assigned a task or simply approving a change does not automatically make someone a co-author of all its code.
+
+The record should describe AI assistance where it was used. Do not redistribute existing commits, invent completed work, backdate changes or add members solely to increase contribution counts.
+
+GitHub connects authorship to account-linked email addresses. Profile contribution counts also depend on the repository and branch criteria; commits on the current working branch may count after they reach the default branch. See [GitHub co-author guidance](https://docs.github.com/en/pull-requests/how-tos/commit-changes/creating-a-commit-with-multiple-authors) and [contribution criteria](https://docs.github.com/en/account-and-profile/reference/profile-contributions-reference).
+
+## Contribution record
+
+Add a row when a contribution is completed. Record an actual change and its evidence; a proposed task is not a completed contribution.
+
+| Date | Change | Human contribution and AI assistance | Evidence | Review status |
+| --- | --- | --- | --- | --- |
+| 9 October 2026 | Initial data preparation and weekly forecast benchmark, commit `273698d` | Morris requested and directed the milestone. OpenAI Codex generated the implementation, tests, setup instructions and result summary. | Real dataset preparation and evaluation succeeded; 18 automated tests passed. See [baseline results](baseline-results.md). | Group review pending. |
+
+For the final report, describe who actually specified, implemented, tested and reviewed each part, including the assistance used. Each member should be able to explain their contribution and the complete demonstration.
