@@ -8,6 +8,22 @@ Build a small Python application that helps a fictional retailer estimate sales 
 
 The application will run locally on a laptop. Stock and supplier information will be labelled demonstration inputs. The sales history is from 2013 to 2017, so the screen must identify this as a historical demonstration and show the forecast cut-off date.
 
+## Keep the build tied to the rubric
+
+The assignment rubric on pages 6–7 awards 50 marks for documentation, 40 for theoretical aspects and 10 for the practical solution. Keep the application small enough for every member to explain, and use its measured results as evidence in the report.
+
+| Rubric area | Marks | Evidence to prepare |
+| --- | ---: | --- |
+| Documentation | 50 | Relevant retail problem, clear business objectives and success criteria, requirements, constraints, risks, tools and a concise poster. Follow the required format and include the declaration and Grammarly results. |
+| Machine learning and data | 10 | Explain the weekly benchmark, random forest, dataset fields, five-item scope and chronological split. |
+| Model evaluation and time series | 10 | Show sales patterns, the scored dates and actual daily and weekly errors. Distinguish validation from final testing. |
+| Solution techniques | 5 | Explain the chosen features, limited comparison and how results guide model selection. |
+| NLP and chatbot/softbot | 10 | One basic text assistant with five relevant intents, backed by the application's actual results. Explain intent recognition and response retrieval separately. |
+| Deep learning | 5 | One small LSTM experiment per item, with appropriate inputs, training boundaries and measured comparison results. |
+| Practical solution | 10 | Demonstrate history, forecast, stock calculation and the assistant on the single local page. |
+
+Item 1–5 are the source dataset's anonymous identifiers. It contains no product names or product categories. Keep these labels and explain them in the report. Stock quantities and supplier details are manually supplied demonstration inputs because they are absent from the sales dataset.
+
 ## What the user sees
 
 Use one Streamlit page with four clearly labelled areas:
