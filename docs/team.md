@@ -47,6 +47,10 @@ Members can also open issues or review pull requests through their own GitHub ac
 
 Morris is the default commit author for this repository, using the full name and student email listed above. Before crediting another member, confirm their agreement to the chosen identity and the specific contribution being credited.
 
+On 9 October 2026, Morris confirmed that all ten members were helping during the shared working session and requested co-author credit in line with their existing roles. For changes they contribute to together, Morris remains the primary author and the nine other members are listed with `Co-authored-by` trailers. Their roles and task ownership remain in the tables above; a co-author trailer does not describe a role or mark an assigned task complete.
+
+The repository includes a [commit message template](../.gitmessage) for this shared workflow. It is configured on this PC. On another laptop, run `git config --local commit.template .gitmessage`, then use `git commit` to open the template in the editor. Commands using `git commit -m` or `git commit -F` must include the trailers explicitly because they do not use this template. Keep only the members who contributed to the particular change.
+
 The preferred names are the full names in the member table. Morris supplied the nine other members' email addresses on 9 October 2026; the table now uses those addresses instead of assuming that every member uses a student email. Morris's existing student address remains unchanged. Their association with members' GitHub accounts has not been independently verified. Each member should confirm that their listed address is added and verified in GitHub Settings > Emails so that GitHub can link commits using that address to their profile. Listing an address here does not verify it or grant repository access.
 
 Use the member as author for a contribution they authored. Use `Co-authored-by` trailers when several people contributed to the change. Record review findings separately; being assigned a task or simply approving a change does not automatically make someone a co-author of all its code.
