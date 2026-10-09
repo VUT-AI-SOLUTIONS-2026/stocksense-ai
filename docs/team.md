@@ -17,20 +17,20 @@ VUT AI Solutions · Diploma: Information Technology
 
 ## Next contributions
 
-These are proposed tasks based on the existing roles. Members should confirm or exchange tasks before starting. No task below is recorded as completed.
+Each task below has an open GitHub issue assigned to its owner. All ten members have repository access to push changes, checked on 9 October 2026. Members should confirm or exchange tasks before starting. No task below is recorded as completed.
 
-| Owner | Contribution to make | Evidence to provide | Reviewer |
-| --- | --- | --- | --- |
-| Morris | Specify the stock calculation and integrate the prototype components. | A written calculation with delivery assumptions and examples; integration changes after review. | Zama |
-| Percy | Analyse the five items using development data through 2016 and recommend forecasting features. | Short findings with calculations, feature choices and reasons. | Mick |
-| Ungakimi | Review the benchmark evaluation and define the model comparison. | Check the 52 scored weeks, excluded dates and error calculations; prepare the comparison table and corrections. | Wandile |
-| Wandile | Design application and stock calculation tests. | At least 10 input/expected-output cases, including invalid inputs, sufficient stock and shortages before delivery. | Ungakimi |
-| Mick | Check the dataset preparation against the original CSV. | Record the source hash, row counts, date coverage and results of running preparation; identify corrections if needed. | Percy |
-| Neo | Specify and review the random forest and small LSTM experiments. | Explain model inputs, starting settings and a limited validation comparison; review the resulting implementation. | Ungakimi |
-| Buhle | Verify the installation and repeatable run process. | A checked setup guide, actual package versions and a run log; organise the later rehearsal on another laptop. | Morris |
-| Senamile | Connect the retailer's problem to the demonstration and presentation. | A short business explanation, proposed demo sequence and poster outline; replace planned outcomes with measured results later. | Zama |
-| Sibongiseni | Design the dashboard layout and input messages. | A simple layout showing history, forecast, stock inputs and assistant; clear date labels and validation messages. | Senamile |
-| Zama | Review and update the report against the implemented baseline. | Explain the 6.320-unit validation MAE in plain language, distinguish validation from final testing and correct unsupported claims. | Percy |
+| Owner | Contribution to make | Evidence to provide | Reviewer | GitHub task |
+| --- | --- | --- | --- | --- |
+| Morris | Specify the stock calculation and integrate the prototype components. | A written calculation with delivery assumptions and examples; integration changes after review. | Zama | [#23](https://github.com/VUT-AI-SOLUTIONS-2026/stocksense-ai/issues/23) |
+| Percy | Analyse the five items using development data through 2016 and recommend forecasting features. | Short findings with calculations, feature choices and reasons. | Mick | [#24](https://github.com/VUT-AI-SOLUTIONS-2026/stocksense-ai/issues/24) |
+| Ungakimi | Review the benchmark evaluation and define the model comparison. | Check the 52 scored weeks, excluded dates and error calculations; prepare the comparison table and corrections. | Wandile | [#25](https://github.com/VUT-AI-SOLUTIONS-2026/stocksense-ai/issues/25) |
+| Wandile | Design application and stock calculation tests. | At least 10 input/expected-output cases, including invalid inputs, sufficient stock and shortages before delivery. | Ungakimi | [#26](https://github.com/VUT-AI-SOLUTIONS-2026/stocksense-ai/issues/26) |
+| Mick | Check the dataset preparation against the original CSV. | Record the source hash, row counts, date coverage and results of running preparation; identify corrections if needed. | Percy | [#27](https://github.com/VUT-AI-SOLUTIONS-2026/stocksense-ai/issues/27) |
+| Neo | Specify and review the random forest and small LSTM experiments. | Explain model inputs, starting settings and a limited validation comparison; review the resulting implementation. | Ungakimi | [#28](https://github.com/VUT-AI-SOLUTIONS-2026/stocksense-ai/issues/28) |
+| Buhle | Verify the installation and repeatable run process. | A checked setup guide, actual package versions and a run log; organise the later rehearsal on another laptop. | Morris | [#29](https://github.com/VUT-AI-SOLUTIONS-2026/stocksense-ai/issues/29) |
+| Senamile | Connect the retailer's problem to the demonstration and presentation. | A short business explanation, proposed demo sequence and poster outline; replace planned outcomes with measured results later. | Zama | [#30](https://github.com/VUT-AI-SOLUTIONS-2026/stocksense-ai/issues/30) |
+| Sibongiseni | Design the dashboard layout and input messages. | A simple layout showing history, forecast, stock inputs and assistant; clear date labels and validation messages. | Senamile | [#31](https://github.com/VUT-AI-SOLUTIONS-2026/stocksense-ai/issues/31) |
+| Zama | Review and update the report against the implemented baseline. | Explain the 6.320-unit validation MAE in plain language, distinguish validation from final testing and correct unsupported claims. | Percy | [#41](https://github.com/VUT-AI-SOLUTIONS-2026/stocksense-ai/issues/41) |
 
 The assistant's intent examples and held-out questions will be a shared later task. Record who writes or corrects each set rather than assigning every member credit automatically.
 
