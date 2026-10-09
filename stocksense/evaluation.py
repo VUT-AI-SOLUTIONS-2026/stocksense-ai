@@ -26,6 +26,14 @@ def _metrics(predictions: pd.DataFrame) -> dict:
 def evaluate_baseline(
     data: pd.DataFrame, *, start: str, end: str,
 ) -> tuple[pd.DataFrame, dict]:
+    return evaluate_forecaster(data, start=start, end=end,
+                               forecaster=seasonal_naive_forecast, method="weekly_seasonal_naive")
+
+
+def evaluate_forecaster(
+    data: pd.DataFrame, *, start: str, end: str, forecaster, method: str,
+) -> tuple[pd.DataFrame, dict]:
+    """Use identical forecast dates and scoring rules for every method."""
     start_date, end_date = calendar_date(start), calendar_date(end)
     if end_date < start_date:
         raise ValueError("Evaluation end must not be before its start.")
@@ -38,10 +46,18 @@ def evaluate_baseline(
     forecasts = []
     for (store, item), series in data.groupby(["store", "item"]):
         for origin in origins:
-            forecasts.append(seasonal_naive_forecast(
+            forecast = forecaster(
                 series, store=int(store), item=int(item),
                 cutoff=origin - pd.Timedelta(days=1),
-            ))
+            )
+            expected_dates = pd.date_range(origin, periods=7, freq="D")
+            if (len(forecast) != 7 or not forecast["date"].reset_index(drop=True).equals(pd.Series(expected_dates))
+                    or not forecast["store"].eq(store).all() or not forecast["item"].eq(item).all()):
+                raise ValueError("Each forecast must contain seven correctly dated predictions for its series.")
+            values = forecast["prediction"].to_numpy(dtype=float)
+            if not np.isfinite(values).all() or (values < 0).any():
+                raise ValueError("Predictions must be finite and non-negative.")
+            forecasts.append(forecast)
     predicted = pd.concat(forecasts, ignore_index=True)
     actual = data[["store", "item", "date", "sales"]].rename(columns={"sales": "actual_sales"})
     # Attach outcomes only after predictions have been created from past history.
@@ -55,7 +71,7 @@ def evaluate_baseline(
     for (store, item), rows in scored.groupby(["store", "item"]):
         per_item.append({"store": int(store), "item": int(item), **_metrics(rows)})
     summary = {
-        "method": "weekly_seasonal_naive",
+        "method": method,
         "horizon_days": 7,
         "origin_step_days": 7,
         "period_start": start_date.strftime("%Y-%m-%d"),

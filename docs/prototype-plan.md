@@ -1,6 +1,6 @@
 # StockSense AI prototype plan
 
-Planning draft, 9 October 2026. Coding has started with data preparation and the weekly forecasting benchmark. The dashboard, learned models, stock calculation and assistant remain planned.
+Plan updated 9 October 2026. Data preparation, the weekly benchmark, random forest comparison, stock calculation and dashboard are implemented. The first working milestone is complete; the LSTM experiment, text assistant, final test and group rehearsal remain pending. See [prototype results](prototype-results.md).
 
 ## Purpose and scope
 
@@ -94,7 +94,7 @@ Keep raw data and generated model files out of Git commits. Provide the dataset 
 
 ## Group work
 
-Use the existing team roles to agree on task owners before assigning work on GitHub Projects. Data preparation, forecasting, dashboard, assistant and testing each need an owner and a reviewer. One member integrates the parts and checks that the report uses the same scope, calculations and measured results. Everyone should be able to explain the demonstration.
+The [team page](team.md) links an assigned GitHub issue for each member, with expected evidence and a reviewer. Members should confirm or exchange tasks. Add the issues to GitHub Projects to track progress. One member integrates the parts and checks that the report uses the same scope, calculations and measured results. Everyone should be able to explain the demonstration.
 
 ## Proposed checkpoints
 
