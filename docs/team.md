@@ -6,7 +6,7 @@ VUT AI Solutions · Diploma: Information Technology
 | --- | --- | --- | --- | --- | --- |
 | 1 | [@morrissambo18-oss](https://github.com/morrissambo18-oss) | Morris Sambo | 240699874 | 240699874@edu.vut.ac.za | Project lead / AI Engineer |
 | 2 | [@junior07-oss](https://github.com/junior07-oss) | Percy Mduduzi Jr Dlamini | 224057855 | 224057855@edu.vut.ac.za | AI Data Analyst |
-| 3 | [@Kimzo-2](https://github.com/Kimzo-2) | Ungakimi Nkambule | 222072385 | 222072385@edu.vut.ac.za | AI Evaluation Engineer |
+| 3 | [@Kimzo-2](https://github.com/Kimzo-2) | Ungakimi Nkambule | 222072385 | akim.nkambule@icloud.com | AI Evaluation Engineer |
 | 4 | [@mazii14](https://github.com/mazii14) | Wandile Samuel Mazibuko | 224067737 | 224067737@edu.vut.ac.za | QA Tester |
 | 5 | [@Mick92-r](https://github.com/Mick92-r) | Mick Ndaj Kongal | 224342924 | 224342924@edu.vut.ac.za | Data Engineer / Data Collector |
 | 6 | [@NeoMokoena2214](https://github.com/NeoMokoena2214) | Neo Mokoena | 240111699 | 240111699@edu.vut.ac.za | AI Model Specialist |
