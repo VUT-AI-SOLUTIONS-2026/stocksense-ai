@@ -10,9 +10,9 @@ VUT AI Solutions · Diploma: Information Technology
 | 4 | [@mazii14](https://github.com/mazii14) | Wandile Samuel Mazibuko | 224067737 | 224067737@edu.vut.ac.za | QA Tester |
 | 5 | [@Mick92-r](https://github.com/Mick92-r) | Mick Ndaj Kongal | 224342924 | 224342924@edu.vut.ac.za | Data Engineer / Data Collector |
 | 6 | [@NeoMokoena2214](https://github.com/NeoMokoena2214) | Neo Mokoena | 240111699 | 240111699@edu.vut.ac.za | AI Model Specialist |
-| 7 | [@refiloemdluli75](https://github.com/refiloemdluli75) | Buhle Refiloe Mdluli | 224661612 | 224661612@edu.vut.ac.za | MLOps Engineer |
-| 8 | [@SenamileNhlanhla](https://github.com/SenamileNhlanhla) | Senamile Nhlanhla | 224110519 | 224110519@edu.vut.ac.za | Presentation / Business Lead |
-| 9 | [@SiboM2](https://github.com/SiboM2) | Sibongiseni John Mokobori | 224133209 | 224133209@edu.vut.ac.za | Frontend / Dashboard developer |
+| 7 | [@refiloemdluli75](https://github.com/refiloemdluli75) | Buhle Refiloe Mdluli | 224661612 | refiloemdluli75@gmail.com | MLOps Engineer |
+| 8 | [@SenamileNhlanhla](https://github.com/SenamileNhlanhla) | Senamile Nhlanhla | 224110519 | senamilenhl@gmail.com | Presentation / Business Lead |
+| 9 | [@SiboM2](https://github.com/SiboM2) | Sibongiseni John Mokobori | 224133209 | sebongisenijohn@gmail.com | Frontend / Dashboard developer |
 | 10 | [@zamajobe237](https://github.com/zamajobe237) | Zama Angel Mtetwa | 225039907 | 225039907@edu.vut.ac.za | Documentation / Business Analyst |
 
 ## Next contributions
@@ -47,7 +47,7 @@ Members can also open issues or review pull requests through their own GitHub ac
 
 Morris is the default commit author for this repository, using the full name and student email listed above. Before crediting another member, confirm their agreement to the chosen identity and the specific contribution being credited.
 
-The preferred names are the full names in the member table. The email addresses use the student numbers and `edu.vut.ac.za` domain provided by Morris on 9 October 2026. Their association with members' GitHub accounts has not been verified. Each member should add and verify their student email in GitHub Settings > Emails so that GitHub can link commits using that address to their profile. Listing an address here does not verify it or grant repository access.
+The preferred names are the full names in the member table. Morris supplied the nine other members' email addresses on 9 October 2026; the table now uses those addresses instead of assuming that every member uses a student email. Morris's existing student address remains unchanged. Their association with members' GitHub accounts has not been independently verified. Each member should confirm that their listed address is added and verified in GitHub Settings > Emails so that GitHub can link commits using that address to their profile. Listing an address here does not verify it or grant repository access.
 
 Use the member as author for a contribution they authored. Use `Co-authored-by` trailers when several people contributed to the change. Record review findings separately; being assigned a task or simply approving a change does not automatically make someone a co-author of all its code.
 
