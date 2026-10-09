@@ -2,18 +2,18 @@
 
 VUT AI Solutions · Diploma: Information Technology
 
-| # | GitHub | Full name | Student number | Main responsibility |
-| --- | --- | --- | --- | --- |
-| 1 | [@morrissambo18-oss](https://github.com/morrissambo18-oss) | Morris Sambo |240699874| Project lead/ AI Engineer |
-| 2 | [@junior07-oss](https://github.com/junior07-oss) |Percy Mduduzi Jr Dlamini |224057855 |AI Data Analyst |
-| 3 | [@Kimzo-2](https://github.com/Kimzo-2) |Ungakimi Nkambule |222072385 |AI Evaluation Engineer |
-| 4 | [@mazii14](https://github.com/mazii14) |Wandile Samuel Mazibuko |224067737 |QA Tester |
-| 5 | [@Mick92-r](https://github.com/Mick92-r) |Mick Ndaj Kongal |224342924 | Data Engineer / Data Collector |
-| 6 | [@NeoMokoena2214](https://github.com/NeoMokoena2214) |Neo Mokoena |240111699 |AI Model Specialist |
-| 7 | [@refiloemdluli75](https://github.com/refiloemdluli75) |Buhle Refiloe Mdluli |224661612 |MLOps Engineer |
-| 8 | [@SenamileNhlanhla](https://github.com/SenamileNhlanhla) |Senamile Nhlanhla |224110519 |Presentation / Business Lead |
-| 9 | [@SiboM2](https://github.com/SiboM2) |Sibongiseni John Mokobori |224133209 |Frontend/Dashboard developer |
-| 10 | [@zamajobe237](https://github.com/zamajobe237) |Zama Angel Mtetwa |225039907 |Documentation/ Business Analyst |
+| # | GitHub | Full name | Student number | Preferred commit email | Main responsibility |
+| --- | --- | --- | --- | --- | --- |
+| 1 | [@morrissambo18-oss](https://github.com/morrissambo18-oss) | Morris Sambo | 240699874 | 240699874@edu.vut.ac.za | Project lead / AI Engineer |
+| 2 | [@junior07-oss](https://github.com/junior07-oss) | Percy Mduduzi Jr Dlamini | 224057855 | 224057855@edu.vut.ac.za | AI Data Analyst |
+| 3 | [@Kimzo-2](https://github.com/Kimzo-2) | Ungakimi Nkambule | 222072385 | 222072385@edu.vut.ac.za | AI Evaluation Engineer |
+| 4 | [@mazii14](https://github.com/mazii14) | Wandile Samuel Mazibuko | 224067737 | 224067737@edu.vut.ac.za | QA Tester |
+| 5 | [@Mick92-r](https://github.com/Mick92-r) | Mick Ndaj Kongal | 224342924 | 224342924@edu.vut.ac.za | Data Engineer / Data Collector |
+| 6 | [@NeoMokoena2214](https://github.com/NeoMokoena2214) | Neo Mokoena | 240111699 | 240111699@edu.vut.ac.za | AI Model Specialist |
+| 7 | [@refiloemdluli75](https://github.com/refiloemdluli75) | Buhle Refiloe Mdluli | 224661612 | 224661612@edu.vut.ac.za | MLOps Engineer |
+| 8 | [@SenamileNhlanhla](https://github.com/SenamileNhlanhla) | Senamile Nhlanhla | 224110519 | 224110519@edu.vut.ac.za | Presentation / Business Lead |
+| 9 | [@SiboM2](https://github.com/SiboM2) | Sibongiseni John Mokobori | 224133209 | 224133209@edu.vut.ac.za | Frontend / Dashboard developer |
+| 10 | [@zamajobe237](https://github.com/zamajobe237) | Zama Angel Mtetwa | 225039907 | 225039907@edu.vut.ac.za | Documentation / Business Analyst |
 
 ## Next contributions
 
@@ -45,9 +45,9 @@ Members can also open issues or review pull requests through their own GitHub ac
 
 ## Commit credit
 
-Keep Morris as the current commit identity until the group supplies attribution details. Before crediting a member, obtain their preferred commit name, a GitHub-linked email or GitHub-provided noreply address, their agreement to its use, and the specific contribution being credited. Do not guess an email from a username.
+Morris is the default commit author for this repository, using the full name and student email listed above. Before crediting another member, confirm their agreement to the chosen identity and the specific contribution being credited.
 
-The group's preferred names are the full names in the member table. Morris has requested student email addresses formed from each student number and the school's email domain. The exact domain and each address's GitHub association still need confirmation before those identities are configured.
+The preferred names are the full names in the member table. The email addresses use the student numbers and `edu.vut.ac.za` domain provided by Morris on 9 October 2026. Their association with members' GitHub accounts has not been verified. Each member should add and verify their student email in GitHub Settings > Emails so that GitHub can link commits using that address to their profile. Listing an address here does not verify it or grant repository access.
 
 Use the member as author for a contribution they authored. Use `Co-authored-by` trailers when several people contributed to the change. Record review findings separately; being assigned a task or simply approving a change does not automatically make someone a co-author of all its code.
 
