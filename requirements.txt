@@ -1,0 +1,3 @@
+# Dependencies for data preparation and the weekly forecasting benchmark.
+numpy==2.3.5
+pandas==3.0.1
