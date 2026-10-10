@@ -67,6 +67,8 @@ Training uses the question sets in `resources/assistant_questions.json`. The sav
 
 ## Documents
 
+- [Project handover and continuation context](docs/handover.md)
+- [Earlier full report source and designed drafts](docs/drafts/README.md)
 - [Report draft](docs/report.md)
 - [Team](docs/team.md)
 - [Submission checklist](docs/submission-checklist.md)
