@@ -6,7 +6,7 @@ Implemented and checked on 9 October 2026. The assistant supports five intents: 
 
 Text is lowercased, numbered item references are normalised, and common English stop words are removed. TF-IDF represents individual words and pairs of words. A logistic regression classifier with C=5, random state 42 and at most 1,000 iterations predicts an intent. The classifier is trained in a script and loaded by the dashboard. It does not generate sales estimates or retrieve information from the internet.
 
-Answers are templates populated from the existing forecast, observed sales, stock calculation and validation summary. Reorder answers require submitted, valid stock inputs. Changing items clears the stored stock result. An explicit request for a different item asks the user to change the selector. Questions about IDs outside 1–5 receive a scope explanation.
+Answers are templates populated from the existing forecast, observed sales, stock calculation and evaluation summaries. Since 10 October, performance answers distinguish 2016 validation from the recorded 2017 final test. Neither is presented as measured January 2018 accuracy. Reorder answers require submitted, valid stock inputs. Changing items clears the stored stock result. An explicit request for a different item asks the user to change the selector. Questions about IDs outside 1–5 receive a scope explanation.
 
 ## Question split and measured results
 

@@ -2,6 +2,8 @@
 
 Measured on 9 October 2026. Group review and a second-laptop rehearsal are pending.
 
+This page records the first milestone. The completed three-method comparison and 2017 test are in [final model results](final-model-results.md), measured on 10 October 2026. The earlier provisional status below describes the 9 October run.
+
 The local Streamlit application supports store 1 and items 1–5. It shows 28 days of observed sales, seven dated forecast quantities, their total and a stock-order calculator. Inputs and delivery assumptions are visible. The retailer is fictional; stock and supplier values are demonstration inputs.
 
 ## Forecast comparison
@@ -35,7 +37,7 @@ The validation models are trained on 2013–2015. A separate saved model is refi
 
 Training the five validation models took 6.077 seconds; refitting the five demonstration models took 7.635 seconds on this PC. These times exclude loading the CSV and scoring predictions and do not measure dashboard response time. Python 3.12.14, NumPy 2.3.5, pandas 3.0.1, scikit-learn 1.9.1, Streamlit 1.65.0 and joblib 1.6.0 were used. Timing varies by machine.
 
-Run `python -m scripts.train_forecasters` to regenerate the model and comparison. Generated files are ignored by Git; another laptop needs to run preparation and training. Read `artifacts/forecasters/comparison.json` for exact per-item errors, settings and scored dates.
+On a fresh setup, run `python -m scripts.train_forecasters` to generate the initial model and comparison, then follow the LSTM and final-evaluation stages in the README. A frozen results directory is protected from being overwritten by this initial trainer. Generated files are ignored by Git; another laptop needs preparation and training. Read `artifacts/forecasters/comparison.json` for exact per-item errors, settings and scored dates.
 
 ## Stock calculation
 
@@ -49,4 +51,4 @@ For seven daily forecasts of 10 units, stock of 20, no outstanding units, lead t
 
 All 29 automated tests passed. The stock tests include 12 independently specified calculation cases, including sufficient stock, outstanding orders, fractional forecasts, zero demand, instant delivery and shortages before delivery. Other checks cover invalid inputs, chronological training boundaries, unchanged predictions when future sales change, saved-model reproduction, equal comparison dates and dashboard interactions for all five items.
 
-Dashboard checks use [Streamlit AppTest](https://docs.streamlit.io/develop/api-reference/app-testing/st.testing.v1.apptest). A separate Chrome preview was opened at desktop and mobile widths for layout inspection. The text assistant has since been added, bringing the suite to 37 passing tests; see [assistant results](assistant-results.md). The LSTM experiment, frozen final evaluation, response-time measurement and group rehearsal are still required before final submission.
+Dashboard checks use [Streamlit AppTest](https://docs.streamlit.io/develop/api-reference/app-testing/st.testing.v1.apptest). A separate Chrome preview was opened at desktop and mobile widths for layout inspection. The text assistant subsequently brought the suite to 37 passing tests; see [assistant results](assistant-results.md). The next milestone completed the LSTM experiment and frozen final evaluation; its checks are recorded in [final model results](final-model-results.md). Response-time measurement and group rehearsal remain pending.

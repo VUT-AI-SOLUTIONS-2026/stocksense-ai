@@ -4,6 +4,8 @@ import re
 import numpy as np
 import pandas as pd
 
+METHOD_LABELS = {"weekly_seasonal_naive": "Weekly benchmark", "random_forest": "Random forest", "lstm": "Small LSTM"}
+
 
 def calendar_date(value: str | pd.Timestamp) -> pd.Timestamp:
     if isinstance(value, str) and not re.fullmatch(r"\d{4}-\d{2}-\d{2}", value):

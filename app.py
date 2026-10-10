@@ -7,7 +7,7 @@ import pandas as pd
 import streamlit as st
 
 from stocksense.data import ITEMS, load_sales, select_scope
-from stocksense.forecasting import seasonal_naive_forecast
+from stocksense.forecasting import METHOD_LABELS, seasonal_naive_forecast
 from stocksense.inventory import plan_stock
 from stocksense.assistant import answer_question
 
@@ -16,6 +16,7 @@ DATA = ROOT / "data/prepared/store_1_items_1_to_5.csv"
 MODEL = ROOT / "artifacts/forecasters/random_forest.joblib"
 COMPARISON = ROOT / "artifacts/forecasters/comparison.json"
 ASSISTANT = ROOT / "artifacts/assistant/intent_model.joblib"
+LSTM_DIRECTORY = ROOT / "artifacts/forecasters/lstm_final"
 
 st.set_page_config(page_title="StockSense AI", page_icon="📦", layout="centered")
 
@@ -28,6 +29,20 @@ def read_history(_path, modified):
 @st.cache_resource
 def read_model(path, modified):
     return joblib.load(path)
+
+
+@st.cache_resource
+def read_lstm(path, modified):
+    from stocksense.lstm import LSTMForecast
+    return LSTMForecast.load(path)
+
+
+def metric_rows(methods):
+    return [{"Method": METHOD_LABELS[key],
+             "Daily MAE (units)": metrics["overall"]["mae_units"],
+             "Daily RMSE (units)": metrics["overall"]["rmse_units"],
+             "Weekly total MAE (units)": metrics["overall"]["weekly_total_mae_units"]}
+            for key, metrics in methods.items()]
 
 
 def main():
@@ -50,10 +65,20 @@ def main():
             model = read_model(str(MODEL), MODEL.stat().st_mtime_ns)
             forecast = model.forecast(history, item=item, cutoff=cutoff)
             label = "Random forest"
-        else:
+        elif method == "lstm":
+            metadata = LSTM_DIRECTORY / "metadata.json"
+            if not metadata.exists():
+                st.info("The selected LSTM's final refit is still pending. Complete the final evaluation setup first.")
+                return
+            model = read_lstm(str(LSTM_DIRECTORY), metadata.stat().st_mtime_ns)
+            forecast = model.forecast(history, item=item, cutoff=cutoff)
+            label = METHOD_LABELS[method]
+        elif method == "weekly_seasonal_naive":
             forecast = seasonal_naive_forecast(history, item=item, cutoff=cutoff)
             label = "Repeat last week's sales"
-    except (ValueError, OSError, KeyError) as error:
+        else:
+            raise ValueError("Unknown forecast method in the saved comparison.")
+    except (ValueError, OSError, KeyError, ImportError) as error:
         st.error(f"Unable to load this demonstration: {error}")
         return
     st.caption(f"Last observed day: {cutoff:%d %B %Y} · Forecast method: {label}")
@@ -117,15 +142,20 @@ def main():
         st.info("Set up the assistant first: python -m scripts.train_assistant")
     if comparison:
         with st.expander("Validation comparison (2016)"):
-            rows = [{"Method": "Random forest" if key == "random_forest" else "Weekly benchmark",
-                     "Daily MAE (units)": metrics["overall"]["mae_units"],
-                     "Daily RMSE (units)": metrics["overall"]["rmse_units"],
-                     "Weekly total MAE (units)": metrics["overall"]["weekly_total_mae_units"]}
-                    for key, metrics in comparison["methods"].items()]
-            st.dataframe(pd.DataFrame(rows), hide_index=True)
+            st.dataframe(pd.DataFrame(metric_rows(comparison["methods"])), hide_index=True)
             st.write("MAE is the average absolute forecast error in units. Smaller is better.")
             st.caption("52 complete weeks per item. Training: 2013–2015; validation: 2016. "
-                       "Demonstration model refitted through 2016. The LSTM comparison and final 2017 test are pending.")
+                       "The demonstration model is refitted through 2016. Model choice uses daily validation MAE.")
+            if "lstm" not in comparison["methods"]:
+                st.caption("The LSTM comparison remains pending.")
+        if comparison.get("final_test"):
+            with st.expander("Final evaluation (2017)"):
+                st.dataframe(pd.DataFrame(metric_rows(comparison["final_test"]["methods"])), hide_index=True)
+                st.caption("52 complete weeks per item: 1 January–30 December 2017. The incomplete final day is excluded. "
+                           "Model choice and settings were fixed using 2016 validation before scoring this year. "
+                           "Model weights stay fixed while observed history advances each week.")
+        else:
+            st.caption("Final 2017 evaluation is pending.")
 
 
 main()

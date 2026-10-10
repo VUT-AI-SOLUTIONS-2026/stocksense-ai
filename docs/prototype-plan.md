@@ -1,6 +1,6 @@
 # StockSense AI prototype plan
 
-Plan updated 9 October 2026. Data preparation, the weekly benchmark, random forest comparison, stock calculation, dashboard and text assistant are implemented. The LSTM experiment, final forecasting test and group rehearsal remain pending. See [prototype results](prototype-results.md) and [assistant results](assistant-results.md).
+Plan updated 10 October 2026. Data preparation, all three forecasting methods, stock calculation, dashboard and text assistant are implemented. The model choice is frozen and the final forecasting test is recorded. Group review and a second-laptop rehearsal remain pending. See [final model results](final-model-results.md), [prototype results](prototype-results.md) and [assistant results](assistant-results.md).
 
 ## Purpose and scope
 
@@ -94,7 +94,8 @@ stocksense/
     inventory.py           Stock calculation
     assistant.py           Intent recognition and answer retrieval
 scripts/
-    train_forecasters.py   Baseline, random forest and LSTM comparison
+    train_forecasters.py   Initial baseline and random forest comparison
+    compare_lstm.py        LSTM validation, frozen selection and final evaluation
     evaluate_forecasters.py
     train_assistant.py
 tests/                     Data boundaries, calculations and output consistency

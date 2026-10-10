@@ -6,6 +6,7 @@ import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import make_pipeline
+from stocksense.forecasting import METHOD_LABELS
 
 HELP = "Choose an item, view its seven-day forecast, then calculate a stock order. Ask about forecast sales, replenishment, recent sales or model performance."
 
@@ -77,8 +78,14 @@ def answer_question(text, *, model, item, forecast, recent, stock_plan=None, com
         return "No model comparison is available yet. Run the forecasting comparison first."
     method = comparison["selected_method"]
     metrics = comparison["methods"][method]["overall"]
-    name = "Random forest" if method == "random_forest" else "Weekly benchmark"
-    return (f"{name}: average daily absolute error {metrics['mae_units']:.3f} units across all five items "
+    name = METHOD_LABELS[method]
+    response = (f"{name}: average daily absolute error {metrics['mae_units']:.3f} units across all five items "
             f"on 2016 validation; daily RMSE {metrics['rmse_units']:.3f} and weekly-total MAE "
-            f"{metrics['weekly_total_mae_units']:.3f} units. These are validation results, not January 2018 accuracy. "
-            "The final 2017 test is pending.")
+            f"{metrics['weekly_total_mae_units']:.3f} units. ")
+    if comparison.get("final_test"):
+        final = comparison["final_test"]["methods"][method]["overall"]
+        response += (f"On the separate 2017 final test: daily MAE {final['mae_units']:.3f}, "
+                     f"RMSE {final['rmse_units']:.3f} and weekly-total MAE {final['weekly_total_mae_units']:.3f} units. ")
+    else:
+        response += "The final 2017 test is pending. "
+    return response + "These historical scores do not measure January 2018 forecast accuracy."

@@ -16,6 +16,8 @@ def main():
     parser.add_argument("--input", type=Path, default=PREPARED)
     parser.add_argument("--output-dir", type=Path, default=ROOT / "artifacts" / "forecasters")
     args = parser.parse_args()
+    if (args.output_dir / "selection-lock.json").exists():
+        parser.error("Model choices are frozen in this output directory. Read the existing results or use a new output directory for a separately labelled experiment.")
     if args.input.resolve().is_relative_to(args.output_dir.resolve()):
         parser.error("The output directory must not contain the input CSV.")
     try:

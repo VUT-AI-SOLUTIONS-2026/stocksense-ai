@@ -54,6 +54,16 @@ class AssistantTests(unittest.TestCase):
             self.assertIn(value, response)
         self.assertIn("No model comparison", self.answer("Show model performance"))
 
+    def test_final_metrics_are_distinct_from_validation(self):
+        comparison = {"selected_method": "lstm", "methods": {"lstm": {"overall": {
+            "mae_units": 4, "rmse_units": 5, "weekly_total_mae_units": 10}}},
+            "final_test": {"methods": {"lstm": {"overall": {
+                "mae_units": 6, "rmse_units": 7, "weekly_total_mae_units": 20}}}}}
+        response = self.answer("Show model performance", comparison=comparison)
+        for value in ("Small LSTM", "2016 validation", "2017 final test", "daily MAE 6.000", "20.000"):
+            self.assertIn(value, response)
+        self.assertNotIn("pending", response)
+
     def test_other_items_do_not_use_current_stock_or_forecast(self):
         for query in ("Forecast for item 2", "Forecast for item 1 and item 2"):
             self.assertIn("Item selector", self.answer(query))
@@ -96,6 +106,23 @@ class AssistantDashboardTests(unittest.TestCase):
         self.app.number_input(key="review").set_value(3)
         self.app.button[0].click().run()
         self.assertIn("Calculate suggested order", self.ask("How much should I order"))
+
+    def test_recorded_final_comparison_and_answer(self):
+        comparison_path = ROOT / "artifacts/forecasters/comparison.json"
+        if not comparison_path.exists():
+            self.skipTest("Run the forecast comparison first.")
+        comparison = json.loads(comparison_path.read_text())
+        if not comparison.get("final_test"):
+            self.skipTest("Complete the frozen final evaluation first.")
+        self.assertEqual([e.label for e in self.app.expander],
+                         ["Validation comparison (2016)", "Final evaluation (2017)"])
+        for table in self.app.dataframe[1:]:
+            self.assertEqual(len(table.value), 3)
+        response = self.ask("Show model performance")
+        selected = comparison["selected_method"]
+        mae = comparison["final_test"]["methods"][selected]["overall"]["mae_units"]
+        self.assertIn(f"daily MAE {mae:.3f}", response)
+        self.assertIn("2017 final test", response)
 
 
 if __name__ == "__main__":

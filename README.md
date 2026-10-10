@@ -31,11 +31,23 @@ Preparation checks required columns, missing values, whole non-negative sales, p
 
 The benchmark repeats the last observed week's sales on matching weekdays. Evaluation defaults to **2016 validation**, using 52 complete seven-day forecasts per item. Results are saved to `artifacts/baseline/validation/`. Use `--period test` only when the final model choices have been fixed for the 2017 comparison.
 
-Training compares five random forests against the benchmark on those same 2016 weeks. It uses 2013–2015 targets, with 28 preceding sales days, recent averages and known calendar features. The comparison is saved to `artifacts/forecasters/comparison.json`. A separate forest is refitted through 2016 for the demonstration; no 2017 test scores are calculated. Selection uses daily MAE and remains provisional until the LSTM comparison.
+The initial training command compares five random forests against the benchmark on those same 2016 weeks. It uses 2013–2015 targets, with 28 preceding sales days, recent averages and known calendar features. It creates a provisional comparison and a forest refitted through 2016.
+
+To reproduce the completed deep-learning experiment and final evaluation, install the extra dependencies and run these stages in order:
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -r requirements-deep-learning.txt
+.\.venv\Scripts\python.exe -m scripts.compare_lstm --stage validation
+.\.venv\Scripts\python.exe -m scripts.compare_lstm --stage final
+```
+
+Validation adds one small LSTM per item and freezes the method and epoch counts using 2016 results. The final stage refits through 2016, then evaluates 2017 with fixed weights. Results go to `artifacts/forecasters/comparison.json` and `final-test.json`; `selection-lock.json` records the choices and dataset checksum. The scripts protect completed results against accidental retraining. On an already prepared machine, launch Streamlit directly instead of repeating training.
+
+Random forest remains selected by daily validation MAE. Keras and PyTorch are needed to reproduce the LSTM experiment, but the selected random forest dashboard runs with the core requirements alone. See [final model results](docs/final-model-results.md) for the recorded comparison and limitations.
 
 Open the local address printed by Streamlit, usually `http://localhost:8501`. Choose an item, inspect its history and forecast, enter demonstration stock values and calculate an order. Lead time plus review interval must fit within seven days. The calculation flags possible shortages before delivery and rounds only the final order upwards. A zero-day lead time means delivery before the first forecast day.
 
-The dashboard forecasts 1–7 January 2018, after the last observed date. Those forecasts have unverified outcomes. Its error table reports **2016 validation**, not accuracy for January 2018 or a real retailer. The random forest improves daily validation MAE but has slightly worse weekly-total MAE; the comparison shows both. See [prototype results](docs/prototype-results.md).
+The dashboard forecasts 1–7 January 2018, after the last observed date. Those forecasts have unverified outcomes. Separate tables report **2016 validation** and **2017 final testing**; neither measures January 2018 accuracy or benefits for a real retailer. The comparison includes daily and weekly-total errors.
 
 The separate baseline command also produces seven-day forecasts. Use `--cutoff YYYY-MM-DD` for an earlier cut-off; omit `--item` to forecast all five items. It remains available for checking the benchmark independently.
 
@@ -43,7 +55,7 @@ Raw data, prepared CSVs and generated outputs stay local and are ignored by Git.
 
 ## Next milestone
 
-Add the small LSTM comparison, then fix model choices before the final 2017 test. Complete a second-laptop rehearsal and collect the final report, poster and presentation evidence.
+Complete group review and a second-laptop rehearsal, then update the submission report, poster and presentation with the measured results. The LSTM comparison and frozen final evaluation are complete.
 
 ## Ask StockSense
 
@@ -62,6 +74,7 @@ Training uses the question sets in `resources/assistant_questions.json`. The sav
 - [Baseline validation results](docs/baseline-results.md)
 - [Prototype and random forest results](docs/prototype-results.md)
 - [Text assistant results](docs/assistant-results.md)
+- [Final forecasting comparison](docs/final-model-results.md)
 
 ## Working together
 
