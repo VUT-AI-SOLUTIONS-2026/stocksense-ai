@@ -4,7 +4,7 @@ Business Analysis 3.2 · AIBUY3A
 
 Theme: An AI Solution for Industries
 
-Draft outline. Replace the notes below with the group's own work.
+Historical outline retained for reference. The current fuller report source is [submission/report.md](submission/report.md), adapted from the earlier draft and updated with measured results. Use that source for the submission review, rather than submitting this outline.
 
 ## Declaration
 

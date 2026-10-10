@@ -1,5 +1,8 @@
 # StockSense AI: project handover
 
+Status update, 10 October 2026: the historical handover below is preserved. See [personal-PC rehearsal](personal-pc-rehearsal.md) and [current submission drafts](submission/README.md) for completed local verification and remaining human actions.
+
+
 Prepared on 10 October 2026 for continuing on Morris's personal PC. This captures agreed decisions and observed results from the office-PC conversation. Inspect the current repository and local files before acting: later user instructions and verified newer evidence may supersede this snapshot.
 
 ## 1. What the user wants

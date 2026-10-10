@@ -1,5 +1,8 @@
 # Final forecasting comparison
 
+Provenance: the original results below describe the office run. The independent personal-PC verification on 10 October 2026 is recorded in [personal-pc-rehearsal.md](personal-pc-rehearsal.md). All 45 tests passed here with no skips; frozen evaluation files were preserved.
+
+
 Measured on 10 October 2026 for store 1, items 1–5. Random forest remains the dashboard method because it had the lowest **2016 daily validation MAE**. The LSTM is a completed deep-learning experiment, with its results retained even though it did not win that comparison.
 
 ## Evaluation design
@@ -96,4 +99,4 @@ All 45 automated tests passed. Added checks cover chronological sequence order, 
 
 A Chrome check confirmed the final-performance answer and both comparison sections. Desktop and mobile previews were inspected; wide metric tables scroll horizontally on a small screen. The running preview needed restarting to load the changed Python modules.
 
-Group review, a second-laptop rehearsal and updates to the submission PDF, poster and presentation remain pending. The fictional retailer and manually entered stock/supplier assumptions must remain clearly labelled.
+The personal-PC technical rehearsal is now complete and current report, poster and presentation review drafts are in [submission/](submission/README.md). Group review and a timed human rehearsal remain pending. The fictional retailer and manually entered stock/supplier assumptions must remain clearly labelled.

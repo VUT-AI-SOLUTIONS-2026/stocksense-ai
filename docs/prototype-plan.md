@@ -1,6 +1,6 @@
 # StockSense AI prototype plan
 
-Plan updated 10 October 2026. Data preparation, all three forecasting methods, stock calculation, dashboard and text assistant are implemented. The model choice is frozen and the final forecasting test is recorded. Group review and a second-laptop rehearsal remain pending. See [final model results](final-model-results.md), [prototype results](prototype-results.md) and [assistant results](assistant-results.md).
+Plan updated 10 October 2026. Data preparation, all three forecasting methods, stock calculation, dashboard and text assistant are implemented. The model choice is frozen and the final forecasting test is recorded. The [personal-PC technical rehearsal](personal-pc-rehearsal.md) passed all 45 tests without skips. Group review, human usability testing and a timed group presentation rehearsal remain pending. See [final model results](final-model-results.md), [prototype results](prototype-results.md) and [assistant results](assistant-results.md).
 
 ## Purpose and scope
 

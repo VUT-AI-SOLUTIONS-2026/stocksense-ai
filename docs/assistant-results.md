@@ -1,5 +1,8 @@
 # Text assistant
 
+Provenance: the original results below describe the office run. The independent personal-PC verification on 10 October 2026 is recorded in [personal-pc-rehearsal.md](personal-pc-rehearsal.md). All 45 tests passed here with no skips; frozen evaluation files were preserved.
+
+
 Implemented and checked on 9 October 2026. The assistant supports five intents: forecast, reorder, history, performance and help. This supports the NLP and chatbot sections of the rubric through question classification and retrieval of relevant application results.
 
 ## How it works

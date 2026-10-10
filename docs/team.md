@@ -68,3 +68,7 @@ Add a row when a contribution is completed. Record an actual change and its evid
 | 9 October 2026 | Initial data preparation and weekly forecast benchmark, commit `273698d` | Morris requested and directed the milestone. OpenAI Codex generated the implementation, tests, setup instructions and result summary. | Real dataset preparation and evaluation succeeded; 18 automated tests passed. See [baseline results](baseline-results.md). | Group review pending. |
 
 For the final report, describe who actually specified, implemented, tested and reviewed each part, including the assistance used. Each member should be able to explain their contribution and the complete demonstration.
+
+## 10 October 2026 continuation
+
+Morris requested and directed the personal-PC verification and submission draft integration, with Codex assistance. The recorded shared-team co-author agreement in the handover applies to this submission milestone. This credit does not claim that each member has independently reviewed the draft or completed their assigned issue. The technical rehearsal passed 45 tests; editable report, poster and presentation materials are available in `docs/submission/`. Human reviews, signatures, independent questions and speaking-role confirmation remain pending.

@@ -55,7 +55,7 @@ Raw data, prepared CSVs and generated outputs stay local and are ignored by Git.
 
 ## Next milestone
 
-Complete group review and a second-laptop rehearsal, then update the submission report, poster and presentation with the measured results. The LSTM comparison and frozen final evaluation are complete.
+The [personal-PC technical rehearsal](docs/personal-pc-rehearsal.md) is complete with 45 tests passed and no skips. Continue group content review, human usability checks, signatures, Grammarly evidence and a timed presentation rehearsal. Current materials are in [submission](docs/submission/README.md). The LSTM comparison and frozen final evaluation are preserved.
 
 ## Ask StockSense
 
