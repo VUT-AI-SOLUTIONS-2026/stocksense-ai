@@ -143,11 +143,22 @@ def main():
         st.caption("Ask about forecasts, stock orders, recent sales, model performance or help. Mention an item, such as 'forecast for item 2', or use the selected item. Stock answers need a calculated plan for that item.")
         if ASSISTANT.exists():
             intent_model = read_model(str(ASSISTANT), ASSISTANT.stat().st_mtime_ns)
-            st.caption("Try asking: " + " · ".join(SUGGESTED_QUESTIONS))
-            with st.form("ask_assistant"):
-                question = st.text_input("Your question", placeholder="How much should I order?", max_chars=500, key="question")
-                ask = st.form_submit_button("Ask", type="primary", width="stretch")
-            if ask:
+            status, reset = st.columns([3, 1])
+            status.caption(f"Answering for Item {item} unless you name another item")
+            if reset.button("Clear", key="clear_chat", help="Clear this conversation", width="stretch"):
+                st.session_state["chat_messages"] = []
+            messages = st.session_state.setdefault("chat_messages", [])
+            transcript = st.container(height=340, border=False)
+            st.caption("Choose a question or type your own")
+            question = None
+            shortcuts = st.columns(2)
+            for index, (label, prompt) in enumerate(zip(
+                    ("Sales forecast", "Stock order", "Recent sales", "Model results"), SUGGESTED_QUESTIONS)):
+                if shortcuts[index % 2].button(label, key=f"chat_suggestion_{index}", width="stretch"):
+                    question = prompt
+            typed_question = st.chat_input("Ask about sales or stock…", max_chars=500, key="question")
+            question = typed_question or question
+            if question:
                 def context_for_item(requested_item):
                     requested_forecast = (seasonal_naive_forecast(history, item=requested_item, cutoff=cutoff)
                                           if method == "weekly_seasonal_naive"
@@ -155,10 +166,25 @@ def main():
                     requested_recent = history.loc[history["item"].eq(requested_item) & history["date"].gt(cutoff - pd.Timedelta(days=28))]
                     return {"forecast": requested_forecast, "recent": requested_recent}
 
-                response = answer_question(question, model=intent_model, item=item, forecast=forecast,
-                                           recent=recent, stock_plan=result, comparison=comparison,
-                                           context_for_item=context_for_item)
-                st.info(response)
+                with st.spinner("Checking your question…"):
+                    try:
+                        response = answer_question(question, model=intent_model, item=item, forecast=forecast,
+                                                   recent=recent, stock_plan=result, comparison=comparison,
+                                                   context_for_item=context_for_item)
+                    except (ValueError, OSError, KeyError, ImportError) as error:
+                        response = f"I couldn't load those item results: {error}. Please check the forecast setup."
+                messages.extend([{"role": "user", "text": question, "item": item},
+                                 {"role": "assistant", "text": response, "item": item}])
+                del messages[:-40]
+            with transcript:
+                if not messages:
+                    with st.chat_message("assistant", avatar="📦"):
+                        st.markdown("Hi! I'm StockSense. Ask me about **sales forecasts**, **stock orders**, **recent sales** or **model results**. You can name an item, such as **item 2**.")
+                for message in messages:
+                    with st.chat_message(message["role"], avatar="📦" if message["role"] == "assistant" else None):
+                        st.markdown(message["text"])
+                        if message["role"] == "assistant":
+                            st.caption(f"Answered with Item {message['item']} selected · Previous answers keep their original inputs")
         else:
             st.info("Set up the assistant first: python -m scripts.train_assistant")
     if comparison:

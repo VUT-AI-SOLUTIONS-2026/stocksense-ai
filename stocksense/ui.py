@@ -25,6 +25,17 @@ STYLES = """
 h3 { color: #183b45; font-size: 22px !important; }
 .stButton button, .stFormSubmitButton button { border-radius: 9px; font-weight: 600; }
 [data-testid="stExpander"] { background: #fff; border-radius: 12px; }
+.st-key-assistant_card [data-testid="stChatMessage"] {
+    border-radius: 14px; background: #eef7f4; border: 1px solid #dcece6; }
+.st-key-assistant_card [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"]) {
+    background: #f3f6fa; border-color: #e1e7ef; }
+.st-key-assistant_card [data-testid="stChatInput"] {
+    border-radius: 14px; border-color: #9ccabd; }
+@media (max-width: 850px) {
+  [data-testid="stHorizontalBlock"]:has(.st-key-assistant_card) { flex-direction: column; }
+  [data-testid="stHorizontalBlock"]:has(.st-key-assistant_card) > [data-testid="stColumn"] {
+      width: 100%; flex: 1 1 100%; }
+}
 @media (max-width: 640px) {
   .stMainBlockContainer { padding-top: 1rem; }
   .ss-hero { padding: 24px; border-radius: 14px; }
