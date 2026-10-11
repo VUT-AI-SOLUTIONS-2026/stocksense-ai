@@ -53,3 +53,9 @@ Questions can name an item using a number or a word, such as "forecast for item 
 Simple phrase rules support stock questions such as "Will I run out?", "Do I have enough stock?" and "Should I restock?". If no valid plan is available for the requested item, the assistant asks for stock available, outstanding units, supplier lead time, review interval and buffer stock through the existing form. It does not assume the form defaults describe the user's stock. An unclear question offers supported topics and examples. There is no general conversation memory or free-text stock-input parser.
 
 All 51 automated tests passed with no skips in 48.526 seconds on this PC. Checks include named-item answers against dashboard totals, stock-plan isolation, missing inputs and delivery shortages. The trained classifier, question corpus and frozen forecasting results were unchanged. The earlier 24/25 classification result remains historical evidence, not a new score for the extended question handling.
+
+## Chat interface, 11 October 2026
+
+Ask StockSense now displays user and assistant message bubbles, four clickable question shortcuts, a send-on-Enter input and a Clear button. It retains the latest 20 exchanges for the browser session. Previous answers keep their original selected-item context; conversation display does not add conversational reasoning or infer missing stock inputs. Clearing the chat preserves the current stock calculation.
+
+All eight dashboard integration tests passed in 24.412 seconds, covering chat history, shortcuts, clearing, stock persistence, named items, all five forecasts and invalid stock inputs. The narrow browser layout and forecast shortcut were visually checked. The saved models and evaluation files were unchanged.

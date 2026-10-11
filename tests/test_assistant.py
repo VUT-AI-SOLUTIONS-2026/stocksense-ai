@@ -122,10 +122,9 @@ class AssistantDashboardTests(unittest.TestCase):
         self.app = AppTest.from_file(str(ROOT / "app.py"), default_timeout=30).run()
 
     def ask(self, question):
-        self.app.text_input(key="question").set_value(question)
-        self.app.button[1].click().run()
+        self.app.chat_input(key="question").set_value(question).run()
         self.assertEqual(len(self.app.exception), 0)
-        return self.app.info[-1].value
+        return self.app.chat_message[-1].markdown[0].value
 
     def test_stock_survives_question_and_item_change_clears_it(self):
         self.assertIn("Calculate suggested order", self.ask("How much should I order"))
@@ -137,7 +136,7 @@ class AssistantDashboardTests(unittest.TestCase):
         self.assertIn("Calculate suggested order", self.ask("How much should I order"))
 
     def test_greeting_and_visible_examples_preserve_stock_order(self):
-        self.assertTrue(any("Try asking: Show the sales forecast" in c.value for c in self.app.caption))
+        self.assertEqual(self.app.button(key="chat_suggestion_0").label, "Sales forecast")
         self.app.button[0].click().run()
         order = self.app.metric[1].value
         self.assertIn("Welcome to StockSense AI", self.ask("Hi!"))
@@ -177,6 +176,22 @@ class AssistantDashboardTests(unittest.TestCase):
         self.assertIn("For item 2, I need stock available", self.ask("Will I run out of item 2?"))
         self.app.selectbox[0].set_value(2).run()
         self.assertIn(self.app.metric[0].value, response)
+
+    def test_conversation_shortcuts_and_clear_preserve_stock_plan(self):
+        self.app.button[0].click().run()
+        order = self.app.metric[1].value
+        self.app.button(key="chat_suggestion_0").click().run()
+        self.assertIn(self.app.metric[0].value, self.app.chat_message[-1].markdown[0].value)
+        self.ask("Hi")
+        self.assertEqual([message.name for message in self.app.chat_message], ["user", "assistant", "user", "assistant"])
+        self.app.selectbox[0].set_value(2).run()
+        self.assertIn("Item 1 selected", self.app.chat_message[1].caption[0].value)
+        self.app.selectbox[0].set_value(1).run()
+        self.app.button[0].click().run()
+        self.app.button(key="clear_chat").click().run()
+        self.assertEqual(len(self.app.chat_message), 1)
+        self.assertIn("Hi! I'm StockSense", self.app.chat_message[0].markdown[0].value)
+        self.assertEqual(self.app.metric[1].value, order)
 
 
 if __name__ == "__main__":
