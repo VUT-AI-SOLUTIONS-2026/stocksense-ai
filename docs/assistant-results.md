@@ -39,3 +39,9 @@ The missed question was "Give me a summary of historical demand for item 5": it 
 All 37 automated tests passed. The eight added tests cover forecast totals and dates, observed sales totals, stock prerequisites and shortage warnings, validation metrics, item scope, fallback answers, persistence across questions and clearing stale stock results. A question after a stock calculation keeps the order visible. A change of item or invalid submitted coverage cannot reuse the old order.
 
 Run `python -m scripts.train_assistant` to reproduce training and evaluation. Exact predictions and validation comparisons are saved to `artifacts/assistant/evaluation.json`. Run `python -m unittest discover -s tests -v` for implementation checks; dashboard integration tests require prepared data and the saved assistant model.
+
+## Greeting and suggested questions, 11 October 2026
+
+A small deterministic rule now welcomes greeting-only inputs such as hi, hello and hey. It shows four supported question examples, also displayed above the question form. Mixed greeting-and-forecast questions still reach the existing classifier. The five trained intents, saved classifier and frozen forecast evaluations were preserved; no retraining or threshold change was made.
+
+All 47 automated tests passed with no skips in 42.539 seconds on the personal PC. New checks cover greetings without classification, a mixed forecast query, visible suggestions and preservation of the submitted stock order. This extends the earlier 45-test rehearsal; it does not replace the historical assistant classification scores. Detailed local test output is in artifacts/rehearsal/greeting-tests.txt.

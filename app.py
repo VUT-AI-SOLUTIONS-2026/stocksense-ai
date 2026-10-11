@@ -9,7 +9,7 @@ import streamlit as st
 from stocksense.data import ITEMS, load_sales, select_scope
 from stocksense.forecasting import METHOD_LABELS, seasonal_naive_forecast
 from stocksense.inventory import plan_stock
-from stocksense.assistant import answer_question
+from stocksense.assistant import SUGGESTED_QUESTIONS, answer_question
 
 ROOT = Path(__file__).resolve().parent
 DATA = ROOT / "data/prepared/store_1_items_1_to_5.csv"
@@ -131,6 +131,7 @@ def main():
     st.caption("Ask about forecasts, stock orders, recent sales, model performance or help. Answers use the selected item and the last submitted stock inputs.")
     if ASSISTANT.exists():
         intent_model = read_model(str(ASSISTANT), ASSISTANT.stat().st_mtime_ns)
+        st.caption("Try asking: " + " · ".join(SUGGESTED_QUESTIONS))
         with st.form("ask_assistant"):
             question = st.text_input("Your question", placeholder="How much should I order?", max_chars=500, key="question")
             ask = st.form_submit_button("Ask")

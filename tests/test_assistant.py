@@ -75,6 +75,17 @@ class AssistantTests(unittest.TestCase):
             with self.subTest(query=query):
                 self.assertIn("could not match", self.answer(query))
 
+    def test_greeting_is_local_and_does_not_swallow_a_stock_question(self):
+        class NoClassifier:
+            def classify(self, text):
+                raise AssertionError("Greetings must not require classification")
+        for query in ("hi", " Hello! ", "HEY", "Good morning."):
+            response = self.answer(query, model=NoClassifier())
+            self.assertIn("Welcome to StockSense AI", response)
+            self.assertIn("Show the sales forecast", response)
+            self.assertIn("How much should I order?", response)
+        self.assertIn("28.0 units", self.answer("Hi, show the sales forecast"))
+
 
 class AssistantDashboardTests(unittest.TestCase):
     def setUp(self):
@@ -97,6 +108,13 @@ class AssistantDashboardTests(unittest.TestCase):
         self.assertEqual(self.app.metric[1].value, order)
         self.app.selectbox[0].set_value(2).run()
         self.assertIn("Calculate suggested order", self.ask("How much should I order"))
+
+    def test_greeting_and_visible_examples_preserve_stock_order(self):
+        self.assertTrue(any("Try asking: Show the sales forecast" in c.value for c in self.app.caption))
+        self.app.button[0].click().run()
+        order = self.app.metric[1].value
+        self.assertIn("Welcome to StockSense AI", self.ask("Hi!"))
+        self.assertEqual(self.app.metric[1].value, order)
 
     def test_forecast_answer_matches_display_and_invalid_order_clears_old_result(self):
         total = self.app.metric[0].value

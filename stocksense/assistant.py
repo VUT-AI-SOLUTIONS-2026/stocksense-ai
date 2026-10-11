@@ -9,6 +9,12 @@ from sklearn.pipeline import make_pipeline
 from stocksense.forecasting import METHOD_LABELS
 
 HELP = "Choose an item, view its seven-day forecast, then calculate a stock order. Ask about forecast sales, replenishment, recent sales or model performance."
+SUGGESTED_QUESTIONS = (
+    "Show the sales forecast",
+    "How much should I order?",
+    "Show recent sales history",
+    "Show model performance",
+)
 
 
 def normalise(text):
@@ -44,6 +50,9 @@ def train_intents(examples):
 
 def answer_question(text, *, model, item, forecast, recent, stock_plan=None, comparison=None):
     """Never estimate new numbers: answers use the current dashboard objects."""
+    if re.fullmatch(r"(?:hi|hello|hey|good morning|good afternoon|good evening)[\s!.?]*", text.strip(), re.IGNORECASE):
+        return ("Hi! Welcome to StockSense AI. " + HELP + " Try: "
+                + "; ".join(SUGGESTED_QUESTIONS) + ".")
     references = re.findall(r"\b(?:item|product)\s*(?:number\s*)?(\d+)\b", text.lower())
     if references:
         requested = {int(value) for value in references}
