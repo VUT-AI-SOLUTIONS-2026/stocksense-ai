@@ -1,8 +1,8 @@
 # Submission materials
 
-Current editable report: [report.md](report.md), adapted from the preserved fuller draft. [Rubric evidence](rubric-evidence.md) maps content to the original brief. [Personal-PC rehearsal](../personal-pc-rehearsal.md) separates direct measurements here from historical office evidence.
+Current editable report: [report.md](report.md). [Rubric evidence](rubric-evidence.md) maps content to the original brief. [Personal-PC rehearsal](../personal-pc-rehearsal.md) separates direct measurements here from historical office evidence.
 
-Report, poster and presentation are review drafts until the group approves their content, signs the declaration and supplies actual Grammarly evidence. Earlier files in `docs/drafts/` remain historical and must not be submitted as current results. Generated models, raw data and virtual environments remain outside Git.
+Report, poster and presentation are review drafts until the group approves their content, signs the declaration and includes Grammarly evidence. Superseded drafts and the old report outline were removed from the current repository; they remain recoverable in Git history. Generated models, raw data and virtual environments remain outside Git.
 
 The poster and presentation are separate deliverables. The presentation plan includes a 20-minute running order, five minutes for questions and proposed speaking responsibilities based on the existing team roles. Speaking assignments need member confirmation and are not evidence of completed contributions.
 
