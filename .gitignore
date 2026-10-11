@@ -1,4 +1,4 @@
-# Business data never goes in here. See SECURITY.md.
+# Keep local datasets out of Git commits.
 data/
 *.csv
 *.xlsx
