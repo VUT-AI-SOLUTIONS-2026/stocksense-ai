@@ -9,7 +9,7 @@ Implemented and checked on 9 October 2026. The assistant supports five intents: 
 
 Text is lowercased, numbered item references are normalised, and common English stop words are removed. TF-IDF represents individual words and pairs of words. A logistic regression classifier with C=5, random state 42 and at most 1,000 iterations predicts an intent. The classifier is trained in a script and loaded by the dashboard. It does not generate sales estimates or retrieve information from the internet.
 
-Answers are templates populated from the existing forecast, observed sales, stock calculation and evaluation summaries. Since 10 October, performance answers distinguish 2016 validation from the recorded 2017 final test. Neither is presented as measured January 2018 accuracy. Reorder answers require submitted, valid stock inputs. Changing items clears the stored stock result. An explicit request for a different item asks the user to change the selector. Questions about IDs outside 1–5 receive a scope explanation.
+Answers are templates populated from the existing forecast, observed sales, stock calculation and evaluation summaries. Since 10 October, performance answers distinguish 2016 validation from the recorded 2017 final test. Neither is presented as measured January 2018 accuracy. Reorder answers require submitted, valid stock inputs. Changing items clears the stored stock result. Since 11 October, a question can name a different item to retrieve its forecast or sales history. Questions about IDs outside 1–5 receive a scope explanation.
 
 ## Question split and measured results
 
@@ -45,3 +45,11 @@ Run `python -m scripts.train_assistant` to reproduce training and evaluation. Ex
 A small deterministic rule now welcomes greeting-only inputs such as hi, hello and hey. It shows four supported question examples, also displayed above the question form. Mixed greeting-and-forecast questions still reach the existing classifier. The five trained intents, saved classifier and frozen forecast evaluations were preserved; no retraining or threshold change was made.
 
 All 47 automated tests passed with no skips in 42.539 seconds on the personal PC. New checks cover greetings without classification, a mixed forecast query, visible suggestions and preservation of the submitted stock order. This extends the earlier 45-test rehearsal; it does not replace the historical assistant classification scores. Detailed local test output is in artifacts/rehearsal/greeting-tests.txt.
+
+## Item questions and stock guidance, 11 October 2026
+
+Questions can name an item using a number or a word, such as "forecast for item 2" or "recent sales for product two". The assistant retrieves that item's saved-model forecast and observed history without changing the dashboard selector. It never uses another item's stock plan. Multiple explicit item references prompt a request for one item at a time.
+
+Simple phrase rules support stock questions such as "Will I run out?", "Do I have enough stock?" and "Should I restock?". If no valid plan is available for the requested item, the assistant asks for stock available, outstanding units, supplier lead time, review interval and buffer stock through the existing form. It does not assume the form defaults describe the user's stock. An unclear question offers supported topics and examples. There is no general conversation memory or free-text stock-input parser.
+
+All 51 automated tests passed with no skips in 48.526 seconds on this PC. Checks include named-item answers against dashboard totals, stock-plan isolation, missing inputs and delivery shortages. The trained classifier, question corpus and frozen forecasting results were unchanged. The earlier 24/25 classification result remains historical evidence, not a new score for the extended question handling.

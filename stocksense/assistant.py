@@ -17,6 +17,30 @@ SUGGESTED_QUESTIONS = (
 )
 
 
+ITEM_WORDS = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5}
+
+
+def requested_items(text):
+    """Read explicit item references without treating stock quantities as IDs."""
+    references = re.findall(r"\b(?:item|product)\s*(?:number\s*|#\s*)?(\d+|one|two|three|four|five)\b", text.lower())
+    return {ITEM_WORDS[value] if value in ITEM_WORDS else int(value) for value in references}
+
+
+def question_intent(text, model):
+    """Handle common stock phrases and retain the trained classifier."""
+    cleaned = text.lower()
+    if re.search(r"\b(?:run out|running out|stockout|stock out|enough stock|restock|replenish|reorder)\b", cleaned):
+        return "reorder"
+    intent = model.classify(text)
+    if intent != "unsupported":
+        return intent
+    if re.search(r"\b(?:sales forecast|forecast sales|predicted sales|sales prediction)\b", cleaned) or (requested_items(text) and re.search(r"\bforecast\b", cleaned)):
+        return "forecast"
+    if re.search(r"\b(?:sales history|recent sales|past sales)\b", cleaned):
+        return "history"
+    return "unsupported"
+
+
 def normalise(text):
     return re.sub(r"\b(?:item|product)\s*(?:number\s*)?\d+\b", "item", text.lower()).strip()
 
@@ -48,21 +72,29 @@ def train_intents(examples):
     return IntentModel(model)
 
 
-def answer_question(text, *, model, item, forecast, recent, stock_plan=None, comparison=None):
+def answer_question(text, *, model, item, forecast, recent, stock_plan=None, comparison=None, context_for_item=None):
     """Never estimate new numbers: answers use the current dashboard objects."""
+    if not isinstance(text, str) or not text.strip() or len(text) > 500:
+        return "I could not match that question. Try: " + "; ".join(SUGGESTED_QUESTIONS) + "."
     if re.fullmatch(r"(?:hi|hello|hey|good morning|good afternoon|good evening)[\s!.?]*", text.strip(), re.IGNORECASE):
         return ("Hi! Welcome to StockSense AI. " + HELP + " Try: "
                 + "; ".join(SUGGESTED_QUESTIONS) + ".")
-    references = re.findall(r"\b(?:item|product)\s*(?:number\s*)?(\d+)\b", text.lower())
-    if references:
-        requested = {int(value) for value in references}
+    requested = requested_items(text)
+    if requested:
         if not requested.issubset({1, 2, 3, 4, 5}):
             return "This demonstration supports item IDs 1 to 5. Choose one of those items."
-        if requested != {item}:
-            return "Choose the requested item in the Item selector, then ask again. I answer for one displayed item at a time."
-    intent = model.classify(text)
+        if len(requested) > 1:
+            return "Please ask about one item at a time, for example: Show the forecast for item 2. You can also use the Item selector."
+        requested_item = next(iter(requested))
+        if requested_item != item:
+            if context_for_item is None:
+                return "Choose the requested item in the Item selector, then ask again."
+            context = context_for_item(requested_item)
+            item, forecast, recent = requested_item, context["forecast"], context["recent"]
+            stock_plan = context.get("stock_plan")
+    intent = question_intent(text, model)
     if intent == "unsupported":
-        return "I could not match that question confidently. " + HELP
+        return "I could not match that question confidently. Are you asking about sales forecasts, stock orders, recent sales or model results? Try: " + "; ".join(SUGGESTED_QUESTIONS) + "."
     if intent == "help":
         return HELP
     if intent == "forecast":
@@ -76,12 +108,16 @@ def answer_question(text, *, model, item, forecast, recent, stock_plan=None, com
                 f"That is {recent['sales'].mean():.1f} units per day on average.")
     if intent == "reorder":
         if stock_plan is None:
-            return "Enter the stock and delivery inputs, then click Calculate suggested order before asking about replenishment."
+            return (f"For item {item}, I need stock available, outstanding units, supplier lead time, review interval and buffer stock. "
+                    f"Select Item {item}, enter those values in Stock planning, then click Calculate suggested order. "
+                    "I won't assume that the displayed defaults are your stock details.")
         response = (f"Item {item}: suggested order {stock_plan.suggested_order} units for {stock_plan.coverage_days} days of coverage. "
                     f"Target stock is {stock_plan.target_stock:.2f} units and inventory position is {stock_plan.inventory_position} units.")
         if stock_plan.shortage_before_delivery > 0:
             response += (f" Possible shortage before delivery: {stock_plan.shortage_before_delivery:.1f} units. "
                          "An order arriving after the lead time cannot cover that earlier shortage.")
+        else:
+            response += " Current stock covers forecast sales before delivery under these inputs; actual sales may differ."
         return response
     if not comparison:
         return "No model comparison is available yet. Run the forecasting comparison first."

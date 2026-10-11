@@ -75,6 +75,33 @@ class AssistantTests(unittest.TestCase):
             with self.subTest(query=query):
                 self.assertIn("could not match", self.answer(query))
 
+    def test_named_item_uses_its_own_values_and_never_another_stock_plan(self):
+        second = {"forecast": self.context["forecast"].assign(prediction=20),
+                  "recent": self.context["recent"].assign(sales=30)}
+        resolver = lambda item: second
+        for query in ("Forecast for item 2", "Forecast for product two", "Forecast for item #2"):
+            response = self.answer(query, context_for_item=resolver)
+            self.assertIn("Item 2", response)
+            self.assertIn("140.0 units", response)
+        self.assertIn("300 units", self.answer("Show recent sales for item 2", context_for_item=resolver))
+        plan = plan_stock([10]*7, stock=5, outstanding=0, lead_days=2, review_days=3, buffer=0)
+        response = self.answer("Will I run out of item 2?", context_for_item=resolver, stock_plan=plan)
+        self.assertIn("For item 2, I need stock available", response)
+        self.assertNotIn("suggested order 45", response)
+
+    def test_natural_stock_questions_and_clarification(self):
+        for query in ("Will I run out of item 1?", "Do I have enough stock?", "Should I restock?"):
+            self.assertIn("supplier lead time, review interval and buffer stock", self.answer(query))
+        response = self.answer("zxqv123")
+        self.assertIn("Are you asking about", response)
+        self.assertIn("Show recent sales history", response)
+
+    def test_run_out_answer_matches_delivery_shortage(self):
+        plan = plan_stock([10]*7, stock=50, outstanding=0, lead_days=2, review_days=3, buffer=0)
+        self.assertIn("covers forecast sales before delivery", self.answer("Will I run out?", stock_plan=plan))
+        plan = plan_stock([10]*7, stock=0, outstanding=50, lead_days=2, review_days=3, buffer=0)
+        self.assertIn("shortage before delivery: 20.0 units", self.answer("Will I run out?", stock_plan=plan))
+
     def test_greeting_is_local_and_does_not_swallow_a_stock_question(self):
         class NoClassifier:
             def classify(self, text):
@@ -141,6 +168,15 @@ class AssistantDashboardTests(unittest.TestCase):
         mae = comparison["final_test"]["methods"][selected]["overall"]["mae_units"]
         self.assertIn(f"daily MAE {mae:.3f}", response)
         self.assertIn("2017 final test", response)
+
+    def test_named_item_answer_matches_its_dashboard_without_reusing_stock(self):
+        self.app.button[0].click().run()
+        response = self.ask("Show the sales forecast for item 2")
+        self.assertEqual(self.app.selectbox[0].value, 1)
+        self.assertIn("Item 2", response)
+        self.assertIn("For item 2, I need stock available", self.ask("Will I run out of item 2?"))
+        self.app.selectbox[0].set_value(2).run()
+        self.assertIn(self.app.metric[0].value, response)
 
 
 if __name__ == "__main__":

@@ -140,7 +140,7 @@ def main():
 
     with assistant, st.container(border=True, key="assistant_card"):
         st.subheader("Ask StockSense")
-        st.caption("Ask about forecasts, stock orders, recent sales, model performance or help. Answers use the selected item and the last submitted stock inputs.")
+        st.caption("Ask about forecasts, stock orders, recent sales, model performance or help. Mention an item, such as 'forecast for item 2', or use the selected item. Stock answers need a calculated plan for that item.")
         if ASSISTANT.exists():
             intent_model = read_model(str(ASSISTANT), ASSISTANT.stat().st_mtime_ns)
             st.caption("Try asking: " + " · ".join(SUGGESTED_QUESTIONS))
@@ -148,8 +148,16 @@ def main():
                 question = st.text_input("Your question", placeholder="How much should I order?", max_chars=500, key="question")
                 ask = st.form_submit_button("Ask", type="primary", width="stretch")
             if ask:
+                def context_for_item(requested_item):
+                    requested_forecast = (seasonal_naive_forecast(history, item=requested_item, cutoff=cutoff)
+                                          if method == "weekly_seasonal_naive"
+                                          else model.forecast(history, item=requested_item, cutoff=cutoff))
+                    requested_recent = history.loc[history["item"].eq(requested_item) & history["date"].gt(cutoff - pd.Timedelta(days=28))]
+                    return {"forecast": requested_forecast, "recent": requested_recent}
+
                 response = answer_question(question, model=intent_model, item=item, forecast=forecast,
-                                           recent=recent, stock_plan=result, comparison=comparison)
+                                           recent=recent, stock_plan=result, comparison=comparison,
+                                           context_for_item=context_for_item)
                 st.info(response)
         else:
             st.info("Set up the assistant first: python -m scripts.train_assistant")
