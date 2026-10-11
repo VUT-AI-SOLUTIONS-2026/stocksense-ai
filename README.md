@@ -53,9 +53,11 @@ The separate baseline command also produces seven-day forecasts. Use `--cutoff Y
 
 Raw data, prepared CSVs and generated outputs stay local and are ignored by Git. Each machine needs the CSV and its own environment. On this PC, the environment shares the bundled runtime's pinned NumPy and pandas versions; the installation command above creates an independent environment on another laptop.
 
-## Next milestone
+## Next steps
 
-The [personal-PC technical rehearsal](docs/personal-pc-rehearsal.md) is complete with 45 tests passed and no skips. Continue group content review, human usability checks, signatures, Grammarly evidence and a timed presentation rehearsal. Current materials are in [submission](docs/submission/README.md). The LSTM comparison and frozen final evaluation are preserved.
+The application and submission drafts are available on `main`. Development continues on `prototype-baseline`; `frontend-dashboard` is for dashboard work. The older branches are named `initial-prototype` and `documentation`.
+
+The [personal-PC rehearsal](docs/personal-pc-rehearsal.md) passed 45 tests with no skips. The group still needs to review the report, test the interface with users, sign the declaration and rehearse the presentation. Include Grammarly results with the final report. Current files are in [submission materials](docs/submission/README.md). The LSTM comparison and final evaluation remain frozen.
 
 ## Ask StockSense
 

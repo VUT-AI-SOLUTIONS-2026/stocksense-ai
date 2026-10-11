@@ -1,5 +1,7 @@
 # StockSense AI: project handover
 
+Update, 11 October 2026: the complete application was merged into `main` in commit `592d3bd`. All ten team members have repository Admin access. The older branches `codex/prototype-baseline` and `resh-documentation` were renamed to `initial-prototype` and `documentation`, preserving their commits. `prototype-baseline` remains the local development branch. The dated handover below records earlier decisions and results.
+
 Status update, 10 October 2026: the historical handover below is preserved. See [personal-PC rehearsal](personal-pc-rehearsal.md) and [current submission drafts](submission/README.md) for completed local verification and remaining human actions.
 
 
