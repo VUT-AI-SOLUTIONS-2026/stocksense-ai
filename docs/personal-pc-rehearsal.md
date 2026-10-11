@@ -46,3 +46,9 @@ Local detailed evidence: `artifacts/rehearsal/personal-pc.json` and `artifacts/r
 ## Outstanding human work
 
 Group content review, signatures, Grammarly evidence, three-reviewer usability checks, a timed 20-minute group rehearsal, campus slot confirmation and a backup demonstration recording remain pending. Existing assigned GitHub issues #23-31 and #41 were checked and remain open. GitHub Projects could not be inspected with the current CLI credential because `read:project` scope is absent. No additional access was granted and no issue was closed.
+
+## Interface refresh, 11 October 2026
+
+The dashboard now uses a wide desktop layout, a teal introductory panel, a chart beside the forecast summary, and separate stock-planning and assistant cards. Narrow-screen checks at 390 pixels confirmed that the sections stack and inputs remain usable; a 1280-pixel desktop preview was also inspected. No new dependencies or model training were introduced.
+
+All 47 automated tests passed with no skips in 59.452 seconds. In the running browser, item 1 still forecast 114.9 units, the default stock calculation returned 38 units and Hi returned the welcome and examples. The Streamlit server was restarted to load the styling module. This is a technical visual check, not a completed independent human usability review. Local test output: artifacts/rehearsal/ui-tests.txt.
