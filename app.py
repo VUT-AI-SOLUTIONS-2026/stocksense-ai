@@ -86,6 +86,19 @@ def main():
         return
     st.caption(f"Last observed day: {cutoff:%d %B %Y} · Forecast method: {label}")
     recent = history.loc[history["item"].eq(item) & history["date"].gt(cutoff - pd.Timedelta(days=28))]
+    st.markdown(f"""
+    <section class="ss-kpis" aria-label="Selected item summary">
+      <div class="ss-kpi"><div class="ss-kpi-label">RECENT SALES</div>
+        <div class="ss-kpi-value">{recent['sales'].sum():,.0f} units</div>
+        <div class="ss-kpi-note">Item {item} · Last {len(recent)} observed days</div></div>
+      <div class="ss-kpi"><div class="ss-kpi-label">DAILY AVERAGE</div>
+        <div class="ss-kpi-value">{recent['sales'].mean():.1f} units</div>
+        <div class="ss-kpi-note">Based on observed sales</div></div>
+      <div class="ss-kpi"><div class="ss-kpi-label">PLANNING WINDOW</div>
+        <div class="ss-kpi-value">7 days</div>
+        <div class="ss-kpi-note">{forecast['date'].min():%d %b}–{forecast['date'].max():%d %b %Y}</div></div>
+    </section>
+    """, unsafe_allow_html=True)
     chart = recent.set_index("date")[["sales"]].rename(columns={"sales": "Observed sales"})
     chart = chart.join(forecast.set_index("date")[["prediction"]].rename(columns={"prediction": "Forecast"}), how="outer")
     with st.container(border=True, key="forecast_card"):
@@ -105,7 +118,7 @@ def main():
     planner, assistant = st.columns([1.15, 1], gap="large")
     with planner, st.container(border=True, key="planner_card"):
         st.subheader("Stock planning")
-        st.write("Outstanding units and an order placed today arrive after the lead-time days. A zero-day lead time means arrival before the first forecast day.")
+        st.caption("Enter your stock and delivery details to calculate an order. Delivery occurs after the lead-time days; zero means before forecast day one.")
         with st.form("stock_inputs"):
             left, right = st.columns(2)
             stock = left.number_input("Stock available (units)", min_value=0, value=50, step=1, key="stock")
@@ -140,7 +153,7 @@ def main():
 
     with assistant, st.container(border=True, key="assistant_card"):
         st.subheader("Ask StockSense")
-        st.caption("Ask about forecasts, stock orders, recent sales, model performance or help. Mention an item, such as 'forecast for item 2', or use the selected item. Stock answers need a calculated plan for that item.")
+        st.caption("Your planning assistant. Ask about any item, or use a shortcut below. Stock answers use a calculated plan for that item.")
         if ASSISTANT.exists():
             intent_model = read_model(str(ASSISTANT), ASSISTANT.stat().st_mtime_ns)
             status, reset = st.columns([3, 1])
