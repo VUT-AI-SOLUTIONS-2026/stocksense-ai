@@ -53,6 +53,8 @@ Validation freezes model choices before final testing. Skip completed stages; do
 - [Presentation PDF](docs/StockSense_AI_Presentation_Review.pdf)
 - [Editable presentation](docs/StockSense_AI_Presentation_Review.pptx)
 
+For group meetings, use the [editable teaching deck](docs/StockSense_AI_Team_Meeting.pptx) or its [PDF copy](docs/StockSense_AI_Team_Meeting.pdf). It covers the app, terms and models, with presenter notes and practice questions in the PowerPoint.
+
 The images in `docs/assets/` support the report and presentation. These are review drafts for the group. The report declaration still needs every member's signature, the Grammarly results must be attached, and the group must check the final PDFs before the single Blackboard submission. The poster and slides need a group content review and a timed rehearsal.
 
 ## Team contributions
