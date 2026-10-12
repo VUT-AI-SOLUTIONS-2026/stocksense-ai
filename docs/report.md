@@ -71,7 +71,7 @@ Develop a small Python application that forecasts seven days of sales for five i
 
 | Objective | Acceptance criterion | Evidence and status |
 | --- | --- | --- |
-| Consistent estimate | Seven dated values for all five items | Passed on this PC; 45 tests include five-item dashboard checks. |
+| Consistent estimate | Seven dated values for all five items | Passed on the office PC on 12 October 2026; 52 tests include five-item dashboard checks. |
 | Lower daily forecast error | Beat weekly benchmark on identical dates | Random forest final MAE 4.812 versus 6.273 units, about 23.3% lower. |
 | Transparent stock suggestion | At least ten arithmetic cases and invalid inputs | Automated calculation cases and dashboard checks passed. |
 | Understandable interface | Three reviewers each answer four of five questions correctly | Human usability review pending; no reviewer outcomes claimed. |
@@ -108,7 +108,7 @@ Stock levels, outstanding orders, supplier lead times and the buffer stock quant
 
 Python and pandas validate and prepare the sales records. scikit-learn supplies random forest regression and text classification. Keras with a local PyTorch backend supplies the small LSTM comparison. Streamlit combines the history, forecast, stock form and assistant on one page. Scripts train models separately, and the dashboard loads saved files. No paid online language service is required.
 
-The weekly benchmark is easy to explain. Random forest uses recent sales and known calendar information. LSTM provides a small sequence experiment and a measured deep-learning comparison. A single page and five request types keep the solution within the group's explainable scope. Git stores source and reviewed documentation; raw data, the environment and trained models remain local. GitHub issues #23-31 and #41 retain the existing owners. Their human reviews remain open. The Projects board could not be verified on this PC because the current CLI credential lacks read:project permission.
+The weekly benchmark is easy to explain. Random forest uses recent sales and known calendar information. LSTM provides a small sequence experiment and a measured deep-learning comparison. A single page and five request types keep the solution within the group's explainable scope. Git stores source and reviewed documentation; raw data, the environment and trained models remain local. GitHub issues #23-31 and #41 retain the existing owners. The issues are closed, but their completion alone does not document peer review. The Projects board could not be verified on this PC because the current GitHub credential lacks read:project permission.
 
 ## 4 Machine learning approach
 
@@ -157,7 +157,7 @@ We found no missing cells, duplicate rows, repeated date-store-item keys or nega
 
 Preparation preserves train.csv, selects the five series and sorts by date. Checks reject missing columns, invalid dates, duplicate daily keys, missing days and negative or fractional quantities. Zero sales remains a valid value. No missing day is silently converted to zero. Each item has 1,061 initial fitting windows and 1,427 final refit windows.
 
-Raw and prepared SHA-256 checksums match the office record. The complete values are recorded in the personal-PC rehearsal and local data audit. Checksums identify the files used without placing raw data in Git.
+Raw and prepared SHA-256 checksums match the office record. Both SHA-256 values were checked again on 12 October 2026 and matched the preserved local audit. The raw and prepared files remain outside Git. Checksums identify the files used without placing raw data in Git.
 
 ### 5.4 Other data used by the application
 
@@ -249,7 +249,7 @@ An unknown item or one with less than 28 days of history triggers an explanation
 
 ## 8 Natural language processing
 
-The English assistant recognises forecast, reorder, history, performance and help. Processing lowercases text, normalises numbered item references and removes English stop words. TF-IDF word unigrams and bigrams supply numeric text features [6]. Logistic regression uses C=5, seed 42 and at most 1,000 iterations. A separate item check rejects unsupported IDs or asks for a selector change.
+The English assistant recognises forecast, reorder, history, performance and help. Processing lowercases text, normalises numbered item references and removes English stop words. TF-IDF word unigrams and bigrams supply numeric text features [6]. Logistic regression uses C=5, seed 42 and at most 1,000 iterations. A separate item check rejects unsupported IDs. For another supported item, the assistant retrieves its forecast or history; stock questions ask the user to select that product and enter its stock.
 
 The corpus has 60 training questions and 15 validation questions. Threshold 0.35 achieved 15/15 correct validation decisions, compared with 14/15 at 0.45 and 12/15 at 0.55. Fresh evaluation recognised 24/25 supported requests and rejected 8/8 unrelated requests. The missed historical-demand-summary request became forecast rather than history. No retuning followed the fresh test. The earlier 25+8 question sets became development evidence after processing changes and remain stored separately. These small curated results do not establish general conversational accuracy. Voice and multilingual support remain outside scope.
 
@@ -265,13 +265,13 @@ The network's overall daily final MAE is 5.411 units and weekly-total MAE is 17.
 
 The assistant combines intent recognition with template-based retrieval of dashboard objects. Forecast answers use the selected item's real estimates, reorder answers use a valid submitted stock plan, history answers use observed sales and performance answers distinguish 2016 validation from 2017 testing. No online language model invents quantities.
 
-Missing stock inputs produce a request to calculate an order first. Low-confidence or unrelated questions show supported options. Explicit references to another item request a selector change. Changing items or submitting invalid coverage clears stale stock results; asking a question keeps a valid order visible. Integration tests compare answers with the actual displayed totals and check these state rules. Independent group phrasing tests remain pending.
+Missing stock inputs produce a request to calculate an order first. Low-confidence or unrelated questions show supported options. Explicit references to another supported item retrieve its forecast or history. Stock questions for another item request a Product selector change and fresh stock inputs. Changing items or submitting invalid coverage clears stale stock results; asking a question keeps a valid order visible. Integration tests compare answers with the actual displayed totals and check these state rules. Independent group phrasing tests remain pending.
 
 ## 11 Practical solution and demonstration
 
 The single Streamlit page shows recent history, seven dated estimates, stock planning and Ask StockSense. Separate expanders report validation and final testing. The local server is reused at localhost:8501, and model training occurs outside the interface.
 
-On 10 October 2026 the personal PC reproduced the setup using Python 3.14.6. NumPy 2.3.5, pandas 3.0.1, scikit-learn 1.9.1, Streamlit 1.65.0, joblib 1.6.0, Keras 3.15.1 and PyTorch 2.14.1 match the documented package pins. The office reference used Python 3.12.14. All 45 tests passed independently here with no skips. Frozen files and dataset hashes were preserved during rehearsal.
+On 10 October 2026 the personal PC reproduced the setup using Python 3.14.6. NumPy 2.3.5, pandas 3.0.1, scikit-learn 1.9.1, Streamlit 1.65.0, joblib 1.6.0, Keras 3.15.1 and PyTorch 2.14.1 match the documented package pins. The office reference used Python 3.12.14. All 45 tests passed on that PC at the time with no skips. On 12 October 2026, the updated office copy passed all 52 tests with no skips. Frozen files and dataset hashes were preserved during rehearsal.
 
 The second-machine technical rehearsal checked all five items, seven forecast dates, a valid order, invalid coverage, shortage messaging, an assistant answer matching the screen, and both evaluation tables. AppTest initial render took 7.29 seconds; warm item changes took 0.20-0.23 seconds in one observed run. These timings exclude browser network latency and are not human usability evidence. Detailed logs remain on the personal PC in artifacts/rehearsal/personal-pc.json and artifacts/rehearsal/tests.txt.
 
@@ -279,7 +279,7 @@ Item 1's displayed forecast totals 114.9 units. With default stock 50, outstandi
 
 ![StockSense forecast and stock calculation](assets/stocksense-ready.png)
 
-Figure 3. Personal-PC stock inputs and the resulting 38-unit order suggestion.
+Figure 3. Current office-PC dashboard with demonstration inputs and the resulting 38-unit order suggestion.
 
 The group demonstration sequence is item selection, dated forecast, stock calculation, invalid coverage, shortage warning, assistant response and evaluation tables. Prepare a 20-minute presentation followed by five minutes for questions. Technical rehearsal is complete on Morris's personal PC; member-led explanation, three-reviewer usability testing, a timed group rehearsal and backup recording remain pending.
 
@@ -307,6 +307,6 @@ StockSense AI provides a working five-item sales forecast and stock-planning dem
 
 ## Appendix A Submission evidence and review
 
-The technical evidence includes the data audit, frozen comparison, assistant evaluation, 45-test pass and personal-PC rehearsal. Review each assessed area against the original assignment brief. Earlier supporting documents remain available in Git history.
+The technical evidence includes the data audit, frozen comparison, assistant evaluation, 52-test pass on the office PC and earlier personal-PC rehearsal. Review each assessed area against the original assignment brief. Earlier supporting documents remain available in Git history.
 
-All ten members must review and sign the declaration. Grammarly results must be obtained and attached without inventing a certificate. GitHub Projects tracking needs confirmation, and the campus slot is not yet recorded. The report, poster and slides require group content review. Blackboard submission remains under the group's control: the brief allows one correct PDF submission by 2 November 2026 at 23:59. No upload has occurred.
+All ten members must review and sign the declaration. Grammarly results must be obtained and attached without inventing a certificate. GitHub Projects tracking needs confirmation, and the campus slot is not yet recorded. The report, poster and slides require group content review. Blackboard submission remains under the group's control: the brief allows one submission by 2 November 2026 at 23:59 and requires correct PDF files for the documentation and presentation. No upload has occurred.

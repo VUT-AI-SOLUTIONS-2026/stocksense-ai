@@ -66,11 +66,11 @@ class AssistantTests(unittest.TestCase):
 
     def test_other_items_do_not_use_current_stock_or_forecast(self):
         for query in ("Forecast for item 2", "Forecast for item 1 and item 2"):
-            self.assertIn("Item selector", self.answer(query))
+            self.assertIn("Product selector", self.answer(query))
         self.assertIn("IDs 1 to 5", self.answer("Forecast for item 9"))
 
     def test_help_and_unsupported_questions(self):
-        self.assertIn("Choose an item", self.answer("How do I get started"))
+        self.assertIn("Choose a product", self.answer("How do I get started"))
         for query in ("", "zxqv123", "Who is the president", "x"*501):
             with self.subTest(query=query):
                 self.assertIn("could not match", self.answer(query))
@@ -173,6 +173,7 @@ class AssistantDashboardTests(unittest.TestCase):
         response = self.ask("Show the sales forecast for item 2")
         self.assertEqual(self.app.selectbox[0].value, 1)
         self.assertIn("Item 2", response)
+        self.assertIn("Select Product 2 to see its daily estimates", response)
         self.assertIn("For item 2, I need stock available", self.ask("Will I run out of item 2?"))
         self.app.selectbox[0].set_value(2).run()
         self.assertIn(self.app.metric[0].value, response)
@@ -185,7 +186,7 @@ class AssistantDashboardTests(unittest.TestCase):
         self.ask("Hi")
         self.assertEqual([message.name for message in self.app.chat_message], ["user", "assistant", "user", "assistant"])
         self.app.selectbox[0].set_value(2).run()
-        self.assertIn("Item 1 selected", self.app.chat_message[1].caption[0].value)
+        self.assertIn("Product 1 was selected when asked", self.app.chat_message[1].caption[0].value)
         self.app.selectbox[0].set_value(1).run()
         self.app.button[0].click().run()
         self.app.button(key="clear_chat").click().run()

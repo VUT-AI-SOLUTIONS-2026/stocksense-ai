@@ -197,7 +197,7 @@ def main():
                     with st.chat_message(message["role"], avatar="📦" if message["role"] == "assistant" else None):
                         st.markdown(message["text"])
                         if message["role"] == "assistant":
-                            st.caption(f"Answered with Item {message['item']} selected · Previous answers keep their original inputs")
+                            st.caption(f"Product {message['item']} was selected when asked · Previous answers keep their original inputs")
         else:
             st.info("Set up the assistant first: python -m scripts.train_assistant")
     if comparison:
