@@ -65,7 +65,7 @@ Add a row when a contribution is completed. Record an actual change and its evid
 
 | Date | Change | Human contribution and AI assistance | Evidence | Review status |
 | --- | --- | --- | --- | --- |
-| 9 October 2026 | Initial data preparation and weekly forecast benchmark, commit `273698d` | Morris requested and directed the milestone. OpenAI Codex generated the implementation, tests, setup instructions and result summary. | Real dataset preparation and evaluation succeeded; 18 automated tests passed. See [baseline results](baseline-results.md). | Group review pending. |
+| 9 October 2026 | Initial data preparation and weekly forecast benchmark, commit `273698d` | Morris requested and directed the milestone. OpenAI Codex generated the implementation, tests, setup instructions and result summary. | Real dataset preparation and evaluation succeeded; 18 automated tests passed. See the [historical baseline results](https://github.com/VUT-AI-SOLUTIONS-2026/stocksense-ai/blob/273698d/docs/baseline-results.md); the current comparison is in [final model results](final-model-results.md). | Group review pending. |
 
 For the final report, describe who actually specified, implemented, tested and reviewed each part, including the assistance used. Each member should be able to explain their contribution and the complete demonstration.
 

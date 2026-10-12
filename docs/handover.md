@@ -1,5 +1,7 @@
 # StockSense AI: project handover
 
+Documentation cleanup, 12 October 2026: the superseded baseline results, first-prototype results and build plan were removed from the current tree. Their historical versions remain in Git at commit `bf61ca5`. Use [the current report](submission/report.md), [rubric evidence](submission/rubric-evidence.md), [final model results](final-model-results.md) and [assistant results](assistant-results.md). The assistant results also record the later greeting, named-item and chat-interface changes; the dated handover below describes the earlier implementation.
+
 Repository cleanup, 11 October 2026: the current report is `docs/submission/report.md`. Superseded files in `docs/drafts/` and the old `docs/report.md` outline were backed up locally and removed from the current tree. References to them below describe the historical handover; the files can also be retrieved from commit `d89aabb`. Historical evaluation and contribution records remain intact.
 
 Update, 11 October 2026: the complete application was merged into `main` in commit `592d3bd`. All ten team members have repository Admin access. The older branches `codex/prototype-baseline` and `resh-documentation` were renamed to `initial-prototype` and `documentation`, preserving their commits. `prototype-baseline` remains the local development branch. The dated handover below records earlier decisions and results.
@@ -178,10 +180,10 @@ Stock answers require a valid submitted calculation. Asking a question preserves
 Read these before making changes:
 
 - `README.md`: setup and current workflow.
-- `docs/prototype-plan.md`: scope and rubric mapping; current status.
+- `docs/submission/report.md` and `docs/submission/rubric-evidence.md`: current documented scope and rubric mapping.
 - `docs/final-model-results.md`: completed three-method comparison and final test.
 - `docs/assistant-results.md`: classifier design and honest test history.
-- `docs/prototype-results.md`, `docs/baseline-results.md`: earlier milestones, not current pending-status authorities.
+- Earlier baseline, prototype and build-plan documents: recoverable from commit `bf61ca5`, superseded by the current report and final results.
 - `docs/team.md`: exact names, preferred emails, usernames, roles, assigned issues and reviewers.
 - `.gitmessage`: nine co-author trailers; use rather than retyping emails.
 - `docs/submission-checklist.md`: final submission requirements still to check.
