@@ -35,7 +35,7 @@ To reproduce the LSTM comparison and final evaluation on a fresh setup, run thes
 .\.venv\Scripts\python.exe -m scripts.compare_lstm --stage final
 ```
 
-Validation freezes model choices before final testing. Skip completed stages; do not delete `selection-lock.json` or `final-test.json` to repeat training. The selected random forest dashboard needs only the core requirements once its saved model and comparison exist. See the [report](docs/submission/report.md) for the experiment settings and recorded findings.
+Validation freezes model choices before final testing. Skip completed stages; do not delete `selection-lock.json` or `final-test.json` to repeat training. The selected random forest dashboard needs only the core requirements once its saved model and comparison exist. See the [report](docs/report.md) for the experiment settings and recorded findings.
 
 ## Tests
 
@@ -43,10 +43,12 @@ Validation freezes model choices before final testing. Skip completed stages; do
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
 
-## Project documents
+## Report
 
-- [Report, poster and presentation](docs/submission/README.md)
-- [Rubric and submission requirements](docs/submission/rubric-evidence.md)
+- [Report PDF](docs/StockSense_AI_Report_Review.pdf)
+- [Editable report source](docs/report.md)
+
+The images in `docs/assets/` are used by the report. The PDF is an earlier review draft; refresh it from the source after final content review, signatures and Grammarly evidence. Removed poster, slide and supporting drafts remain recoverable in Git history; those assignment deliverables still need completing before submission.
 
 ## Team contributions
 
@@ -60,5 +62,5 @@ git config --local user.email "240699874@edu.vut.ac.za"
 git config --local commit.template .gitmessage
 ```
 
-When using `git commit -m` or `git commit -F`, append the trailers explicitly; these commands do not load the template. Use plain descriptive branch names without a `codex/` prefix. Track existing assignments in GitHub issues #23–31 and #41; the presentation plan records proposed speakers. Member details are in the report. Historical team and evaluation notes remain recoverable in Git at commit `8be24ad`.
+When using `git commit -m` or `git commit -F`, append the trailers explicitly; these commands do not load the template. Use plain descriptive branch names without a `codex/` prefix. Track existing assignments in GitHub issues #23–31 and #41. Member details are in the report. Historical team and evaluation notes remain recoverable in Git at commit `8be24ad`.
 

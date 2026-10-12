@@ -281,7 +281,7 @@ Item 1's displayed forecast totals 114.9 units. With default stock 50, outstandi
 
 Figure 3. Personal-PC stock inputs and the resulting 38-unit order suggestion.
 
-The group demonstration sequence is item selection, dated forecast, stock calculation, invalid coverage, shortage warning, assistant response and evaluation tables. A 20-minute presentation plan accompanies the slides, followed by five minutes for questions. Technical rehearsal is complete on Morris's personal PC; member-led explanation, three-reviewer usability testing, a timed group rehearsal and backup recording remain pending.
+The group demonstration sequence is item selection, dated forecast, stock calculation, invalid coverage, shortage warning, assistant response and evaluation tables. Prepare a 20-minute presentation followed by five minutes for questions. Technical rehearsal is complete on Morris's personal PC; member-led explanation, three-reviewer usability testing, a timed group rehearsal and backup recording remain pending.
 
 ## 12 Conclusion
 
@@ -307,6 +307,6 @@ StockSense AI provides a working five-item sales forecast and stock-planning dem
 
 ## Appendix A Submission evidence and review
 
-The technical evidence includes the data audit, frozen comparison, assistant evaluation, 45-test pass and personal-PC rehearsal. The separate rubric evidence map links each assessed area to report sections and deliverables. The earlier office documents remain historical references.
+The technical evidence includes the data audit, frozen comparison, assistant evaluation, 45-test pass and personal-PC rehearsal. Review each assessed area against the original assignment brief. Earlier supporting documents remain available in Git history.
 
 All ten members must review and sign the declaration. Grammarly results must be obtained and attached without inventing a certificate. GitHub Projects tracking needs confirmation, and the campus slot is not yet recorded. The report, poster and slides require group content review. Blackboard submission remains under the group's control: the brief allows one correct PDF submission by 2 November 2026 at 23:59. No upload has occurred.
