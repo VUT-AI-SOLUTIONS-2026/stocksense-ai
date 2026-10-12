@@ -8,7 +8,7 @@ A Python application for retail sales forecasting and stock planning, built for 
 - Sales history charts and a stock-order calculator.
 - A text assistant for forecasts, stock questions and model results.
 
-The prototype uses historical Kaggle data for one anonymous store and a fictional retail case.
+The fictional retailer is Sunrise Mini Market. The prototype uses historical Kaggle data from anonymous Store 1; Product 1–5 in the app correspond to dataset Item 1–5, whose actual names are unknown.
 
 ## Getting started
 

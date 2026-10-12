@@ -18,7 +18,7 @@ Submission date 2 November 2026
 
 ## Project overview
 
-StockSense AI is a local Python application for sales forecasting and demonstration stock planning. Our fictional retailer uses anonymous store 1 and items 1 to 5 from Kaggle. We compared a weekly benchmark, random forest and a small LSTM using chronological data splits. Random forest achieved the lowest daily validation error and remains selected after final testing. The application shows seven dated estimates, a transparent stock calculation and a five-intent text assistant. This report records the implemented scope and measured evidence. Real cost savings and stockout reductions require a separate business trial. Group review, signed declarations and Grammarly evidence remain required before submission.
+StockSense AI is a local Python application for sales forecasting and demonstration stock planning. Sunrise Mini Market, our fictional retailer, uses anonymous store 1 and items 1 to 5 from Kaggle. We compared a weekly benchmark, random forest and a small LSTM using chronological data splits. Random forest achieved the lowest daily validation error and remains selected after final testing. The application shows seven dated estimates, a transparent stock calculation and a five-intent text assistant. This report records the implemented scope and measured evidence. Real cost savings and stockout reductions require a separate business trial. Group review, signed declarations and Grammarly evidence remain required before submission.
 
 <!-- PAGE -->
 
@@ -43,7 +43,7 @@ We declare that the submitted project is our own work and that we have reference
 
 ## 1 Background and theme relevance
 
-StockSense AI uses historical sales to help a fictional retailer plan stock purchases. Kaggle's Store Item Demand Forecasting dataset supplies anonymous sales records [1]. The Python prototype covers store 1 and items 1 to 5, predicts seven daily quantities and calculates order suggestions using entered stock and delivery assumptions. It fits the theme An AI Solution for Industries by applying machine learning to a retail decision. The intended benefit is a consistent estimate before ordering. A local dashboard and text assistant make the estimates and assumptions accessible. The historical demonstration does not establish business performance in a South African shop.
+StockSense AI uses historical sales to help Sunrise Mini Market, a fictional retailer, plan stock purchases. Kaggle's Store Item Demand Forecasting dataset supplies anonymous sales records [1]. The Python prototype covers store 1 and items 1 to 5, predicts seven daily quantities and calculates order suggestions using entered stock and delivery assumptions. It fits the theme An AI Solution for Industries by applying machine learning to a retail decision. The intended benefit is a consistent estimate before ordering. A local dashboard and text assistant make the estimates and assumptions accessible. The historical demonstration does not establish business performance in a South African shop.
 
 ## 2 Problem definition
 
@@ -59,7 +59,7 @@ StockSense AI produces seven-day sales estimates and demonstration order suggest
 
 ### 3.1 Business background and current process
 
-The case represents a small retailer that records sales each day and orders goods from a supplier. The store and item numbers remain anonymous IDs. We do not assign actual locations or product names to them because the dataset does not provide these details.
+The case represents Sunrise Mini Market, a fictional small retailer that records sales each day and orders goods from a supplier. Its demonstration sales are mapped to anonymous dataset store 1. Product 1–5 in the app correspond to dataset items 1–5; their actual names remain unknown. We do not assign an actual location or product names because the dataset does not provide these details.
 
 The assumed current process is to review recent sales, check stock available and choose an order quantity manually. In the proposed process, the manager opens the application, selects an item and checks its sales history and seven-day forecast. The manager enters stock and delivery information, then reviews the suggested quantity and its calculation. Ordering remains a business decision made by the manager.
 
