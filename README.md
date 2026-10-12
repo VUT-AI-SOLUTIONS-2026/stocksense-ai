@@ -6,9 +6,11 @@ A Python application for retail sales forecasting and stock planning, built for 
 
 - Seven-day sales forecasts for five items.
 - Sales history charts and a stock-order calculator.
-- A text assistant for forecasts, stock questions and model results.
+- A text assistant with product comparisons, daily forecasts, follow-up questions and stock-order explanations.
 
 The fictional retailer is Sunrise Mini Market. The prototype uses historical Kaggle data from anonymous Store 1; Product 1–5 in the app correspond to dataset Item 1–5, whose actual names are unknown.
+
+Try asking: "Compare forecast sales for all products", "Forecast for Product 2", "Show the daily breakdown", "Which is the busiest forecast day?" or "Explain my suggested order". Follow-ups remember the last product discussed. Changing the Product selector or clearing the chat resets that context. Stock answers still require a submitted calculation for the relevant product.
 
 ## Getting started
 

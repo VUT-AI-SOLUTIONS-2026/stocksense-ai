@@ -9,7 +9,7 @@ import streamlit as st
 from stocksense.data import ITEMS, load_sales, select_scope
 from stocksense.forecasting import METHOD_LABELS, seasonal_naive_forecast
 from stocksense.inventory import plan_stock
-from stocksense.assistant import SUGGESTED_QUESTIONS, answer_question
+from stocksense.assistant import ConversationContext, SUGGESTED_QUESTIONS, answer_question
 from stocksense.ui import HERO, STYLES
 
 ROOT = Path(__file__).resolve().parent
@@ -153,22 +153,31 @@ def main():
 
     with assistant, st.container(border=True, key="assistant_card"):
         st.subheader("Ask StockSense")
-        st.caption("Your planning assistant. Ask about any item, or use a shortcut below. Stock answers use a calculated plan for that item.")
+        st.caption("Compare products, ask for daily forecasts or explain a stock order. Follow-up questions remember the last product discussed.")
         if ASSISTANT.exists():
             intent_model = read_model(str(ASSISTANT), ASSISTANT.stat().st_mtime_ns)
+            if st.session_state.get("assistant_selected_item") != item:
+                st.session_state["assistant_context"] = ConversationContext()
+                st.session_state["assistant_selected_item"] = item
+            if submitted:
+                st.session_state["assistant_context"] = ConversationContext(items=(item,), intent="reorder")
+            conversation = st.session_state["assistant_context"]
             status, reset = st.columns([3, 1])
-            status.caption(f"Answering for Item {item} unless you name another item")
+            status.caption(f"Product {item} is selected. Changing the selector resets follow-up context.")
             if reset.button("Clear", key="clear_chat", help="Clear this conversation", width="stretch"):
                 st.session_state["chat_messages"] = []
+                conversation = ConversationContext()
+                st.session_state["assistant_context"] = conversation
             messages = st.session_state.setdefault("chat_messages", [])
             transcript = st.container(height=340, border=False)
             st.caption("Choose a question or type your own")
             question = None
-            shortcuts = st.columns(2)
-            for index, (label, prompt) in enumerate(zip(
-                    ("Sales forecast", "Stock order", "Recent sales", "Model results"), SUGGESTED_QUESTIONS)):
-                if shortcuts[index % 2].button(label, key=f"chat_suggestion_{index}", width="stretch"):
-                    question = prompt
+            with st.container(key="assistant_shortcuts"):
+                shortcuts = st.columns(2, gap="small")
+                for index, (label, prompt) in enumerate(zip(
+                        ("Sales forecast", "Stock order", "Recent sales", "Model results", "Compare products", "Explain order"), SUGGESTED_QUESTIONS)):
+                    if shortcuts[index % 2].button(label, key=f"chat_suggestion_{index}", width="stretch"):
+                        question = prompt
             typed_question = st.chat_input("Ask about sales or stock…", max_chars=500, key="question")
             question = typed_question or question
             if question:
@@ -183,21 +192,24 @@ def main():
                     try:
                         response = answer_question(question, model=intent_model, item=item, forecast=forecast,
                                                    recent=recent, stock_plan=result, comparison=comparison,
-                                                   context_for_item=context_for_item)
+                                                   context_for_item=context_for_item, conversation=conversation)
                     except (ValueError, OSError, KeyError, ImportError) as error:
                         response = f"I couldn't load those item results: {error}. Please check the forecast setup."
                 messages.extend([{"role": "user", "text": question, "item": item},
-                                 {"role": "assistant", "text": response, "item": item}])
+                                 {"role": "assistant", "text": response, "item": item,
+                                  "answer_items": conversation.items}])
                 del messages[:-40]
             with transcript:
                 if not messages:
                     with st.chat_message("assistant", avatar="📦"):
-                        st.markdown("Hi! I'm StockSense. Ask me about **sales forecasts**, **stock orders**, **recent sales** or **model results**. You can name an item, such as **item 2**.")
+                        st.markdown("Hi! I'm StockSense. I can **compare products**, show a **daily forecast**, find the **busiest forecast day** and explain your **stock order**. Try ‘compare all products’ or ‘forecast for Product 2’, then ‘show the daily breakdown’.")
                 for message in messages:
                     with st.chat_message(message["role"], avatar="📦" if message["role"] == "assistant" else None):
                         st.markdown(message["text"])
                         if message["role"] == "assistant":
-                            st.caption(f"Product {message['item']} was selected when asked · Previous answers keep their original inputs")
+                            subjects = ", ".join(str(value) for value in message.get("answer_items", ()))
+                            subject_note = f" · Conversation focus: Product {subjects}" if subjects else ""
+                            st.caption(f"Product {message['item']} was selected when asked{subject_note} · Previous answers keep their original inputs")
         else:
             st.info("Set up the assistant first: python -m scripts.train_assistant")
     if comparison:

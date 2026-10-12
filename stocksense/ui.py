@@ -44,6 +44,8 @@ button:focus-visible, textarea:focus-visible { outline:2px solid #23846e; outlin
   [data-testid="stHorizontalBlock"]:has(.st-key-assistant_card) > [data-testid="stColumn"] { width:100%; flex:1 1 100%; }
 }
 @media (max-width:640px) {
+  .st-key-assistant_shortcuts [data-testid="stHorizontalBlock"] { flex-direction:row; gap:8px; }
+  .st-key-assistant_shortcuts [data-testid="stColumn"] { min-width:0; width:calc(50% - 4px); flex:1 1 0; }
   .stMainBlockContainer { padding-top:1rem; }
   .ss-hero { align-items:flex-start; flex-direction:column; gap:16px; padding:12px 0 20px; }
   .ss-hero h1 { font-size:26px; }

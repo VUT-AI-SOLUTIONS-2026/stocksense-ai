@@ -5,7 +5,7 @@ import unittest
 import pandas as pd
 from streamlit.testing.v1 import AppTest
 
-from stocksense.assistant import answer_question, train_intents
+from stocksense.assistant import ConversationContext, answer_question, requested_items, train_intents
 from stocksense.inventory import plan_stock
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -113,6 +113,99 @@ class AssistantTests(unittest.TestCase):
             self.assertIn("How much should I order?", response)
         self.assertIn("28.0 units", self.answer("Hi, show the sales forecast"))
 
+    def test_product_lists_do_not_treat_stock_quantities_as_item_ids(self):
+        self.assertEqual(requested_items("Compare products one and two"), {1, 2})
+        self.assertEqual(requested_items("Compare items 1, 3 and 5"), {1, 3, 5})
+        self.assertEqual(requested_items("Product 2 has 50 available and 10 outstanding"), {2})
+        self.assertIn("IDs 1 to 5", self.answer("Compare products 1 and 9"))
+
+    def test_comparison_uses_each_products_values_and_reports_ties(self):
+        contexts = {1: self.context, 2: {**self.context, "forecast": self.context["forecast"].assign(prediction=10)}}
+        response = self.answer("Compare forecast sales for products 1 and 2", context_for_item=contexts.__getitem__)
+        self.assertIn("| Product 1 | 28.0 | 4.0 |", response)
+        self.assertIn("| Product 2 | 70.0 | 10.0 |", response)
+        self.assertIn("Highest total: **Product 2**", response)
+        self.assertIn("not order quantities", response)
+        response = self.answer("Compare all products", context_for_item=lambda _: self.context)
+        self.assertIn("Highest total: **Product 1, Product 2, Product 3, Product 4, Product 5**", response)
+        self.assertIn("live forecasts", self.answer("Compare products 1 and 2 tomorrow", context_for_item=contexts.__getitem__))
+        self.assertIn("full seven-day window", self.answer("Compare products 1 and 2 on Monday", context_for_item=contexts.__getitem__))
+        conversation = ConversationContext()
+        self.answer("Compare all products", context_for_item=lambda _: self.context, conversation=conversation)
+        self.assertIn("Which product do you mean", self.answer("Show the daily breakdown", conversation=conversation))
+
+    def test_comparison_refuses_mismatched_dates_and_shared_stock_orders(self):
+        def different_dates(item):
+            forecast = self.context["forecast"].copy()
+            if item == 2:
+                forecast["date"] += pd.Timedelta(days=7)
+            return {**self.context, "forecast": forecast}
+        response = self.answer("Compare products 1 and 2", context_for_item=different_dates)
+        self.assertIn("different date ranges", response)
+        response = self.answer("Compare stock orders for products 1 and 2", context_for_item=different_dates)
+        self.assertIn("each product's own stock plan", response)
+
+    def test_followups_remember_named_product_and_keep_unknown_questions_separate(self):
+        conversation = ConversationContext()
+        resolver = lambda item: {**self.context, "forecast": self.context["forecast"].assign(prediction=item * 10)}
+        extra = dict(conversation=conversation, context_for_item=resolver)
+        self.assertIn("140.0 units", self.answer("Forecast for Product 2", **extra))
+        self.assertIn("could not match", self.answer("Who is the president?", **extra))
+        self.answer("Hi!", **extra)
+        self.assertIn("210.0 units", self.answer("And Product 3?", **extra))
+        response = self.answer("Show the daily breakdown", **extra)
+        self.assertIn("Item 3", response)
+        self.assertIn("| Mon, 01 Jan 2018 | 30.0 |", response)
+        self.assertIn("Start with a question", self.answer("And Product 2?"))
+
+    def test_followup_to_other_product_requires_its_own_stock_inputs(self):
+        conversation = ConversationContext()
+        resolver = lambda _: {**self.context, "forecast": self.context["forecast"].assign(prediction=20)}
+        extra = dict(conversation=conversation, context_for_item=resolver,
+                     stock_plan=plan_stock([10] * 7, stock=5, outstanding=0, lead_days=2, review_days=3, buffer=0))
+        self.answer("Forecast for Product 2", **extra)
+        response = self.answer("How much should I order?", **extra)
+        self.assertIn("For item 2, I need stock available", response)
+        self.assertNotIn("suggested order 45", response)
+
+    def test_daily_forecasts_peak_and_date_queries_use_existing_rows(self):
+        daily = self.answer("Show the daily forecast")
+        self.assertIn("| Forecast date | Units |", daily)
+        self.assertIn("| Sun, 07 Jan 2018 | 7.0 |", daily)
+        for query, value in (("Forecast for Monday", "1.0 units"),
+                             ("Forecast for day 3", "3.0 units"),
+                             ("Forecast for 2018-01-06", "6.0 units")):
+            self.assertIn(value, self.answer(query))
+        response = self.answer("Which is the busiest forecast day?")
+        self.assertIn("highest forecast is **7.0 units**", response)
+        self.assertIn("Sunday, 07 January 2018", response)
+        self.assertIn("lowest forecast is **1.0 units**", self.answer("Which is the quietest day?"))
+        self.assertIn("day 1 to 7", self.answer("Forecast for day 8"))
+        self.assertIn("outside", self.answer("Forecast for 2018-02-01"))
+        self.assertIn("cannot give a live forecast", self.answer("Forecast for tomorrow"))
+
+    def test_recent_history_window_and_comparison_use_observed_sales(self):
+        self.assertIn("70 units over 7 days", self.answer("Show sales from the last 7 days"))
+        self.assertIn("I have 10 recent observed days", self.answer("Show sales from the last 30 days"))
+        resolver = lambda item: {**self.context, "recent": self.context["recent"].assign(sales=item * 10)}
+        response = self.answer("Compare past sales for products 1 and 2 over the last 7 days", context_for_item=resolver)
+        self.assertIn("Observed sales comparison", response)
+        self.assertIn("| Product 1 | 70.0 | 10.0 |", response)
+        self.assertIn("| Product 2 | 140.0 | 20.0 |", response)
+
+    def test_explanation_uses_submitted_order_and_defines_terms(self):
+        plan = plan_stock([10] * 7, stock=5, outstanding=0, lead_days=2, review_days=3, buffer=5)
+        conversation = ConversationContext()
+        self.answer("How much should I order?", stock_plan=plan, conversation=conversation)
+        response = self.answer("Why?", stock_plan=plan, conversation=conversation)
+        self.assertIn("50.00 forecast units + 5.00 buffer units = 55.00", response)
+        self.assertIn("= **50 units**", response)
+        self.assertIn("shortage before delivery: 15.0 units", response)
+        self.assertIn("extra stock", self.answer("What is buffer stock?"))
+        self.assertIn("accuracy percentage", self.answer("What does MAE mean?"))
+        self.assertIn("larger forecast mistakes", self.answer("Explain RMSE"))
+        self.assertIn("no product prices or costs", self.answer("Which product makes the most profit?"))
+
 
 class AssistantDashboardTests(unittest.TestCase):
     def setUp(self):
@@ -193,6 +286,41 @@ class AssistantDashboardTests(unittest.TestCase):
         self.assertEqual(len(self.app.chat_message), 1)
         self.assertIn("Hi! I'm StockSense", self.app.chat_message[0].markdown[0].value)
         self.assertEqual(self.app.metric[1].value, order)
+
+    def test_daily_followups_use_named_item_and_selection_resets_memory(self):
+        self.ask("Forecast for Product 2")
+        response = self.ask("And Product 3?")
+        self.assertIn("Item 3", response)
+        daily = self.ask("Show the daily breakdown")
+        self.assertIn("Item 3", daily)
+        self.assertIn("| Forecast date | Units |", daily)
+        self.app.selectbox[0].set_value(3).run()
+        self.assertIn(self.app.metric[0].value, response)
+        self.app.selectbox[0].set_value(4).run()
+        self.assertIn("Item 4", self.ask("Show the sales forecast"))
+        self.app.button(key="clear_chat").click().run()
+        self.assertIn("Start with a question", self.ask("And Product 2?"))
+
+    def test_comparison_shortcut_matches_selected_product_and_order_explanation(self):
+        self.app.button(key="chat_suggestion_4").click().run()
+        response = self.app.chat_message[-1].markdown[0].value
+        selected_total = self.app.metric[0].value.replace(" units", "")
+        self.assertIn(f"| Product 1 | {selected_total} |", response)
+        for item in range(1, 6):
+            self.assertIn(f"| Product {item} |", response)
+        self.app.button[0].click().run()
+        order = self.app.metric[1].value
+        self.app.button(key="chat_suggestion_5").click().run()
+        self.assertIn("Target =", self.app.chat_message[-1].markdown[0].value)
+        self.assertIn(f"suggested order {order}", self.app.chat_message[-1].markdown[0].value)
+
+    def test_stock_submission_focuses_selected_product_after_another_item_question(self):
+        self.ask("Forecast for Product 2")
+        self.app.button[0].click().run()
+        response = self.ask("Why?")
+        self.assertIn("Item 1: suggested order", response)
+        self.assertIn(self.app.metric[1].value, response)
+        self.assertIn("Target =", response)
 
 
 if __name__ == "__main__":
