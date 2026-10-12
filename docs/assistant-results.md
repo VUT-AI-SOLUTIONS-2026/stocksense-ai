@@ -1,6 +1,6 @@
 # Text assistant
 
-Provenance: the original results below describe the office run. The independent personal-PC verification on 10 October 2026 is recorded in [personal-pc-rehearsal.md](personal-pc-rehearsal.md). All 45 tests passed here with no skips; frozen evaluation files were preserved.
+Provenance: the original results below describe the office run. The independent personal-PC verification on 10 October 2026 is summarised in [model results](final-model-results.md). All 45 tests passed there with no skips; frozen evaluation files were preserved.
 
 
 Implemented and checked on 9 October 2026. The assistant supports five intents: forecast, reorder, history, performance and help. This supports the NLP and chatbot sections of the rubric through question classification and retrieval of relevant application results.
@@ -59,3 +59,7 @@ All 51 automated tests passed with no skips in 48.526 seconds on this PC. Checks
 Ask StockSense now displays user and assistant message bubbles, four clickable question shortcuts, a send-on-Enter input and a Clear button. It retains the latest 20 exchanges for the browser session. Previous answers keep their original selected-item context; conversation display does not add conversational reasoning or infer missing stock inputs. Clearing the chat preserves the current stock calculation.
 
 All eight dashboard integration tests passed in 24.412 seconds, covering chat history, shortcuts, clearing, stock persistence, named items, all five forecasts and invalid stock inputs. The narrow browser layout and forecast shortcut were visually checked. The saved models and evaluation files were unchanged.
+
+## Interface refresh, 11 October 2026
+
+The dashboard gained a wide desktop layout, teal introductory panel, chart beside the forecast summary, and separate stock-planning and assistant cards. The personal-PC record reports checks at 390- and 1280-pixel widths and 47 automated tests passing with no skips in 59.452 seconds. Item 1 still forecast 114.9 units, the default order was 38 units, and Hi returned the welcome and examples. No model training or new dependencies were introduced. Local log: `artifacts/rehearsal/ui-tests.txt`. This is technical evidence, not an independent human usability review.

@@ -27,7 +27,15 @@ python -m venv .venv
 
 Open [localhost:8501](http://localhost:8501). If setup is already complete, run only the Streamlit command. Data, environments and trained models stay local. Preserve completed evaluation files.
 
-For the LSTM comparison and final evaluation, follow the [setup and experiment notes](docs/handover.md).
+To reproduce the LSTM comparison and final evaluation on a fresh setup, run these after the initial forecasting training:
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -r requirements-deep-learning.txt
+.\.venv\Scripts\python.exe -m scripts.compare_lstm --stage validation
+.\.venv\Scripts\python.exe -m scripts.compare_lstm --stage final
+```
+
+Validation freezes model choices before final testing. Skip completed stages; do not delete `selection-lock.json` or `final-test.json` to repeat training. The selected random forest dashboard needs only the core requirements once its saved model and comparison exist. See [model results](docs/final-model-results.md) for the experiment settings and recorded findings.
 
 ## Tests
 

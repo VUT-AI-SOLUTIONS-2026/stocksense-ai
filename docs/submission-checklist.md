@@ -29,6 +29,6 @@
 
 ## Personal-PC draft status, 10 October 2026
 
-[Technical rehearsal](personal-pc-rehearsal.md) passed 45 tests with no skips. [Current review materials](submission/README.md) include a visually checked 19-page report, separate A3 poster and 14-slide presentation with a 20-minute plan. Problem description is 110 words and full problem section 174 words. Rendered review PDFs have been checked; final signed and Grammarly-backed PDFs still need checking after the group supplies that evidence.
+The [technical rehearsal summary](final-model-results.md) records 45 tests passing with no skips. [Current review materials](submission/README.md) include a visually checked 19-page report, separate A3 poster and 14-slide presentation with a 20-minute plan. Problem description is 110 words and full problem section 174 words. Rendered review PDFs have been checked; final signed and Grammarly-backed PDFs still need checking after the group supplies that evidence.
 
 The report, poster and presentation require actual group review before their completion boxes can be checked. Signed declarations, Grammarly evidence, independent reviewer questions/usability checks, a timed group rehearsal, backup recording and campus slot confirmation remain pending. GitHub Projects could not be independently inspected because the current token lacks read:project scope; assigned issues remain open. No Blackboard upload has occurred.

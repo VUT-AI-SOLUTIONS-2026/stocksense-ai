@@ -1,6 +1,6 @@
 # Final forecasting comparison
 
-Provenance: the original results below describe the office run. The independent personal-PC verification on 10 October 2026 is recorded in [personal-pc-rehearsal.md](personal-pc-rehearsal.md). All 45 tests passed here with no skips; frozen evaluation files were preserved.
+Provenance: the original results below describe the office run. On 10 October 2026 the personal-PC rehearsal recorded 45 tests passing with no skips in 37.450 seconds. Raw and prepared dataset hashes matched the office record, local forecast metrics matched to three decimals, and frozen evaluation files were preserved. That PC used Python 3.14.6 with the same pinned packages. Initial AppTest render took 7.287 seconds; warm item selections took 0.198–0.227 seconds in one run, excluding browser network latency. These are technical checks, not independent human usability results. Detailed logs remain local in `artifacts/rehearsal/personal-pc.json` and `artifacts/rehearsal/tests.txt`.
 
 
 Measured on 10 October 2026 for store 1, items 1–5. Random forest remains the dashboard method because it had the lowest **2016 daily validation MAE**. The LSTM is a completed deep-learning experiment, with its results retained even though it did not win that comparison.
