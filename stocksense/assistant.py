@@ -8,7 +8,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import make_pipeline
 from stocksense.forecasting import METHOD_LABELS
 
-HELP = "Choose an item, view its seven-day forecast, then calculate a stock order. Ask about forecast sales, replenishment, recent sales or model performance."
+HELP = "Choose a product, view its seven-day forecast, then calculate a stock order. Ask about forecast sales, replenishment, recent sales or model performance."
 SUGGESTED_QUESTIONS = (
     "Show the sales forecast",
     "How much should I order?",
@@ -84,14 +84,19 @@ def answer_question(text, *, model, item, forecast, recent, stock_plan=None, com
         if not requested.issubset({1, 2, 3, 4, 5}):
             return "This demonstration supports item IDs 1 to 5. Choose one of those items."
         if len(requested) > 1:
-            return "Please ask about one item at a time, for example: Show the forecast for item 2. You can also use the Item selector."
+            return "Please ask about one item at a time, for example: Show the forecast for item 2. You can also use the Product selector."
         requested_item = next(iter(requested))
         if requested_item != item:
             if context_for_item is None:
-                return "Choose the requested item in the Item selector, then ask again."
+                return "Choose the requested product in the Product selector, then ask again."
             context = context_for_item(requested_item)
             item, forecast, recent = requested_item, context["forecast"], context["recent"]
             stock_plan = context.get("stock_plan")
+            other_item = True
+        else:
+            other_item = False
+    else:
+        other_item = False
     intent = question_intent(text, model)
     if intent == "unsupported":
         return "I could not match that question confidently. Are you asking about sales forecasts, stock orders, recent sales or model results? Try: " + "; ".join(SUGGESTED_QUESTIONS) + "."
@@ -99,9 +104,11 @@ def answer_question(text, *, model, item, forecast, recent, stock_plan=None, com
         return HELP
     if intent == "forecast":
         start, end = forecast["date"].min(), forecast["date"].max()
+        table_note = (f"Select Product {item} to see its daily estimates in the forecast table."
+                      if other_item else "The daily estimates are in the forecast table.")
         return (f"Item {item}: forecast sales total {forecast['prediction'].sum():.1f} units "
                 f"from {start:%d %B %Y} to {end:%d %B %Y}. "
-                "The daily estimates are in the forecast table. These dates have no measured outcomes in this dataset.")
+                f"{table_note} These dates have no measured outcomes in this dataset.")
     if intent == "history":
         return (f"Item {item}: observed sales total {recent['sales'].sum():.0f} units over {len(recent)} days, "
                 f"from {recent['date'].min():%d %B %Y} to {recent['date'].max():%d %B %Y}. "
@@ -109,7 +116,7 @@ def answer_question(text, *, model, item, forecast, recent, stock_plan=None, com
     if intent == "reorder":
         if stock_plan is None:
             return (f"For item {item}, I need stock available, outstanding units, supplier lead time, review interval and buffer stock. "
-                    f"Select Item {item}, enter those values in Stock planning, then click Calculate suggested order. "
+                    f"Select Product {item}, enter those values in Stock planning, then click Calculate suggested order. "
                     "I won't assume that the displayed defaults are your stock details.")
         response = (f"Item {item}: suggested order {stock_plan.suggested_order} units for {stock_plan.coverage_days} days of coverage. "
                     f"Target stock is {stock_plan.target_stock:.2f} units and inventory position is {stock_plan.inventory_position} units.")

@@ -49,7 +49,7 @@ def metric_rows(methods):
 def main():
     st.markdown(STYLES, unsafe_allow_html=True)
     st.markdown(HERO, unsafe_allow_html=True)
-    st.caption("Fictional retailer · Sales data: 2013–2017. Stock and supplier values are demonstration inputs.")
+    st.caption("Sunrise Mini Market is a fictional retailer. Sales data: anonymous dataset Store 1, 2013–2017. Stock and supplier values are demonstration inputs.")
     if not DATA.exists():
         st.warning("Prepare the dataset first: python -m scripts.prepare_data")
         return
@@ -61,8 +61,8 @@ def main():
             st.error("The saved forecast model is missing. Run python -m scripts.train_forecasters.")
             return
         selector, context = st.columns([1, 3])
-        item = selector.selectbox("Item", ITEMS, format_func=lambda number: f"Item {number}")
-        context.caption("Choose an item to update its forecast, stock plan and assistant answers.")
+        item = selector.selectbox("Product", ITEMS, format_func=lambda number: f"Product {number} (dataset Item {number})")
+        context.caption("Choose a product to update its forecast, stock plan and assistant answers. The source dataset identifies products by item number.")
         cutoff = history["date"].max()
         if method == "random_forest":
             model = read_model(str(MODEL), MODEL.stat().st_mtime_ns)
@@ -197,7 +197,7 @@ def main():
                     with st.chat_message(message["role"], avatar="📦" if message["role"] == "assistant" else None):
                         st.markdown(message["text"])
                         if message["role"] == "assistant":
-                            st.caption(f"Answered with Item {message['item']} selected · Previous answers keep their original inputs")
+                            st.caption(f"Product {message['item']} was selected when asked · Previous answers keep their original inputs")
         else:
             st.info("Set up the assistant first: python -m scripts.train_assistant")
     if comparison:

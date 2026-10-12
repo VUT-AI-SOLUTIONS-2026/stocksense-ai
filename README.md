@@ -8,7 +8,7 @@ A Python application for retail sales forecasting and stock planning, built for 
 - Sales history charts and a stock-order calculator.
 - A text assistant for forecasts, stock questions and model results.
 
-The prototype uses historical Kaggle data for one anonymous store and a fictional retail case.
+The fictional retailer is Sunrise Mini Market. The prototype uses historical Kaggle data from anonymous Store 1; Product 1–5 in the app correspond to dataset Item 1–5, whose actual names are unknown.
 
 ## Getting started
 
@@ -43,12 +43,15 @@ Validation freezes model choices before final testing. Skip completed stages; do
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
 
-## Report
+## Submission review files
 
 - [Report PDF](docs/StockSense_AI_Report_Review.pdf)
 - [Editable report source](docs/report.md)
+- [Digital poster PDF](docs/StockSense_AI_Poster.pdf)
+- [Presentation PDF](docs/StockSense_AI_Presentation_Review.pdf)
+- [Editable presentation](docs/StockSense_AI_Presentation_Review.pptx)
 
-The images in `docs/assets/` are used by the report. The PDF is an earlier review draft; refresh it from the source after final content review, signatures and Grammarly evidence. Removed poster, slide and supporting drafts remain recoverable in Git history; those assignment deliverables still need completing before submission.
+The images in `docs/assets/` support the report and presentation. These are review drafts for the group. The report declaration still needs every member's signature, the Grammarly results must be attached, and the group must check the final PDFs before the single Blackboard submission. The poster and slides need a group content review and a timed rehearsal.
 
 ## Team contributions
 
