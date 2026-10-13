@@ -1,41 +1,26 @@
 """Run with: python -m streamlit run app.py"""
-import json
-from pathlib import Path
-
 import joblib
 import pandas as pd
 import streamlit as st
 
-from stocksense.data import ITEMS, load_sales, select_scope
-from stocksense.forecasting import METHOD_LABELS, seasonal_naive_forecast
+from stocksense.data import ITEMS
+from stocksense.forecasting import METHOD_LABELS
 from stocksense.inventory import plan_stock
 from stocksense.assistant import ConversationContext, SUGGESTED_QUESTIONS, answer_question
+from stocksense.runtime import ROOT, DATA, MODEL, COMPARISON, ASSISTANT, LSTM_DIRECTORY, ForecastService
 from stocksense.ui import HERO, STYLES
-
-ROOT = Path(__file__).resolve().parent
-DATA = ROOT / "data/prepared/store_1_items_1_to_5.csv"
-MODEL = ROOT / "artifacts/forecasters/random_forest.joblib"
-COMPARISON = ROOT / "artifacts/forecasters/comparison.json"
-ASSISTANT = ROOT / "artifacts/assistant/intent_model.joblib"
-LSTM_DIRECTORY = ROOT / "artifacts/forecasters/lstm_final"
 
 st.set_page_config(page_title="StockSense AI", page_icon="📦", layout="wide")
 
 
-@st.cache_data
-def read_history(_path, modified):
-    return select_scope(load_sales(_path))
+@st.cache_resource
+def read_forecasts(root, modified):
+    return ForecastService.load(root)
 
 
 @st.cache_resource
 def read_model(path, modified):
     return joblib.load(path)
-
-
-@st.cache_resource
-def read_lstm(path, modified):
-    from stocksense.lstm import LSTMForecast
-    return LSTMForecast.load(path)
 
 
 def metric_rows(methods):
@@ -54,38 +39,21 @@ def main():
         st.warning("Prepare the dataset first: python -m scripts.prepare_data")
         return
     try:
-        history = read_history(str(DATA), DATA.stat().st_mtime_ns)
-        comparison = json.loads(COMPARISON.read_text(encoding="utf-8")) if COMPARISON.exists() else None
-        method = comparison["selected_method"] if comparison else "weekly_seasonal_naive"
-        if method == "random_forest" and not MODEL.exists():
-            st.error("The saved forecast model is missing. Run python -m scripts.train_forecasters.")
-            return
+        files = (DATA, MODEL, COMPARISON, LSTM_DIRECTORY / "metadata.json")
+        versions = tuple(path.stat().st_mtime_ns if path.exists() else None for path in files)
+        service = read_forecasts(str(ROOT), versions)
+        comparison = service.comparison
         selector, context = st.columns([1, 3])
         item = selector.selectbox("Product", ITEMS, format_func=lambda number: f"Product {number} (dataset Item {number})")
         context.caption("Choose a product to update its forecast, stock plan and assistant answers. The source dataset identifies products by item number.")
-        cutoff = history["date"].max()
-        if method == "random_forest":
-            model = read_model(str(MODEL), MODEL.stat().st_mtime_ns)
-            forecast = model.forecast(history, item=item, cutoff=cutoff)
-            label = "Random forest"
-        elif method == "lstm":
-            metadata = LSTM_DIRECTORY / "metadata.json"
-            if not metadata.exists():
-                st.info("The selected LSTM's final refit is still pending. Complete the final evaluation setup first.")
-                return
-            model = read_lstm(str(LSTM_DIRECTORY), metadata.stat().st_mtime_ns)
-            forecast = model.forecast(history, item=item, cutoff=cutoff)
-            label = METHOD_LABELS[method]
-        elif method == "weekly_seasonal_naive":
-            forecast = seasonal_naive_forecast(history, item=item, cutoff=cutoff)
-            label = "Repeat last week's sales"
-        else:
-            raise ValueError("Unknown forecast method in the saved comparison.")
+        cutoff = service.cutoff
+        forecast = service.forecast(item)
+        label = service.label
     except (ValueError, OSError, KeyError, ImportError) as error:
         st.error(f"Unable to load this demonstration: {error}")
         return
     st.caption(f"Last observed day: {cutoff:%d %B %Y} · Forecast method: {label}")
-    recent = history.loc[history["item"].eq(item) & history["date"].gt(cutoff - pd.Timedelta(days=28))]
+    recent = service.recent(item)
     st.markdown(f"""
     <section class="ss-kpis" aria-label="Selected item summary">
       <div class="ss-kpi"><div class="ss-kpi-label">RECENT SALES</div>
@@ -181,18 +149,11 @@ def main():
             typed_question = st.chat_input("Ask about sales or stock…", max_chars=500, key="question")
             question = typed_question or question
             if question:
-                def context_for_item(requested_item):
-                    requested_forecast = (seasonal_naive_forecast(history, item=requested_item, cutoff=cutoff)
-                                          if method == "weekly_seasonal_naive"
-                                          else model.forecast(history, item=requested_item, cutoff=cutoff))
-                    requested_recent = history.loc[history["item"].eq(requested_item) & history["date"].gt(cutoff - pd.Timedelta(days=28))]
-                    return {"forecast": requested_forecast, "recent": requested_recent}
-
                 with st.spinner("Checking your question…"):
                     try:
                         response = answer_question(question, model=intent_model, item=item, forecast=forecast,
                                                    recent=recent, stock_plan=result, comparison=comparison,
-                                                   context_for_item=context_for_item, conversation=conversation)
+                                                   context_for_item=service.context_for_item, conversation=conversation)
                     except (ValueError, OSError, KeyError, ImportError) as error:
                         response = f"I couldn't load those item results: {error}. Please check the forecast setup."
                 messages.extend([{"role": "user", "text": question, "item": item},

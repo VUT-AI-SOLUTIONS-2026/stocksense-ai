@@ -7,6 +7,7 @@ A Python application for retail sales forecasting and stock planning, built for 
 - Seven-day sales forecasts for five items.
 - Sales history charts and a stock-order calculator.
 - A text assistant with product comparisons, daily forecasts, follow-up questions and stock-order explanations.
+- Choose a web dashboard or a standalone terminal chat using the same saved models.
 
 The fictional retailer is Sunrise Mini Market. The prototype uses historical Kaggle data from anonymous Store 1; Product 1–5 in the app correspond to dataset Item 1–5, whose actual names are unknown.
 
@@ -28,6 +29,28 @@ python -m venv .venv
 ```
 
 Open [localhost:8501](http://localhost:8501). If setup is already complete, run only the Streamlit command. Data, environments and trained models stay local. Preserve completed evaluation files.
+
+### Choose web or terminal
+
+After setup, run either command from the project folder:
+
+```powershell
+# Web app
+.\.venv\Scripts\python.exe -m streamlit run app.py
+
+# Terminal chat
+.\.venv\Scripts\python.exe -m stocksense.terminal
+```
+
+In the terminal, type questions normally. Use `/product 2` to select a product, `/stock` to enter stock and delivery inputs, `/help` for examples, and `/quit` to exit. Daily forecasts, product comparisons, sales history, term explanations and recorded model results are available in both interfaces. The terminal displays tables; the web app also shows charts.
+
+Follow-ups remember the last product discussed. `/stock` applies to the selected product, so select it first. Stock plans and conversation state are separate in each interface and reset when the app closes. `/clear` resets the terminal's follow-up focus but keeps its current stock plan. No browser, server or internet connection is needed for terminal chat once the dataset and trained models are ready.
+
+For a single answer without opening a chat:
+
+```powershell
+.\.venv\Scripts\python.exe -m stocksense.terminal --product 2 --question "Show the daily forecast"
+```
 
 To reproduce the LSTM comparison and final evaluation on a fresh setup, run these after the initial forecasting training:
 
