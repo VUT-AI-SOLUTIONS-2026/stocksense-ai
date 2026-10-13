@@ -1,4 +1,4 @@
-"""Recognise five topics and answer planning questions from dashboard data."""
+"""Recognise five topics and answer planning questions from saved forecasts and inputs."""
 from dataclasses import dataclass
 import re
 
@@ -125,7 +125,7 @@ def history_window(text, recent):
     return recent.loc[recent["date"].gt(cutoff)]
 
 
-def forecast_answer(text, item, forecast, other_item):
+def forecast_answer(text, item, forecast, other_item, interface="web"):
     cleaned = text.lower()
     start, end = forecast["date"].min(), forecast["date"].max()
     if re.search(r"\b(?:tomorrow|today|next month)\b", cleaned):
@@ -173,6 +173,8 @@ def forecast_answer(text, item, forecast, other_item):
         if re.search(r"\b(?:daily|breakdown|each day|by day|dates|table)\b", cleaned):
             rows = "\n".join(f"| {row.date:%a, %d %b %Y} | {row.prediction:.1f} |" for row in forecast.sort_values("date").itertuples())
             response += "\n\n| Forecast date | Units |\n| --- | ---: |\n" + rows
+        elif interface == "terminal":
+            response += " Ask 'show the daily breakdown' to see the daily estimates."
         else:
             response += (f" Select Product {item} to see its daily estimates in the forecast table."
                          if other_item else " The daily estimates are in the forecast table.")
@@ -246,8 +248,8 @@ def train_intents(examples):
 
 
 def answer_question(text, *, model, item, forecast, recent, stock_plan=None, comparison=None,
-                    context_for_item=None, conversation=None):
-    """Never estimate new numbers: answers use the current dashboard objects."""
+                    context_for_item=None, conversation=None, interface="web"):
+    """Use the passed data, with setup guidance appropriate to the interface."""
     if not isinstance(text, str) or not text.strip() or len(text) > 500:
         return "I could not match that question. Try: " + "; ".join(SUGGESTED_QUESTIONS) + "."
     if re.fullmatch(r"(?:hi|hello|hey|good morning|good afternoon|good evening)[\s!.?]*", text.strip(), re.IGNORECASE):
@@ -280,7 +282,8 @@ def answer_question(text, *, model, item, forecast, recent, stock_plan=None, com
         if len(items) < 2:
             return "Name at least two products to compare, for example: Compare forecast sales for products 1 and 2."
         if context_for_item is None:
-            return "Use the Product selector to view each product, or enable the product comparison in the dashboard."
+            return ("Use /product followed by a number from 1 to 5 to select a product." if interface == "terminal" else
+                    "Use the Product selector to view each product, or enable the product comparison in the dashboard.")
         try:
             response = compare_items(text, items=items, intent=intent, context_for_item=context_for_item)
         except ValueError as error:
@@ -289,7 +292,9 @@ def answer_question(text, *, model, item, forecast, recent, stock_plan=None, com
             conversation.remember(items, intent)
         return response
     if len(requested) > 1:
-        return "Please ask about one item at a time, for example: Show the forecast for item 2. You can also use the Product selector, or ask to compare their sales."
+        return ("Please ask about one item at a time, for example: Show the forecast for item 2. "
+                + ("Use /product followed by a number, or ask to compare their sales." if interface == "terminal" else
+                   "You can also use the Product selector, or ask to compare their sales."))
     if not requested and len(conversation.items) > 1 and intent in {"forecast", "history", "reorder"}:
         return "Which product do you mean? The last answer compared several products. Try: Show the daily forecast for Product 2."
     requested_item = next(iter(requested)) if requested else (
@@ -297,7 +302,8 @@ def answer_question(text, *, model, item, forecast, recent, stock_plan=None, com
     other_item = requested_item != item
     if other_item:
         if context_for_item is None:
-            return "Choose the requested product in the Product selector, then ask again."
+            return (f"Use /product {requested_item}, then ask again." if interface == "terminal" else
+                    "Choose the requested product in the Product selector, then ask again.")
         context = context_for_item(requested_item)
         item, forecast, recent = requested_item, context["forecast"], context["recent"]
         stock_plan = context.get("stock_plan")
@@ -307,7 +313,7 @@ def answer_question(text, *, model, item, forecast, recent, stock_plan=None, com
             return (f"Item {item}: the saved forecast method uses past sales to estimate the next seven daily quantities. "
                     f"Adding them gives {forecast['prediction'].sum():.1f} units. "
                     "The estimate does not explain why customers will buy, and these future dates have no measured outcomes in the dataset.")
-        return forecast_answer(text, item, forecast, other_item)
+        return forecast_answer(text, item, forecast, other_item, interface)
     if intent == "history":
         try:
             recent = history_window(text, recent)
@@ -318,8 +324,11 @@ def answer_question(text, *, model, item, forecast, recent, stock_plan=None, com
                 f"That is {recent['sales'].mean():.1f} units per day on average.")
     if intent == "reorder":
         if stock_plan is None:
+            guidance = (f"Use /product {item}, then /stock to enter those values and calculate an order."
+                        if interface == "terminal" else
+                        f"Select Product {item}, enter those values in Stock planning, then click Calculate suggested order.")
             return (f"For item {item}, I need stock available, outstanding units, supplier lead time, review interval and buffer stock. "
-                    f"Select Product {item}, enter those values in Stock planning, then click Calculate suggested order. "
+                    f"{guidance} "
                     "I won't assume that the displayed defaults are your stock details.")
         response = (f"Item {item}: suggested order {stock_plan.suggested_order} units for {stock_plan.coverage_days} days of coverage. "
                     f"Target stock is {stock_plan.target_stock:.2f} units and inventory position is {stock_plan.inventory_position} units.")
