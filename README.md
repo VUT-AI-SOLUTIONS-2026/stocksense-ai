@@ -143,6 +143,12 @@ The images in `docs/assets/` support the report and presentation. These are revi
 
 ## Team contributions
 
+Use the [StockSense AI Projects board](https://github.com/orgs/VUT-AI-SOLUTIONS-2026/projects/1) to track work. It is linked from the repository's **Projects** tab. Organisation members can view and edit it.
+
+The board uses **Todo**, **In Progress** and **Done**. Existing completed issues #23–31 and #41 retain their owners in Done. Issues #50–55 cover the remaining group review, signatures, Grammarly results, usability testing, rehearsal and final submission checks. Move your card to In Progress when starting, record actual work with a commit or discussion link, and move it to Done after its completion criteria are checked.
+
+A [dated board screenshot](docs/assets/project-board-2026-10-14.png) is included with the report's evidence. The board is private to the organisation; the screenshot allows external reviewers to see the recorded status.
+
 Morris Sambo is the primary author (`240699874@edu.vut.ac.za`). The team confirmed shared contributions; include the nine contributing teammates using the exact `Co-authored-by` trailers in `.gitmessage`. Nkambule's corrected email is `akim.nkambule@icloud.com`. Do not randomly rotate authors or treat task assignments as completed work. Each member's email must be linked to their GitHub account for profile attribution.
 
 Use repository-local Git settings:
