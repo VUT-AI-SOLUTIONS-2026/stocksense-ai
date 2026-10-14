@@ -88,7 +88,7 @@ The system must load the sales CSV, check its required columns and organise reco
 
 The application must reject negative quantities, unknown item IDs and unsupported delivery horizons. It must explain when insufficient history prevents a forecast. Saved models and demonstration files should allow it to run without a paid cloud service. The forecast cut-off date must remain visible so that a historical demonstration is not mistaken for a live forecast.
 
-All sales, stock and order quantities will be expressed in units. We will use Python for the application and GitHub Projects to assign and track work. Each report section will have a writer and another member who reviews it.
+All sales, stock and order quantities are expressed in units. We use Python for the application and GitHub Projects to assign and track work. Each report section should have a writer and another member who reviews it.
 
 ### 3.5 Constraints
 
@@ -110,7 +110,9 @@ Stock levels, outstanding orders, supplier lead times and the buffer stock quant
 
 Python and pandas validate and prepare the sales records. scikit-learn supplies random forest regression and text classification. Keras with a local PyTorch backend supplies the small LSTM comparison. Streamlit combines the history, forecast, stock form and assistant on one page. A terminal interface provides the same planning and text functions without a browser. Both interfaces use the shared forecasting loader and saved models. Scripts train models separately. No paid online language service is required.
 
-The weekly benchmark is easy to explain. Random forest uses recent sales and known calendar information. LSTM provides a small sequence experiment and a measured deep-learning comparison. The two interfaces share this logic and keep the scope explainable. Git stores source and reviewed documentation; raw data, the environment and trained models remain local. A repository check on 14 October 2026 confirmed that GitHub issues #23-31 and #41 retain their assigned owners and are closed. Existing Discussions contain member comments about poster choices and group meetings [9, 10]. These are evidence of participation; closed tasks and meeting acknowledgements alone do not establish individual technical understanding. The Projects board still requires confirmation because the available credential cannot read it.
+The weekly benchmark is easy to explain. Random forest uses recent sales and known calendar information. LSTM provides a small sequence experiment and a measured deep-learning comparison. The two interfaces share this logic and keep the scope explainable. Git stores source and reviewed documentation; raw data, the environment and trained models remain local. A repository check on 14 October 2026 confirmed that GitHub issues #23-31 and #41 retain their assigned owners and are closed. Existing Discussions contain member comments about poster choices and group meetings [9, 10]. These are evidence of participation; closed tasks and meeting acknowledgements alone do not establish individual technical understanding.
+
+The StockSense AI Projects board was configured and verified through the signed-in browser on 14 October 2026 [12]. It is linked to the repository and has Todo, In Progress and Done columns. The ten existing completed issues retain their original owners in Done. Six assigned issues, #50-55, track the remaining submission work in Todo. Organisation members can edit the private board. Members move a task when its actual status changes and record progress and review evidence in its issue.
 
 ## 4 Machine learning approach
 
@@ -325,6 +327,8 @@ StockSense AI provides a working five-item sales forecast and stock-planning dem
 
 [11] VUT AI Solutions. Add terminal chat with shared forecasts and stock planning. Source commit and recorded 79-test validation, 13 October 2026. https://github.com/VUT-AI-SOLUTIONS-2026/stocksense-ai/commit/12f4e5b.
 
+[12] VUT AI Solutions. StockSense AI Projects board. https://github.com/orgs/VUT-AI-SOLUTIONS-2026/projects/1. Configured and verified 14 October 2026. The board is private to the organisation; Figure 4 records its status for external reviewers.
+
 ## Appendix A Submission evidence and review
 
 The technical evidence includes the data audit, frozen comparison, recorded classifier evaluation, 79-test pass on the office PC and earlier personal-PC rehearsal. Review each assessed area against the original assignment brief. Earlier supporting documents remain available in Git history.
@@ -337,11 +341,17 @@ The repository has genuine member comments on poster choices and meeting coordin
 | Grammarly | Obtain the actual results and attach them to the submission. No results are attached to this draft. |
 | Formatting | The report builder uses Arial 12, 1.5 body line spacing and justified body paragraphs. Check the final exported PDF. |
 | GitHub engagement | Member discussion comments exist [9, 10]. Retain links and document specific reviews and decisions. |
-| GitHub Projects | Confirm the board, task owners and status, then retain its URL or a dated screenshot. Current access cannot verify it. |
+| GitHub Projects | Verified on 14 October 2026 [12]: 16 assigned issues, with ten Done and six Todo. The board URL and dated screenshot are retained. |
 | Human usability | Complete the three-reviewer acceptance check in Appendix B. Scores and feedback remain pending. |
 | Group content review | Confirm the report, poster and slides together; record corrections and the agreed final versions. |
 | Presentation | Confirm the campus slot and all members' speaking roles. Rehearse for 20 minutes plus five minutes of questions; keep a backup demonstration. |
 | Blackboard | Check the final PDFs before the single submission by 2 November 2026 at 23:59. Submission remains under the group's control. |
+
+![StockSense AI Projects board](assets/project-board-2026-10-14.png)
+
+Figure 4. GitHub Projects board verified on 14 October 2026: six Todo tasks, zero In Progress and ten Done. Completed issues keep their existing owners; remaining tasks have coordination owners and completion criteria. Counts are a dated snapshot, not a claim that pending reviews or submission have happened.
+
+<!-- PAGE -->
 
 ## Appendix B Human usability review worksheet
 
