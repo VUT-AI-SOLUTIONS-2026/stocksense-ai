@@ -47,6 +47,8 @@ caption = ParagraphStyle('Caption', parent=body, alignment=TA_LEFT,
                          spaceBefore=5, spaceAfter=10)
 reference = ParagraphStyle('Reference', parent=body, alignment=TA_LEFT)
 before_object = ParagraphStyle('BeforeObject', parent=body, keepWithNext=True)
+list_item = ParagraphStyle('ListItem', parent=body, leftIndent=18, bulletIndent=0,
+                           bulletFontName='Arial', bulletFontSize=12, spaceAfter=6)
 
 def inline(value):
     value = escape(value)
@@ -63,7 +65,9 @@ def make_table(lines):
     if first == 'Full name':
         proportions = [.43, .21, .23, .13]
     elif first == 'Field':
-        proportions = [.16, .36, .48]
+        proportions = [.14, .28, .22, .36] if count == 4 else [.16, .36, .48]
+    elif first == 'Reviewer':
+        proportions = [.22, .14, .20, .44]
     elif first == 'date':
         proportions = [.34, .20, .20, .26]
     elif first == 'Period':
@@ -75,6 +79,7 @@ def make_table(lines):
     data = [[Paragraph(inline(v), cell_head if i == 0 else cell)
              for v in row] for i, row in enumerate(raw)]
     table = Table(data, colWidths=[WIDTH * p for p in proportions],
+                  minRowHeights=[0] + [48] * (len(data) - 1) if first == 'Reviewer' else None,
                   repeatRows=1, hAlign='LEFT', spaceBefore=5, spaceAfter=12)
     table.setStyle(TableStyle([
         ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#eeeeee')),
@@ -102,7 +107,7 @@ def attach_context(objects):
     """Keep an object's introductory paragraph and heading on the same page."""
     context = []
     if story and isinstance(story[-1], Paragraph) and (
-        story[-1].style.name == 'BeforeObject' or story[-1].style.keepWithNext
+        story[-1].style.name == 'BeforeObject' or getattr(story[-1].style, 'keepWithNext', False)
     ):
         context.insert(0, story.pop())
         while story and isinstance(story[-1], Paragraph) and getattr(story[-1].style, 'keepWithNext', False):
@@ -152,6 +157,12 @@ while i < len(lines):
             story.append(Paragraph(inline(text), heading if level == 2 else subheading))
         i += 1
         continue
+    numbered = re.match(r'^(\d+)\.\s+(.+)$', line)
+    if numbered:
+        story.append(Paragraph(inline(numbered.group(2)), list_item,
+                               bulletText=numbered.group(1) + '.'))
+        i += 1
+        continue
     paragraph = [line]
     i += 1
     while i < len(lines) and lines[i].strip() and not lines[i].strip().startswith(('#', '|', '![', '<!--')):
@@ -184,9 +195,13 @@ doc = SimpleDocTemplate(str(pdf_path), pagesize=A4, leftMargin=25 * mm,
 doc.build(story, onFirstPage=footer, onLaterPages=footer)
 reader = PdfReader(pdf_path)
 text = '\n'.join(page.extract_text() for page in reader.pages)
+normalised_text = ' '.join(text.split())
 assert '913,000' in text and '9,130' in text
 assert 'Sunrise Mini Market' in text
-assert '63 tests' in text
+assert '79 tests' in normalised_text
+assert 'For the community' in normalised_text and 'municipality' in normalised_text
+assert 'Categorical ID' in normalised_text and 'Temporal:' in normalised_text and 'Numerical:' in normalised_text
+assert 'python -m stocksense.terminal' in normalised_text
 assert len(reader.pages) >= 10
 print('Created:', pdf_path)
 print('Pages:', len(reader.pages))
