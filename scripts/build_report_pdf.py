@@ -193,20 +193,6 @@ doc = SimpleDocTemplate(str(pdf_path), pagesize=A4, leftMargin=25 * mm,
                         bottomMargin=23 * mm, title='StockSense AI - Project report',
                         author='VUT AI Solutions')
 doc.build(story, onFirstPage=footer, onLaterPages=footer)
-# Keep the official Grammarly export intact as the final evidence pages.
-grammar_results = OUT / 'assets' / 'grammarly-results-2026-10-16.pdf'
-if grammar_results.exists():
-    from io import BytesIO
-    from pypdf import PdfWriter
-    combined = PdfWriter()
-    combined.append(BytesIO(pdf_path.read_bytes()))
-    combined.append(BytesIO(grammar_results.read_bytes()),
-                    outline_item='Grammarly results - 16 October 2026')
-    combined.add_metadata({'/Title': 'StockSense AI - Report with Grammarly results',
-                           '/Author': 'VUT AI Solutions'})
-    buffer = BytesIO()
-    combined.write(buffer)
-    pdf_path.write_bytes(buffer.getvalue())
 reader = PdfReader(pdf_path)
 text = '\n'.join(page.extract_text() for page in reader.pages)
 normalised_text = ' '.join(text.split())
