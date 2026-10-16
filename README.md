@@ -139,7 +139,7 @@ Validation freezes model choices before final testing. Skip completed stages; pr
 
 For group meetings, use the [editable teaching deck](docs/StockSense_AI_Team_Meeting.pptx) or its [PDF copy](docs/StockSense_AI_Team_Meeting.pdf). It covers the app, terms and models, with presenter notes and practice questions in the PowerPoint.
 
-The images in `docs/assets/` support the report and presentation. These are review drafts for the group. The signed submission copy is kept locally with all ten supplied signatures, dated 14 October 2026; signatures are omitted from the public report. The public PDF includes the official Grammarly results from 16 October 2026 (97/100). The group must still check the final PDFs before the single Blackboard submission. The poster and slides need a group content review and a timed rehearsal.
+The images in `docs/assets/` support the report and presentation. These are review drafts for the group. The signed submission copy is kept locally with all ten supplied signatures, dated 14 October 2026; signatures are omitted from the public report. The official Grammarly results from 16 October 2026 (97/100) are supplied as a separate PDF. The group must still check the final PDFs before the single Blackboard submission. The poster and slides need a group content review and a timed rehearsal.
 
 ## Team contributions
 

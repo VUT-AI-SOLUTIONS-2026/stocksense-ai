@@ -18,7 +18,7 @@ Submission date: 2 November 2026
 
 ## Project overview
 
-StockSense AI is a local Python application for sales forecasting and demonstration stock planning. Sunrise Mini Market, our fictional retailer, uses anonymous store 1 and items 1 to 5 from Kaggle. We compared a weekly benchmark, random forest and a small LSTM using chronological data splits. Random forest achieved the lowest daily validation error and remains selected after final testing. Users can choose a web dashboard or terminal chat. Both provide seven dated estimates, a transparent stock calculation and a five-intent text assistant. This report records the implemented scope and measured evidence. Real cost savings and stockout reductions require a separate business trial. The official Grammarly results are attached to the PDF.
+StockSense AI is a local Python application for sales forecasting and demonstration stock planning. Sunrise Mini Market, our fictional retailer, uses anonymous store 1 and items 1 to 5 from Kaggle. We compared a weekly benchmark, random forest and a small LSTM using chronological data splits. Random forest achieved the lowest daily validation error and remains selected after final testing. Users can choose a web dashboard or terminal chat. Both provide seven dated estimates, a transparent stock calculation and a five-intent text assistant. This report records the implemented scope and measured evidence. Real cost savings and stockout reductions require a separate business trial. The official Grammarly results are supplied as a separate PDF.
 
 <!-- PAGE -->
 
@@ -325,7 +325,3 @@ StockSense AI provides a working five-item sales forecast and stock-planning dem
 [11] VUT AI Solutions. Add terminal chat with shared forecasts and stock planning. Source commit and recorded 79-test validation, 13 October 2026. https://github.com/VUT-AI-SOLUTIONS-2026/stocksense-ai/commit/12f4e5b.
 
 [12] VUT AI Solutions. StockSense AI Projects board. https://github.com/orgs/VUT-AI-SOLUTIONS-2026/projects/1. Configured and verified on 14 October 2026. The board is private to the organisation.
-
-## Grammarly results
-
-The original Grammarly results follow. The language check was completed on 16 October 2026 before the report was shortened for submission.
