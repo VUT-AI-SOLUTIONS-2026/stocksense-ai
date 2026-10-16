@@ -129,7 +129,7 @@ toc.levelStyles = [ParagraphStyle('ContentsEntry', fontName='Arial', fontSize=12
 toc.dotsMinLevel = 0
 contents_title = ParagraphStyle('ContentsTitle', parent=heading, fontSize=22,
                                leading=28, spaceAfter=22)
-lines = ('## Project overview' + source.split('## Project overview', 1)[1]).splitlines()
+lines = ('## Declaration and group members' + source.split('## Declaration and group members', 1)[1]).splitlines()
 story = [ReportCover(), PageBreak(), Paragraph('Table of contents', contents_title),
          toc, PageBreak()]
 in_cover = False
