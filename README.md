@@ -137,6 +137,8 @@ Validation freezes model choices before final testing. Skip completed stages; pr
 - [Presentation PDF](docs/StockSense_AI_Presentation_Review.pdf)
 - [Editable presentation](docs/StockSense_AI_Presentation_Review.pptx)
 
+The presentation has 20 slides with plain-English speaking prompts, worked examples and PowerPoint speaker notes. The notes propose two slides per member and a 20-minute schedule including the app demonstration. Agree the speaking roles together and rehearse the timing. Open the Notes pane or Presenter View to read the suggested explanation for each slide. The PDF shows the slides only.
+
 For group meetings, use the [editable teaching deck](docs/StockSense_AI_Team_Meeting.pptx) or its [PDF copy](docs/StockSense_AI_Team_Meeting.pdf). It covers the app, terms and models, with presenter notes and practice questions in the PowerPoint.
 
 The images in `docs/assets/` support the report and presentation. These are review drafts for the group. The signed submission copy is kept locally with all ten supplied signatures, dated 14 October 2026; signatures are omitted from the public report. The latest Grammarly results, generated on 16 October 2026 at 15:38 for the shortened text (3,693 words; score 97/100), are supplied as a separate PDF. The export lists three correctness flags and 26 advanced suggestions. The group must still check the final PDFs before the single Blackboard submission. The poster and slides need a group content review and a timed rehearsal.
