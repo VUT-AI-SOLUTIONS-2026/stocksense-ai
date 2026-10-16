@@ -145,7 +145,7 @@ The images in `docs/assets/` support the report and presentation. These are revi
 
 Use the [StockSense AI Projects board](https://github.com/orgs/VUT-AI-SOLUTIONS-2026/projects/1) to track work. It is linked from the repository's **Projects** tab. Organisation members can view and edit it.
 
-The board uses **Todo**, **In Progress** and **Done**. Existing completed issues #23–31 and #41 retain their owners in Done. Signature task #51 and Grammarly task #52 are complete. Issues #50 and #53–55 cover the remaining group review, usability testing, rehearsal and final submission checks. Move your card to In Progress when starting, record actual work with a commit or discussion link, and move it to Done after its completion criteria are checked.
+The board uses **Todo**, **In Progress** and **Done**. Existing completed issues #23–31 and #41 retain their owners in Done. Signature task #51 and Grammarly task #52 are complete. Issues #50, #54 and #55 cover the remaining group review, rehearsal and final submission checks. Issue #53 records an optional future usability trial; no human reviewer results are claimed. Move your card to In Progress when starting, record actual work with a commit or discussion link, and move it to Done after its completion criteria are checked.
 
 A [dated board screenshot](docs/assets/project-board-2026-10-14.png) is included with the report's evidence. The board is private to the organisation; the screenshot allows external reviewers to see the recorded status.
 

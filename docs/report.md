@@ -76,7 +76,7 @@ Develop a small Python application that forecasts seven days of sales for five i
 | Consistent estimate | Seven dated values for all five items | Latest full suite passed on the office PC on 16 October 2026: 79 tests, including web, terminal and product-specific chatbot checks. |
 | Lower daily forecast error | Beat weekly benchmark on identical dates | Random forest final MAE 4.812 versus 6.273 units, about 23.3% lower. |
 | Transparent stock suggestion | At least ten arithmetic cases and invalid inputs | Automated calculation cases and dashboard checks passed. |
-| Understandable interface | Three reviewers each answer four of five questions correctly | Human usability review pending; no reviewer outcomes claimed. |
+| Understandable interface | Three reviewers each answer four of five questions correctly | Future usability target; independent human review results are unavailable. No reviewer outcomes are claimed. |
 | Practical local response | Saved forecasts displayed within ten seconds | AppTest initial render 7.29 seconds; warm selections 0.20-0.23 seconds. Browser latency and human timing remain separate. |
 | Useful text requests | At least 20 of 25 supported intents recognised | Saved fresh evaluation: 24/25, plus 8/8 unrelated requests rejected. |
 
@@ -112,7 +112,7 @@ Python and pandas validate and prepare the sales records. scikit-learn supplies 
 
 The weekly benchmark is easy to explain. Random forest uses recent sales and known calendar information. LSTM provides a small sequence experiment and a measured deep-learning comparison. The two interfaces share this logic and keep the scope explainable. Git stores source and reviewed documentation; raw data, the environment and trained models remain local. A repository check on 14 October 2026 confirmed that GitHub issues #23-31 and #41 retain their assigned owners and are closed. Existing Discussions contain member comments about poster choices and group meetings [9, 10]. These are evidence of participation; closed tasks and meeting acknowledgements alone do not establish individual technical understanding.
 
-The StockSense AI Projects board was configured and verified through the signed-in browser on 14 October 2026 [12]. It is linked to the repository and has Todo, In Progress and Done columns. The ten existing completed issues retain their original owners in Done. Issue #51 was completed on 14 October 2026 after all ten supplied signatures and dates were added to the local submission copy. The Grammarly check and attached results were completed on 16 October 2026 under issue #52. Four tasks, #50 and #53-55, remain for group review, usability feedback, rehearsal and submission. Organisation members can edit the private board. Members move a task when its actual status changes and record progress and review evidence in its issue.
+The StockSense AI Projects board was configured and verified through the signed-in browser on 14 October 2026 [12]. It is linked to the repository and has Todo, In Progress and Done columns. The ten existing completed issues retain their original owners in Done. Issue #51 was completed on 14 October 2026 after all ten supplied signatures and dates were added to the local submission copy. The Grammarly check and attached results were completed on 16 October 2026 under issue #52. Tasks #50, #54 and #55 cover group review, rehearsal and submission. The optional human usability trial in #53 remains future work; it is not a separate requirement in the assignment brief. Organisation members can edit the private board. Members move a task when its actual status changes and record progress and review evidence in its issue.
 
 ## 4 Machine learning approach
 
@@ -331,7 +331,7 @@ StockSense AI provides a working five-item sales forecast and stock-planning dem
 
 ## Appendix A Submission evidence and review
 
-The technical evidence includes the data audit, frozen comparison, recorded classifier evaluation, 79-test pass on the office PC and earlier personal-PC rehearsal. The official Grammarly performance report is appended after Appendix B. It covers the unsigned narrative, references and table text checked on 16 October 2026; signatures and student numbers were excluded. The retained technical names are valid. Optional clarity suggestions remain, and Grammarly did not check plagiarism. The evidence and status notes were updated after the language check. Review each assessed area against the original assignment brief. Earlier supporting documents remain available in Git history.
+The technical evidence includes the data audit, frozen comparison, recorded classifier evaluation, 79-test pass on the office PC and earlier personal-PC rehearsal. The official Grammarly performance report is appended after Appendix B. It covers the unsigned narrative, references, table text and optional review worksheet checked on 16 October 2026; signatures and student numbers were excluded. The retained technical names are valid. Optional clarity suggestions remain, and Grammarly did not check plagiarism. The submission status notes and the optional review appendix were updated after the language check; the checked source is retained locally. Review each assessed area against the original assignment brief. Earlier supporting documents remain available in Git history.
 
 The repository has genuine member comments on poster choices and meeting coordination [9, 10]. Preserve those links and record specific reviews and decisions through members' own accounts. An issue assignment, closed task or commit co-author credit alone is not evidence that a member independently reviewed or can explain the work.
 
@@ -341,8 +341,8 @@ The repository has genuine member comments on poster choices and meeting coordin
 | Grammarly | Checked on 16 October 2026: score 97/100. The official three-page PDF report is appended. Four retained flags concern the exact names Todo and stocksense.terminal; 38 clarity suggestions remain. |
 | Formatting | The report builder uses Arial 12, 1.5 body line spacing and justified body paragraphs. Check the final exported PDF. |
 | GitHub engagement | Member discussion comments exist [9, 10]. Retain links and document specific reviews and decisions. |
-| GitHub Projects | The board tracks 16 assigned issues. Declaration task #51 and Grammarly task #52 are complete. Tasks #50 and #53-55 cover the four remaining activities. Figure 4 records the earlier setup snapshot. |
-| Human usability | Complete the three-reviewer acceptance check in Appendix B. Scores and feedback remain pending. |
+| GitHub Projects | The board tracks 16 assigned issues. Declaration task #51 and Grammarly task #52 are complete. Tasks #50, #54 and #55 cover the remaining submission activities. Task #53 records optional future usability work. Figure 4 records the earlier setup snapshot. |
+| Human usability | Independent human review results are unavailable. The three-reviewer target remains future work. Appendix B describes this optional evaluation without claiming scores or feedback. |
 | Group content review | Confirm the report, poster and slides together; record corrections and the agreed final versions. |
 | Presentation | Confirm the campus slot and all members' speaking roles. Rehearse for 20 minutes plus five minutes of questions; keep a backup demonstration. |
 | Blackboard | Check the final PDFs before the single submission by 2 November 2026 at 23:59. Submission remains under the group's control. |
@@ -351,22 +351,6 @@ The repository has genuine member comments on poster choices and meeting coordin
 
 Figure 4. GitHub Projects board verified on 14 October 2026: six Todo tasks, zero In Progress and ten Done. Completed issues keep their existing owners; remaining tasks have coordination owners and completion criteria. Counts are a dated snapshot, not a claim that pending reviews or submission have happened.
 
-<!-- PAGE -->
+## Appendix B Optional future usability evaluation
 
-## Appendix B Human usability review worksheet
-
-This worksheet supports our own interface acceptance criterion in Section 3.3. It is not a separate lecturer-mandated test. Ask three reviewers to use the application and answer the five questions below. Record their real answers, score each out of five and retain any observed difficulty or suggested change. The criterion is at least four correct answers for each reviewer. Results are pending; blank spaces are not evidence of a completed review.
-
-1. Compare all five products. Which product has the highest seven-day forecast total?
-2. Select Product 1 and calculate with stock 50, outstanding 0, lead time 2, review interval 3 and buffer 10. What order is suggested?
-3. Keep those inputs but change stock to 0 and calculate again. Does placing the suggested order guarantee there will be no shortage before delivery? Explain the warning.
-4. Ask what MAE means. What does it measure, and is a smaller or larger value better?
-5. Read the forecast dates and scope note. Is this a live forecast for the current week, and have real cost savings been demonstrated?
-
-| Reviewer | Date | Correct out of 5 | Observed difficulty or feedback |
-| --- | --- | --- | --- |
-| Reviewer 1 | | | |
-| Reviewer 2 | | | |
-| Reviewer 3 | | | |
-
-Record actual feedback and any changes, then repeat affected tasks. Each member should practise explaining the business problem, data types, model comparison, NLP classifier and stock rule in their own words.
+The three-reviewer target in Section 3.3 is our proposed interface acceptance criterion, not a separate lecturer requirement. Independent human review results are unavailable, and no reviewer scores or feedback are claimed. A future trial would ask three people to compare products, calculate an order, explain the shortage warning, define MAE and recognise the historical forecast dates. Each reviewer should answer at least four of the five tasks correctly. Record actual answers and observed difficulties before claiming that this target has been met. Current implementation evidence consists of the automated checks and technical demonstrations described in Section 11.
