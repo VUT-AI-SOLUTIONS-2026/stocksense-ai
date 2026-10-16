@@ -18,7 +18,7 @@ Submission date: 2 November 2026
 
 ## Project overview
 
-StockSense AI is a local Python application for sales forecasting and demonstration stock planning. Sunrise Mini Market, our fictional retailer, uses anonymous store 1 and items 1 to 5 from Kaggle. We compared a weekly benchmark, random forest and a small LSTM using chronological data splits. Random forest achieved the lowest daily validation error and remains selected after final testing. Users can choose a web dashboard or terminal chat. Both provide seven dated estimates, a transparent stock calculation and a five-intent text assistant. This report records the implemented scope and measured evidence. Real cost savings and stockout reductions require a separate business trial. All ten supplied signatures are included in the private submission copy, dated 14 October 2026. The official Grammarly results are attached to the PDF. Group review remains required before submission.
+StockSense AI is a local Python application for sales forecasting and demonstration stock planning. Sunrise Mini Market, our fictional retailer, uses anonymous store 1 and items 1 to 5 from Kaggle. We compared a weekly benchmark, random forest and a small LSTM using chronological data splits. Random forest achieved the lowest daily validation error and remains selected after final testing. Users can choose a web dashboard or terminal chat. Both provide seven dated estimates, a transparent stock calculation and a five-intent text assistant. This report records the implemented scope and measured evidence. Real cost savings and stockout reductions require a separate business trial. The official Grammarly results are attached to the PDF.
 
 <!-- PAGE -->
 
@@ -76,7 +76,6 @@ Develop a small Python application that forecasts seven days of sales for five i
 | Consistent estimate | Seven dated values for all five items | Latest full suite passed on the office PC on 16 October 2026: 79 tests, including web, terminal and product-specific chatbot checks. |
 | Lower daily forecast error | Beat weekly benchmark on identical dates | Random forest final MAE 4.812 versus 6.273 units, about 23.3% lower. |
 | Transparent stock suggestion | At least ten arithmetic cases and invalid inputs | Automated calculation cases and dashboard checks passed. |
-| Understandable interface | Three reviewers each answer four of five questions correctly | Future usability target; independent human review results are unavailable. No reviewer outcomes are claimed. |
 | Practical local response | Saved forecasts displayed within ten seconds | AppTest initial render 7.29 seconds; warm selections 0.20-0.23 seconds. Browser latency and human timing remain separate. |
 | Useful text requests | At least 20 of 25 supported intents recognised | Saved fresh evaluation: 24/25, plus 8/8 unrelated requests rejected. |
 
@@ -110,9 +109,7 @@ Stock levels, outstanding orders, supplier lead times and the buffer stock quant
 
 Python and pandas validate and prepare the sales records. scikit-learn supplies random forest regression and text classification. Keras with a local PyTorch backend supplies the small LSTM comparison. Streamlit combines the history, forecast, stock form and assistant on one page. A terminal interface provides the same planning and text functions without a browser. Both interfaces use the shared forecasting loader and saved models. Scripts train models separately. No paid online language service is required.
 
-The weekly benchmark is easy to explain. Random forest uses recent sales and known calendar information. LSTM provides a small sequence experiment and a measured deep-learning comparison. The two interfaces share this logic and keep the scope explainable. Git stores source and reviewed documentation; raw data, the environment and trained models remain local. A repository check on 14 October 2026 confirmed that GitHub issues #23-31 and #41 retain their assigned owners and are closed. Existing Discussions contain member comments about poster choices and group meetings [9, 10]. These are evidence of participation; closed tasks and meeting acknowledgements alone do not establish individual technical understanding.
-
-The StockSense AI Projects board was configured and verified through the signed-in browser on 14 October 2026 [12]. It is linked to the repository and has Todo, In Progress and Done columns. The ten existing completed issues retain their original owners in Done. Issue #51 was completed on 14 October 2026 after all ten supplied signatures and dates were added to the local submission copy. The Grammarly check and attached results were completed on 16 October 2026 under issue #52. Tasks #50, #54 and #55 cover group review, rehearsal and submission. The optional human usability trial in #53 remains future work; it is not a separate requirement in the assignment brief. Organisation members can edit the private board. Members move a task when its actual status changes and record progress and review evidence in its issue.
+The weekly benchmark is easy to explain. Random forest uses recent sales and known calendar information. LSTM provides a small sequence experiment and a measured deep-learning comparison. The two interfaces share this logic and keep the scope explainable. Git stores source and documentation; raw data, the environment and trained models remain local. GitHub Projects tracks assigned work through Todo, In Progress and Done columns [12]. Member discussions record poster choices and meeting coordination [9, 10].
 
 ## 4 Machine learning approach
 
@@ -297,11 +294,11 @@ Item 1's displayed forecast totals 114.9 units. With default stock 50, outstandi
 
 Figure 3. Current office-PC dashboard with demonstration inputs and the resulting 38-unit order suggestion.
 
-The group demonstration sequence is item selection, dated forecast, stock calculation, invalid coverage, shortage warning, assistant response and evaluation tables. Prepare a 20-minute presentation followed by five minutes for questions. Technical rehearsal is complete on Morris's personal PC; member-led explanation, three-reviewer usability testing, a timed group rehearsal and backup recording remain pending.
+The demonstration sequence is item selection, dated forecast, stock calculation, invalid coverage, shortage warning, assistant response and evaluation tables.
 
 ## 12 Conclusion
 
-StockSense AI provides a working five-item sales forecast and stock-planning demonstration through web and terminal interfaces. Random forest won the frozen daily validation criterion and lowered final daily MAE by about 23.3% relative to the weekly benchmark. LSTM's stronger weekly-total result highlights a trade-off relevant to stock decisions. The assistant retrieves the same application objects. Its curated checks passed. Personal-PC rehearsal and the latest 79-test reference run support the technical implementation. Real inventory benefits, general language performance and human usability require further evidence. The local submission copy includes all ten supplied signatures and dates. The group must complete review and submission checks before uploading.
+StockSense AI provides a working five-item sales forecast and stock-planning demonstration through web and terminal interfaces. Random forest won the frozen daily validation criterion and lowered final daily MAE by about 23.3% relative to the weekly benchmark. LSTM's stronger weekly-total result highlights a trade-off relevant to stock decisions. The assistant retrieves the same application objects. Its curated checks passed. Personal-PC rehearsal and the latest 79-test reference run support the technical implementation. Real inventory benefits, general language performance and human usability require further evidence.
 
 ## References
 
@@ -327,30 +324,8 @@ StockSense AI provides a working five-item sales forecast and stock-planning dem
 
 [11] VUT AI Solutions. Add terminal chat with shared forecasts and stock planning. Source commit and recorded 79-test validation, 13 October 2026. https://github.com/VUT-AI-SOLUTIONS-2026/stocksense-ai/commit/12f4e5b.
 
-[12] VUT AI Solutions. StockSense AI Projects board. https://github.com/orgs/VUT-AI-SOLUTIONS-2026/projects/1. Configured and verified on 14 October 2026. The board is private to the organisation; Figure 4 records its status for external reviewers.
+[12] VUT AI Solutions. StockSense AI Projects board. https://github.com/orgs/VUT-AI-SOLUTIONS-2026/projects/1. Configured and verified on 14 October 2026. The board is private to the organisation.
 
-## Appendix A Submission evidence and review
+## Grammarly results
 
-The technical evidence includes the data audit, frozen comparison, recorded classifier evaluation, 79-test pass on the office PC and earlier personal-PC rehearsal. The official Grammarly performance report is appended after Appendix B. It covers the unsigned narrative, references, table text and optional review worksheet checked on 16 October 2026; signatures and student numbers were excluded. The retained technical names are valid. Optional clarity suggestions remain, and Grammarly did not check plagiarism. The submission status notes and the optional review appendix were updated after the language check; the checked source is retained locally. Review each assessed area against the original assignment brief. Earlier supporting documents remain available in Git history.
-
-The repository has genuine member comments on poster choices and meeting coordination [9, 10]. Preserve those links and record specific reviews and decisions through members' own accounts. An issue assignment, closed task or commit co-author credit alone is not evidence that a member independently reviewed or can explain the work.
-
-| Submission check | Current evidence or remaining action |
-| --- | --- |
-| Group declaration | All ten supplied signatures and the date 14 October 2026 are included in the private submission copy. This public copy keeps signature and date spaces blank. Final member review remains required. |
-| Grammarly | Checked on 16 October 2026: score 97/100. The official three-page PDF report is appended. Four retained flags concern the exact names Todo and stocksense.terminal; 38 clarity suggestions remain. |
-| Formatting | The report builder uses Arial 12, 1.5 body line spacing and justified body paragraphs. Check the final exported PDF. |
-| GitHub engagement | Member discussion comments exist [9, 10]. Retain links and document specific reviews and decisions. |
-| GitHub Projects | The board tracks 16 assigned issues. Declaration task #51 and Grammarly task #52 are complete. Tasks #50, #54 and #55 cover the remaining submission activities. Task #53 records optional future usability work. Figure 4 records the earlier setup snapshot. |
-| Human usability | Independent human review results are unavailable. The three-reviewer target remains future work. Appendix B describes this optional evaluation without claiming scores or feedback. |
-| Group content review | Confirm the report, poster and slides together; record corrections and the agreed final versions. |
-| Presentation | Confirm the campus slot and all members' speaking roles. Rehearse for 20 minutes plus five minutes of questions; keep a backup demonstration. |
-| Blackboard | Check the final PDFs before the single submission by 2 November 2026 at 23:59. Submission remains under the group's control. |
-
-![StockSense AI Projects board](assets/project-board-2026-10-14.png)
-
-Figure 4. GitHub Projects board verified on 14 October 2026: six Todo tasks, zero In Progress and ten Done. Completed issues keep their existing owners; remaining tasks have coordination owners and completion criteria. Counts are a dated snapshot, not a claim that pending reviews or submission have happened.
-
-## Appendix B Optional future usability evaluation
-
-The three-reviewer target in Section 3.3 is our proposed interface acceptance criterion, not a separate lecturer requirement. Independent human review results are unavailable, and no reviewer scores or feedback are claimed. A future trial would ask three people to compare products, calculate an order, explain the shortage warning, define MAE and recognise the historical forecast dates. Each reviewer should answer at least four of the five tasks correctly. Record actual answers and observed difficulties before claiming that this target has been met. Current implementation evidence consists of the automated checks and technical demonstrations described in Section 11.
+The original Grammarly results follow. The language check was completed on 16 October 2026 before the report was shortened for submission.

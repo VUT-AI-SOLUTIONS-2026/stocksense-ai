@@ -150,7 +150,7 @@ while i < len(lines):
         text = line[level:].strip()
         if level == 1:
             story.extend([Spacer(1, 30 * mm), Paragraph(inline(text), cover_title),
-                          Paragraph('Report draft for group review', cover)])
+                          Paragraph('Project report', cover)])
         elif in_cover and text == 'Retail sales forecasting and stock replenishment':
             story.extend([Paragraph(inline(text), cover_title), Spacer(1, 6 * mm)])
         else:
@@ -183,14 +183,14 @@ while i < len(lines):
 def footer(canvas, document):
     canvas.saveState()
     canvas.setFont('Arial', 12)
-    canvas.drawString(25 * mm, 13 * mm, 'StockSense AI report draft')
+    canvas.drawString(25 * mm, 13 * mm, 'StockSense AI project report')
     canvas.drawRightString(A4[0] - 25 * mm, 13 * mm, str(document.page))
     canvas.restoreState()
 
 pdf_path = PDF_OUT / 'StockSense_AI_Report_Review.pdf'
 doc = SimpleDocTemplate(str(pdf_path), pagesize=A4, leftMargin=25 * mm,
                         rightMargin=25 * mm, topMargin=22 * mm,
-                        bottomMargin=23 * mm, title='StockSense AI - Report draft',
+                        bottomMargin=23 * mm, title='StockSense AI - Project report',
                         author='VUT AI Solutions')
 doc.build(story, onFirstPage=footer, onLaterPages=footer)
 # Keep the official Grammarly export intact as the final evidence pages.
