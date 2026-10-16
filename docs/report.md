@@ -12,13 +12,13 @@ Subject code AIBUY3A
 
 Group VUT AI Solutions
 
-Theme An AI Solution for Industries
+Theme: An AI Solution for Industries
 
-Submission date 2 November 2026
+Submission date: 2 November 2026
 
 ## Project overview
 
-StockSense AI is a local Python application for sales forecasting and demonstration stock planning. Sunrise Mini Market, our fictional retailer, uses anonymous store 1 and items 1 to 5 from Kaggle. We compared a weekly benchmark, random forest and a small LSTM using chronological data splits. Random forest achieved the lowest daily validation error and remains selected after final testing. Users can choose a web dashboard or terminal chat. Both provide seven dated estimates, a transparent stock calculation and a five-intent text assistant. This report records the implemented scope and measured evidence. Real cost savings and stockout reductions require a separate business trial. Group review, signed declarations and Grammarly evidence remain required before submission.
+StockSense AI is a local Python application for sales forecasting and demonstration stock planning. Sunrise Mini Market, our fictional retailer, uses anonymous store 1 and items 1 to 5 from Kaggle. We compared a weekly benchmark, random forest and a small LSTM using chronological data splits. Random forest achieved the lowest daily validation error and remains selected after final testing. Users can choose a web dashboard or terminal chat. Both provide seven dated estimates, a transparent stock calculation and a five-intent text assistant. This report records the implemented scope and measured evidence. Real cost savings and stockout reductions require a separate business trial. All ten supplied signatures are included in the private submission copy, dated 14 October 2026. The official Grammarly results are attached to the PDF. Group review remains required before submission.
 
 <!-- PAGE -->
 
@@ -61,9 +61,9 @@ For the community, more reliable stock could improve residents' access to goods 
 
 ### 3.1 Business background and current process
 
-The case represents Sunrise Mini Market, a fictional small retailer that records sales each day and orders goods from a supplier. Its demonstration sales are mapped to anonymous dataset store 1. Product 1–5 in the app correspond to dataset items 1–5; their actual names remain unknown. We do not assign an actual location or product names because the dataset does not provide these details.
+The case represents Sunrise Mini Market, a fictional small retailer that records sales each day and orders goods from a supplier. Its demonstration sales are mapped to anonymous dataset store 1. Products 1 to 5 in the app correspond to dataset items 1 to 5; their actual names remain unknown. We do not assign an actual location or product names because the dataset does not provide these details.
 
-The assumed current process is to review recent sales, check stock available and choose an order quantity manually. In the proposed process, the manager opens the application, selects an item and checks its sales history and seven-day forecast. The manager enters stock and delivery information, then reviews the suggested quantity and its calculation. Ordering remains a business decision made by the manager.
+The assumed current process is to review recent sales, check available stock and choose an order quantity manually. In the proposed process, the manager opens the application, selects an item and checks its sales history and seven-day forecast. The manager enters stock and delivery information, then reviews the suggested quantity and its calculation. Ordering remains a business decision made by the manager.
 
 ### 3.2 Main objective
 
@@ -73,7 +73,7 @@ Develop a small Python application that forecasts seven days of sales for five i
 
 | Objective | Acceptance criterion | Evidence and status |
 | --- | --- | --- |
-| Consistent estimate | Seven dated values for all five items | Latest full suite passed on the office PC on 13 October 2026: 79 tests, including web, terminal and product-specific chatbot checks. |
+| Consistent estimate | Seven dated values for all five items | Latest full suite passed on the office PC on 16 October 2026: 79 tests, including web, terminal and product-specific chatbot checks. |
 | Lower daily forecast error | Beat weekly benchmark on identical dates | Random forest final MAE 4.812 versus 6.273 units, about 23.3% lower. |
 | Transparent stock suggestion | At least ten arithmetic cases and invalid inputs | Automated calculation cases and dashboard checks passed. |
 | Understandable interface | Three reviewers each answer four of five questions correctly | Human usability review pending; no reviewer outcomes claimed. |
@@ -112,7 +112,7 @@ Python and pandas validate and prepare the sales records. scikit-learn supplies 
 
 The weekly benchmark is easy to explain. Random forest uses recent sales and known calendar information. LSTM provides a small sequence experiment and a measured deep-learning comparison. The two interfaces share this logic and keep the scope explainable. Git stores source and reviewed documentation; raw data, the environment and trained models remain local. A repository check on 14 October 2026 confirmed that GitHub issues #23-31 and #41 retain their assigned owners and are closed. Existing Discussions contain member comments about poster choices and group meetings [9, 10]. These are evidence of participation; closed tasks and meeting acknowledgements alone do not establish individual technical understanding.
 
-The StockSense AI Projects board was configured and verified through the signed-in browser on 14 October 2026 [12]. It is linked to the repository and has Todo, In Progress and Done columns. The ten existing completed issues retain their original owners in Done. Six assigned issues, #50-55, track the remaining submission work in Todo. Organisation members can edit the private board. Members move a task when its actual status changes and record progress and review evidence in its issue.
+The StockSense AI Projects board was configured and verified through the signed-in browser on 14 October 2026 [12]. It is linked to the repository and has Todo, In Progress and Done columns. The ten existing completed issues retain their original owners in Done. Issue #51 was completed on 14 October 2026 after all ten supplied signatures and dates were added to the local submission copy. The Grammarly check and attached results were completed on 16 October 2026 under issue #52. Four tasks, #50 and #53-55, remain for group review, usability feedback, rehearsal and submission. Organisation members can edit the private board. Members move a task when its actual status changes and record progress and review evidence in its issue.
 
 ## 4 Machine learning approach
 
@@ -132,7 +132,7 @@ The predefined criterion is overall daily 2016 validation MAE, with simpler meth
 
 ### 5.1 Source and verified structure
 
-The supplied Kaggle archive contains train.csv, test.csv and sample_submission.csv. The office inspection on 9 October 2026 was independently reproduced on this personal PC on 10 October 2026. It contains 913,000 rows and four columns, covering 1 January 2013 to 31 December 2017. There are 10 stores and 50 items, giving 500 store and item series. Each series has 1,826 daily records.
+The supplied Kaggle archive contains train.csv, test.csv and sample_submission.csv. The office inspection on 9 October 2026 was independently reproduced on this personal PC on 10 October 2026. It contains 913,000 rows and four columns, covering 1 January 2013 to 31 December 2017. There are 10 stores and 50 items, giving 500 combinations of stores and items. Each series has 1,826 daily records.
 
 | Field | Data type | Actual example | Meaning and use |
 | --- | --- | --- | --- |
@@ -159,7 +159,7 @@ These are the first five source records for store 1 and item 1.
 
 ### 5.3 Data quality checks and preparation
 
-We found no missing cells, duplicate rows, repeated date-store-item keys or negative sales. Quantities range from 0 to 231. The complete source has one zero-sales record. Every store and item pair has a complete daily history over the same date range.
+We found no missing cells, duplicate rows, repeated date-store-item keys or negative sales. Quantities range from 0 to 231. The complete source has one zero-sales record. Every combination of a store and an item has a complete daily history over the same date range.
 
 Preparation preserves train.csv, selects the five series and sorts by date. Checks reject missing columns, invalid dates, duplicate daily keys, missing days and negative or fractional quantities. Zero sales remains a valid value. No missing day is silently converted to zero. Each item has 1,061 initial fitting windows and 1,427 final refit windows.
 
@@ -167,7 +167,7 @@ Raw and prepared SHA-256 checksums match the office record. Both SHA-256 values 
 
 ### 5.4 Other data used by the application
 
-Stock data is entered manually for the demonstration. An illustrative record is item 1, 20 units available, 5 units already ordered, supplier lead time 3 days, review interval 1 day and buffer stock 10 units. These values are assumptions, not Kaggle observations.
+Stock data is entered manually for the demonstration. For example, item 1 has 20 units available and 5 units already ordered. The assumed supplier lead time is 3 days, the review interval is 1 day, and the buffer stock is 10 units. These values are assumptions, not Kaggle observations.
 
 Stock, outstanding orders and buffer quantities are numerical whole-number unit counts. Lead time and review interval are numerical whole-number day counts. The item reference remains a categorical identifier.
 
@@ -189,7 +189,7 @@ The source contains anonymous IDs rather than customer details. We will use thos
 
 Each evaluation uses 52 complete weeks per item: 364 daily predictions per item, 1,820 overall and 260 item-week totals. Validation scores 1 January to 29 December 2016 and excludes 30-31 December. Final testing scores 1 January to 30 December 2017 and excludes 31 December. All methods use the same dates.
 
-Observed history advances between forecast weeks, while learned weights remain fixed. Each forecast sees sales only before its cut-off. Final models refit through 31 December 2016, with fixed validation-selected LSTM epochs and no early stopping on 2017. Save/reload checks ensure the scored models match persisted files. The separate Kaggle 2018 test.csv has no sales column and cannot supply local accuracy scores.
+Observed history advances between forecast weeks, while learned weights remain fixed. Each forecast sees sales only before its cut-off. Final models were refitted using data through 31 December 2016, with fixed validation-selected LSTM epochs and no early stopping on 2017. Save/reload checks ensure the scored models match persisted files. The separate Kaggle 2018 test.csv has no sales column and cannot supply local accuracy scores.
 
 ### 6.2 Error measures
 
@@ -245,9 +245,9 @@ Future improvements would require a new prospectively labelled experiment and ne
 
 The demonstration uses a simple periodic review rule. Its inputs are supplier lead time L, review interval R, stock available S, outstanding units O due within the coverage period and a fixed buffer B. We limit L plus R to seven days. Outstanding units and an order placed today arrive after the entered lead time. Lead time 2 means before forecast day 3; lead time 0 means before day 1. Outstanding units do not cover sales before that arrival.
 
-The target stock is the sum of predicted sales over the next L plus R days, plus B. Inventory position is S plus O. The suggested order is the positive difference between target stock and inventory position, rounded upwards. If inventory position exceeds the target, the suggested order is zero. This is a transparent planning rule rather than an optimised inventory policy.
+The target stock is the sum of predicted sales over the next L plus R days, plus B. Inventory position is S plus O. The suggested order is the positive difference between target stock and inventory position, rounded upwards. If the inventory position exceeds the target, the suggested order is zero. This is a transparent planning rule rather than an optimised inventory policy.
 
-For an illustrative forecast of 10 units per day, a three-day lead time and one-day review interval give expected sales of 40 units over the coverage period. A buffer of 10 gives target stock of 50. If stock available is 20 and outstanding orders total 5, the order suggestion is 25 units. These values demonstrate the arithmetic and are not model results.
+For an illustrative forecast of 10 units per day, a three-day lead time and one-day review interval give expected sales of 40 units over the coverage period. A buffer of 10 gives a target stock of 50. If stock available is 20 and outstanding orders total 5, the order suggestion is 25 units. These values demonstrate the arithmetic and are not model results.
 
 The interface flags a possible shortage before delivery when forecast sales before delivery exceed currently available stock. An order placed today cannot automatically resolve a shortage before the supplier arrives. We state the simplified arrival assumptions with the recommendation.
 
@@ -265,13 +265,13 @@ The corpus has 60 training questions and 15 validation questions. Threshold 0.35
 
 Each item's model receives 28 chronological daily sales values, one 16-unit LSTM layer and a seven-output dense layer [7]. It has 1,271 trainable parameters and no calendar features. Train-only mean and standard deviation scale inputs and targets. Predictions return to sales units before clipping and scoring. Constant series use scale 1.
 
-Training uses Adam at 0.001, MSE, batch size 32, no shuffling, a maximum of 50 epochs and seed 42 plus item ID. PyTorch uses CPU, one thread and deterministic algorithms. Early stopping monitors 2016 validation loss with patience 5 and restores best weights [8]. The frozen selected epochs for items 1-5 are 39, 50, 12, 50 and 21. Items 2 and 4 reached the declared cap, which was not extended. Final refitting recomputes scaling through 2016 and uses these fixed epochs without 2017 callbacks.
+Training uses Adam at 0.001, MSE, batch size 32, no shuffling, a maximum of 50 epochs and seed 42 plus item ID. PyTorch uses CPU, one thread and deterministic algorithms. Early stopping monitors the 2016 validation loss with patience 5 and restores the best weights [8]. The frozen selected epochs for items 1-5 are 39, 50, 12, 50 and 21. Items 2 and 4 reached the declared cap, which was not extended. Final refitting recomputes scaling through 2016 and uses these fixed epochs without 2017 callbacks.
 
-The network's overall daily final MAE is 5.411 units and weekly-total MAE is 17.343 units. Its daily result is weaker than random forest, but its weekly-total result is stronger overall. The retained experiment supports an honest deep-learning comparison.
+The network's overall daily final MAE is 5.411 units and weekly-total MAE is 17.343 units. Its daily error is higher than the random forest error, but its weekly-total error is lower overall. The retained experiment supports an honest deep-learning comparison.
 
 ## 10 Chatbot design
 
-The assistant combines intent recognition with template-based retrieval of dashboard objects. Forecast answers use the selected item's real estimates, reorder answers use a valid submitted stock plan, history answers use observed sales and performance answers distinguish 2016 validation from 2017 testing. No online language model invents quantities.
+The assistant combines intent recognition with template-based retrieval of dashboard objects. Forecast answers use the selected item's real estimates, reorder answers use a valid submitted stock plan, history answers use observed sales, and performance answers distinguish 2016 validation from 2017 testing. No online language model invents quantities.
 
 The improved assistant compares forecast or observed unit sales for named products or all five products, using matching date ranges. It can show seven dated forecast values, identify the highest or lowest forecast day, retrieve a weekday or date within the forecast window, and summarise a requested recent-history period. Comparisons identify tied totals and distinguish predicted demand from order quantities. Requests for live dates or longer forecast horizons explain the historical seven-day scope.
 
@@ -279,19 +279,19 @@ A small conversation context remembers the last product and supported topic. Aft
 
 Missing stock inputs produce a request to calculate an order first. Low-confidence or unrelated questions show supported options. Explicit references to another supported item retrieve its forecast or history. Stock questions for another item request a Product selector change and fresh stock inputs. Changing items or submitting invalid coverage clears stale stock results; asking a question keeps a valid order visible. Integration tests compare answers with the actual displayed totals and check these state rules. Independent group phrasing tests remain pending.
 
-Terminal chat uses the same trained intent classifier, forecast retrieval and order rule. Product selection uses the /product command, and /stock prompts for the five planning inputs. /clear resets follow-up focus while keeping a valid plan for the selected product; changing products clears that plan. Terminal answers use tables and command guidance. Web answers use dashboard guidance. Each interface keeps its own session state, so submitting an order scenario in one does not submit it in the other.
+Terminal chat uses the same trained intent classifier, forecast retrieval and order rule. Product selection uses the /product command. The /stock command prompts for the five planning inputs. /clear resets follow-up focus while keeping a valid plan for the selected product; changing products clears that plan. Terminal answers use tables and command guidance. Web answers use dashboard guidance. Each interface keeps its own session state, so submitting an order scenario in one does not submit it in the other.
 
 ## 11 Practical solution and demonstration
 
-The Streamlit page shows recent history, seven dated estimates, stock planning and Ask StockSense. Separate expanders report validation and final testing. Launch it with python -m streamlit run app.py using the project's Python environment, then open the Local URL printed in the terminal. Terminal chat starts with python -m stocksense.terminal and requires no web server. Both load the same local data and saved models; training occurs outside the interfaces. README.md provides the complete Windows setup and launch commands.
+The Streamlit page shows recent history, seven dated estimates, stock planning, and Ask StockSense. Separate expanders report validation and final testing. Launch it with python -m streamlit run app.py using the project's Python environment, then open the Local URL printed in the terminal. Terminal chat starts with python -m stocksense.terminal and requires no web server. Both load the same local data and saved models; training occurs outside the interfaces. README.md provides the complete Windows setup and launch commands.
 
-On 10 October 2026 the personal PC reproduced the setup using Python 3.14.6. NumPy 2.3.5, pandas 3.0.1, scikit-learn 1.9.1, Streamlit 1.65.0, joblib 1.6.0, Keras 3.15.1 and PyTorch 2.14.1 match the documented package pins. The office reference used Python 3.12.14. The personal PC passed all 45 tests available at that time, with no skips. After terminal chat was added, the full office-PC suite passed 79 tests on 13 October 2026, with no skips [11]. Checks cover web and terminal responses, product comparisons, dated forecasts, follow-up context, product-specific stock inputs, invalid values and saved-model loading. Frozen forecasting and classifier files were preserved.
+On 10 October 2026, the personal PC reproduced the setup using Python 3.14.6. NumPy 2.3.5, pandas 3.0.1, scikit-learn 1.9.1, Streamlit 1.65.0, joblib 1.6.0, Keras 3.15.1 and PyTorch 2.14.1 match the documented package pins. The office reference used Python 3.12.14. The personal PC passed all 45 tests available at that time, with no skips. After terminal chat was added, all 79 tests in the office-PC suite passed on 13 October 2026, with no skips [11]. The full suite passed again on 16 October 2026: 79 tests in 71.22 seconds, with no skips. Checks cover web and terminal responses, product comparisons, dated forecasts, follow-up context, product-specific stock inputs, invalid values and saved-model loading. Frozen forecasting and classifier files were preserved.
 
 The terminal demonstration reproduced Product 2's seven-day total of 310.6 units and Product 1's default 38-unit order [11]. It also checked daily tables, product switching and order explanations. These are technical checks, not independent human usability results.
 
 The second-machine technical rehearsal checked all five items, seven forecast dates, a valid order, invalid coverage, shortage messaging, an assistant answer matching the screen, and both evaluation tables. AppTest initial render took 7.29 seconds; warm item changes took 0.20-0.23 seconds in one observed run. These timings exclude browser network latency and are not human usability evidence. Detailed logs remain on the personal PC in artifacts/rehearsal/personal-pc.json and artifacts/rehearsal/tests.txt.
 
-Item 1's displayed forecast totals 114.9 units. With default stock 50, outstanding 0, lead time 2, review interval 3 and buffer 10, the first five predictions total 77.52 units. Target stock is 87.52 units and the suggestion is 38 units. This is demonstration arithmetic, not an observed purchase or saving.
+Item 1's displayed forecast totals 114.9 units. With default stock 50, outstanding 0, lead time 2, review interval 3 and buffer 10, the first five predictions total 77.52 units. Target stock is 87.52 units, and the suggestion is 38 units. This is demonstration arithmetic, not an observed purchase or saving.
 
 ![StockSense forecast and stock calculation](assets/stocksense-ready.png)
 
@@ -301,7 +301,7 @@ The group demonstration sequence is item selection, dated forecast, stock calcul
 
 ## 12 Conclusion
 
-StockSense AI provides a working five-item sales forecast and stock-planning demonstration through web and terminal interfaces. Random forest won the frozen daily validation criterion and lowered final daily MAE by about 23.3% relative to the weekly benchmark. LSTM's stronger weekly-total result highlights a trade-off relevant to stock decisions. The assistant retrieves the same application objects and passed its curated checks. Personal-PC rehearsal and the latest 79-test reference run support the technical implementation. Real inventory benefits, general language performance and human usability require further evidence. The group must complete review, declarations and submission checks before uploading.
+StockSense AI provides a working five-item sales forecast and stock-planning demonstration through web and terminal interfaces. Random forest won the frozen daily validation criterion and lowered final daily MAE by about 23.3% relative to the weekly benchmark. LSTM's stronger weekly-total result highlights a trade-off relevant to stock decisions. The assistant retrieves the same application objects. Its curated checks passed. Personal-PC rehearsal and the latest 79-test reference run support the technical implementation. Real inventory benefits, general language performance and human usability require further evidence. The local submission copy includes all ten supplied signatures and dates. The group must complete review and submission checks before uploading.
 
 ## References
 
@@ -321,27 +321,27 @@ StockSense AI provides a working five-item sales forecast and stock-planning dem
 
 [8] Keras. EarlyStopping documentation. https://keras.io/api/callbacks/early_stopping/. Accessed 9 October 2026.
 
-[9] VUT AI Solutions. Stock Sense Poster. GitHub Discussion with member comments comparing poster designs. https://github.com/VUT-AI-SOLUTIONS-2026/stocksense-ai/discussions/44. Checked 14 October 2026.
+[9] VUT AI Solutions. Stock Sense Poster. GitHub Discussion with member comments comparing poster designs. https://github.com/VUT-AI-SOLUTIONS-2026/stocksense-ai/discussions/44. Checked on 14 October 2026.
 
-[10] VUT AI Solutions. Project walkthrough meeting. GitHub Discussion with meeting responses. https://github.com/VUT-AI-SOLUTIONS-2026/stocksense-ai/discussions/49. Checked 14 October 2026. The discussion documents coordination; it does not establish usability test scores.
+[10] VUT AI Solutions. Project walkthrough meeting. GitHub Discussion with meeting responses. https://github.com/VUT-AI-SOLUTIONS-2026/stocksense-ai/discussions/49. Checked on 14 October 2026. The discussion documents coordination; it does not establish usability test scores.
 
 [11] VUT AI Solutions. Add terminal chat with shared forecasts and stock planning. Source commit and recorded 79-test validation, 13 October 2026. https://github.com/VUT-AI-SOLUTIONS-2026/stocksense-ai/commit/12f4e5b.
 
-[12] VUT AI Solutions. StockSense AI Projects board. https://github.com/orgs/VUT-AI-SOLUTIONS-2026/projects/1. Configured and verified 14 October 2026. The board is private to the organisation; Figure 4 records its status for external reviewers.
+[12] VUT AI Solutions. StockSense AI Projects board. https://github.com/orgs/VUT-AI-SOLUTIONS-2026/projects/1. Configured and verified on 14 October 2026. The board is private to the organisation; Figure 4 records its status for external reviewers.
 
 ## Appendix A Submission evidence and review
 
-The technical evidence includes the data audit, frozen comparison, recorded classifier evaluation, 79-test pass on the office PC and earlier personal-PC rehearsal. Review each assessed area against the original assignment brief. Earlier supporting documents remain available in Git history.
+The technical evidence includes the data audit, frozen comparison, recorded classifier evaluation, 79-test pass on the office PC and earlier personal-PC rehearsal. The official Grammarly performance report is appended after Appendix B. It covers the unsigned narrative, references and table text checked on 16 October 2026; signatures and student numbers were excluded. The retained technical names are valid. Optional clarity suggestions remain, and Grammarly did not check plagiarism. The evidence and status notes were updated after the language check. Review each assessed area against the original assignment brief. Earlier supporting documents remain available in Git history.
 
 The repository has genuine member comments on poster choices and meeting coordination [9, 10]. Preserve those links and record specific reviews and decisions through members' own accounts. An issue assignment, closed task or commit co-author credit alone is not evidence that a member independently reviewed or can explain the work.
 
 | Submission check | Current evidence or remaining action |
 | --- | --- |
-| Group declaration | All ten members must review and sign the declaration. Signature and date spaces remain blank. |
-| Grammarly | Obtain the actual results and attach them to the submission. No results are attached to this draft. |
+| Group declaration | All ten supplied signatures and the date 14 October 2026 are included in the private submission copy. This public copy keeps signature and date spaces blank. Final member review remains required. |
+| Grammarly | Checked on 16 October 2026: score 97/100. The official three-page PDF report is appended. Four retained flags concern the exact names Todo and stocksense.terminal; 38 clarity suggestions remain. |
 | Formatting | The report builder uses Arial 12, 1.5 body line spacing and justified body paragraphs. Check the final exported PDF. |
 | GitHub engagement | Member discussion comments exist [9, 10]. Retain links and document specific reviews and decisions. |
-| GitHub Projects | Verified on 14 October 2026 [12]: 16 assigned issues, with ten Done and six Todo. The board URL and dated screenshot are retained. |
+| GitHub Projects | The board tracks 16 assigned issues. Declaration task #51 and Grammarly task #52 are complete. Tasks #50 and #53-55 cover the four remaining activities. Figure 4 records the earlier setup snapshot. |
 | Human usability | Complete the three-reviewer acceptance check in Appendix B. Scores and feedback remain pending. |
 | Group content review | Confirm the report, poster and slides together; record corrections and the agreed final versions. |
 | Presentation | Confirm the campus slot and all members' speaking roles. Rehearse for 20 minutes plus five minutes of questions; keep a backup demonstration. |

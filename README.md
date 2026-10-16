@@ -139,13 +139,13 @@ Validation freezes model choices before final testing. Skip completed stages; pr
 
 For group meetings, use the [editable teaching deck](docs/StockSense_AI_Team_Meeting.pptx) or its [PDF copy](docs/StockSense_AI_Team_Meeting.pdf). It covers the app, terms and models, with presenter notes and practice questions in the PowerPoint.
 
-The images in `docs/assets/` support the report and presentation. These are review drafts for the group. The report declaration still needs every member's signature, the Grammarly results must be attached, and the group must check the final PDFs before the single Blackboard submission. The poster and slides need a group content review and a timed rehearsal.
+The images in `docs/assets/` support the report and presentation. These are review drafts for the group. The signed submission copy is kept locally with all ten supplied signatures, dated 14 October 2026; signatures are omitted from the public report. The public PDF includes the official Grammarly results from 16 October 2026 (97/100). The group must still check the final PDFs before the single Blackboard submission. The poster and slides need a group content review and a timed rehearsal.
 
 ## Team contributions
 
 Use the [StockSense AI Projects board](https://github.com/orgs/VUT-AI-SOLUTIONS-2026/projects/1) to track work. It is linked from the repository's **Projects** tab. Organisation members can view and edit it.
 
-The board uses **Todo**, **In Progress** and **Done**. Existing completed issues #23–31 and #41 retain their owners in Done. Issues #50–55 cover the remaining group review, signatures, Grammarly results, usability testing, rehearsal and final submission checks. Move your card to In Progress when starting, record actual work with a commit or discussion link, and move it to Done after its completion criteria are checked.
+The board uses **Todo**, **In Progress** and **Done**. Existing completed issues #23–31 and #41 retain their owners in Done. Signature task #51 and Grammarly task #52 are complete. Issues #50 and #53–55 cover the remaining group review, usability testing, rehearsal and final submission checks. Move your card to In Progress when starting, record actual work with a commit or discussion link, and move it to Done after its completion criteria are checked.
 
 A [dated board screenshot](docs/assets/project-board-2026-10-14.png) is included with the report's evidence. The board is private to the organisation; the screenshot allows external reviewers to see the recorded status.
 
