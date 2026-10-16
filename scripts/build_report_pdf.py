@@ -119,7 +119,7 @@ class ReportDocument(SimpleDocTemplate):
             key = 'section-' + hashlib.sha1(text.encode('utf-8')).hexdigest()[:14]
             self.canv.bookmarkPage(key)
             self.canv.addOutlineEntry(text, key, level=0, closed=False)
-            self.notify('TOCEntry', (0, text, self.page, key))
+            self.notify('TOCEntry', (0, text, self.page - 2, key))
 
 toc = TableOfContents()
 toc.levelStyles = [ParagraphStyle('ContentsEntry', fontName='Arial', fontSize=12,
@@ -212,12 +212,12 @@ while i < len(lines):
     story.append(Paragraph(inline(text), style))
 
 def footer(canvas, document):
-    if document.page == 1:
+    if document.page <= 2:
         return
     canvas.saveState()
     canvas.setFont('Arial', 12)
     canvas.drawString(25 * mm, 13 * mm, 'StockSense AI project report')
-    canvas.drawRightString(A4[0] - 25 * mm, 13 * mm, str(document.page))
+    canvas.drawRightString(A4[0] - 25 * mm, 13 * mm, str(document.page - 2))
     canvas.restoreState()
 
 pdf_path = PDF_OUT / 'StockSense_AI_Report_Review.pdf'
@@ -230,6 +230,17 @@ doc.multiBuild(story, onFirstPage=footer, onLaterPages=footer)
 composed = PdfWriter(clone_from=BytesIO(pdf_path.read_bytes()))
 official_cover = PdfReader(OUT / 'assets' / 'assignment-cover.pdf')
 composed.pages[0].merge_page(official_cover.pages[0])
+# Remove the original brief's 'Page 1 of 7' footer from the unnumbered cover.
+from reportlab.pdfgen.canvas import Canvas
+cover_mask = BytesIO()
+mask_canvas = Canvas(cover_mask, pagesize=A4)
+mask_canvas.setFillColor(colors.white)
+mask_canvas.rect(0, 0, A4[0], 32, fill=1, stroke=0)
+mask_canvas.save()
+composed.pages[0].merge_page(PdfReader(BytesIO(cover_mask.getvalue())).pages[0])
+from pypdf.constants import PageLabelStyle
+composed.set_page_label(0, 1, prefix='')
+composed.set_page_label(2, len(composed.pages) - 1, style=PageLabelStyle.DECIMAL, start=1)
 composed.write(pdf_path)
 
 reader = PdfReader(pdf_path)
