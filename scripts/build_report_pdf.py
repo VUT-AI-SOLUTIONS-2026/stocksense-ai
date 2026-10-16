@@ -16,7 +16,8 @@ from reportlab.platypus import (
     Table, TableStyle,
 )
 from reportlab.platypus.tableofcontents import TableOfContents
-from pypdf import PdfReader
+from io import BytesIO
+from pypdf import PdfReader, PdfWriter
 from PIL import Image as PILImage, ImageOps, ImageDraw
 import pypdfium2 as pdfium
 
@@ -102,50 +103,14 @@ assert len(problem.split()) <= 190
 assert len(total_problem.split()) <= 250
 
 class ReportCover(Flowable):
+    """Reserve the first page for the original assignment cover."""
     def __init__(self):
         super().__init__()
         self.width = WIDTH
         self.height = 670
 
     def draw(self):
-        c = self.canv
-        navy = colors.HexColor('#142d43')
-        teal = colors.HexColor('#087f8c')
-        muted = colors.HexColor('#516574')
-        c.setFillColor(navy)
-        c.rect(0, 650, WIDTH, 8, fill=1, stroke=0)
-        c.setFillColor(teal)
-        c.rect(0, 650, 90, 8, fill=1, stroke=0)
-        def line(text, y, size=12, font='Arial', colour=navy):
-            c.setFillColor(colour)
-            c.setFont(font, size)
-            c.drawString(0, y, text)
-        line('VAAL UNIVERSITY OF TECHNOLOGY', 608, 12, 'Arial-Bold')
-        line('Diploma in Information Technology', 585, colour=muted)
-        line('BUSINESS ANALYSIS 3 MODULE 2', 525, 12, 'Arial-Bold', teal)
-        line('AIBUY3A  |  PROJECT REPORT', 502, colour=muted)
-        line('StockSense AI', 414, 38, 'Arial-Bold')
-        line('Retail sales forecasting', 372, 20)
-        line('and stock replenishment', 344, 20)
-        c.setStrokeColor(teal)
-        c.setLineWidth(2)
-        points = [(0,265),(55,278),(105,271),(160,302),(215,290),(270,320),(330,309),(WIDTH,338)]
-        path = c.beginPath()
-        path.moveTo(*points[0])
-        for x,y in points[1:]: path.lineTo(x,y)
-        c.drawPath(path)
-        for x,y in points:
-            c.setFillColor(teal)
-            c.circle(x,y,3,fill=1,stroke=0)
-        line('Prepared by', 207, colour=muted)
-        line('VUT AI Solutions', 181, 16, 'Arial-Bold')
-        line('Theme: An AI Solution for Industries', 137)
-        c.setStrokeColor(colors.HexColor('#d7e1e7'))
-        c.setLineWidth(.7)
-        c.line(0,105,WIDTH,105)
-        line('Submission date', 76, colour=muted)
-        line('2 November 2026', 51, 14, 'Arial-Bold')
-        line('Python application | Web dashboard | Terminal assistant', 14, 10, colour=muted)
+        pass
 
 class ReportDocument(SimpleDocTemplate):
     def afterFlowable(self, flowable):
@@ -261,6 +226,12 @@ doc = ReportDocument(str(pdf_path), pagesize=A4, leftMargin=25 * mm,
                         bottomMargin=23 * mm, title='StockSense AI - Project report',
                         author='VUT AI Solutions')
 doc.multiBuild(story, onFirstPage=footer, onLaterPages=footer)
+# Preserve the university's original cover graphics and text without redrawing them.
+composed = PdfWriter(clone_from=BytesIO(pdf_path.read_bytes()))
+official_cover = PdfReader(OUT / 'assets' / 'assignment-cover.pdf')
+composed.pages[0].merge_page(official_cover.pages[0])
+composed.write(pdf_path)
+
 reader = PdfReader(pdf_path)
 text = '\n'.join(page.extract_text() for page in reader.pages)
 normalised_text = ' '.join(text.split())
