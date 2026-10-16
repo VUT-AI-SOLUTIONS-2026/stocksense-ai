@@ -1,5 +1,6 @@
 """Build the group-review report PDF from docs/report.md."""
 import re
+import hashlib
 from html import escape
 from pathlib import Path
 
@@ -11,9 +12,10 @@ from reportlab.lib.units import mm
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import (
-    Image, KeepTogether, PageBreak, Paragraph, SimpleDocTemplate, Spacer,
+    Flowable, Image, KeepTogether, PageBreak, Paragraph, SimpleDocTemplate, Spacer,
     Table, TableStyle,
 )
+from reportlab.platypus.tableofcontents import TableOfContents
 from pypdf import PdfReader
 from PIL import Image as PILImage, ImageOps, ImageDraw
 import pypdfium2 as pdfium
@@ -99,9 +101,73 @@ total_problem = re.sub(r'^### .*$', '', problem_section, flags=re.M)
 assert len(problem.split()) <= 190
 assert len(total_problem.split()) <= 250
 
-lines = source.splitlines()
-story = []
-in_cover = True
+class ReportCover(Flowable):
+    def __init__(self):
+        super().__init__()
+        self.width = WIDTH
+        self.height = 670
+
+    def draw(self):
+        c = self.canv
+        navy = colors.HexColor('#142d43')
+        teal = colors.HexColor('#087f8c')
+        muted = colors.HexColor('#516574')
+        c.setFillColor(navy)
+        c.rect(0, 650, WIDTH, 8, fill=1, stroke=0)
+        c.setFillColor(teal)
+        c.rect(0, 650, 90, 8, fill=1, stroke=0)
+        def line(text, y, size=12, font='Arial', colour=navy):
+            c.setFillColor(colour)
+            c.setFont(font, size)
+            c.drawString(0, y, text)
+        line('VAAL UNIVERSITY OF TECHNOLOGY', 608, 12, 'Arial-Bold')
+        line('Diploma in Information Technology', 585, colour=muted)
+        line('BUSINESS ANALYSIS 3 MODULE 2', 525, 12, 'Arial-Bold', teal)
+        line('AIBUY3A  |  PROJECT REPORT', 502, colour=muted)
+        line('StockSense AI', 414, 38, 'Arial-Bold')
+        line('Retail sales forecasting', 372, 20)
+        line('and stock replenishment', 344, 20)
+        c.setStrokeColor(teal)
+        c.setLineWidth(2)
+        points = [(0,265),(55,278),(105,271),(160,302),(215,290),(270,320),(330,309),(WIDTH,338)]
+        path = c.beginPath()
+        path.moveTo(*points[0])
+        for x,y in points[1:]: path.lineTo(x,y)
+        c.drawPath(path)
+        for x,y in points:
+            c.setFillColor(teal)
+            c.circle(x,y,3,fill=1,stroke=0)
+        line('Prepared by', 207, colour=muted)
+        line('VUT AI Solutions', 181, 16, 'Arial-Bold')
+        line('Theme: An AI Solution for Industries', 137)
+        c.setStrokeColor(colors.HexColor('#d7e1e7'))
+        c.setLineWidth(.7)
+        c.line(0,105,WIDTH,105)
+        line('Submission date', 76, colour=muted)
+        line('2 November 2026', 51, 14, 'Arial-Bold')
+        line('Python application | Web dashboard | Terminal assistant', 14, 10, colour=muted)
+
+class ReportDocument(SimpleDocTemplate):
+    def afterFlowable(self, flowable):
+        if isinstance(flowable, Paragraph) and flowable.style.name == 'Heading':
+            text = flowable.getPlainText()
+            key = 'section-' + hashlib.sha1(text.encode('utf-8')).hexdigest()[:14]
+            self.canv.bookmarkPage(key)
+            self.canv.addOutlineEntry(text, key, level=0, closed=False)
+            self.notify('TOCEntry', (0, text, self.page, key))
+
+toc = TableOfContents()
+toc.levelStyles = [ParagraphStyle('ContentsEntry', fontName='Arial', fontSize=12,
+                                  leading=18, spaceBefore=6, spaceAfter=4,
+                                  textColor=colors.HexColor('#142d43'),
+                                  leftIndent=0, firstLineIndent=0, rightIndent=24)]
+toc.dotsMinLevel = 0
+contents_title = ParagraphStyle('ContentsTitle', parent=heading, fontSize=22,
+                               leading=28, spaceAfter=22)
+lines = ('## Project overview' + source.split('## Project overview', 1)[1]).splitlines()
+story = [ReportCover(), PageBreak(), Paragraph('Table of contents', contents_title),
+         toc, PageBreak()]
+in_cover = False
 i = 0
 def attach_context(objects):
     """Keep an object's introductory paragraph and heading on the same page."""
@@ -181,6 +247,8 @@ while i < len(lines):
     story.append(Paragraph(inline(text), style))
 
 def footer(canvas, document):
+    if document.page == 1:
+        return
     canvas.saveState()
     canvas.setFont('Arial', 12)
     canvas.drawString(25 * mm, 13 * mm, 'StockSense AI project report')
@@ -188,11 +256,11 @@ def footer(canvas, document):
     canvas.restoreState()
 
 pdf_path = PDF_OUT / 'StockSense_AI_Report_Review.pdf'
-doc = SimpleDocTemplate(str(pdf_path), pagesize=A4, leftMargin=25 * mm,
+doc = ReportDocument(str(pdf_path), pagesize=A4, leftMargin=25 * mm,
                         rightMargin=25 * mm, topMargin=22 * mm,
                         bottomMargin=23 * mm, title='StockSense AI - Project report',
                         author='VUT AI Solutions')
-doc.build(story, onFirstPage=footer, onLaterPages=footer)
+doc.multiBuild(story, onFirstPage=footer, onLaterPages=footer)
 reader = PdfReader(pdf_path)
 text = '\n'.join(page.extract_text() for page in reader.pages)
 normalised_text = ' '.join(text.split())
