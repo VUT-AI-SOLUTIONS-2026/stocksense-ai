@@ -136,6 +136,7 @@ Validation freezes model choices before final testing. Skip completed stages; pr
 - [Digital poster PDF](docs/StockSense_AI_Poster.pdf)
 - [Presentation PDF](docs/StockSense_AI_Presentation_Review.pdf)
 - [Editable presentation](docs/StockSense_AI_Presentation_Review.pptx)
+- [Canva presentation redesign](https://canva.link/pxccde2hnc53ld1) — visual version created on 19 October 2026, with 20 slides and presenter notes. The PDF and PowerPoint above remain the earlier exported version.
 
 The presentation has 20 slides with plain-English speaking prompts, worked examples and PowerPoint speaker notes. The notes propose two slides per member and a 20-minute schedule including the app demonstration. Agree the speaking roles together and rehearse the timing. Open the Notes pane or Presenter View to read the suggested explanation for each slide. The PDF shows the slides only.
 
