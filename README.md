@@ -110,7 +110,7 @@ After the initial training above, run:
 .\.venv\Scripts\python.exe -m scripts.compare_lstm --stage final
 ```
 
-Validation freezes model choices before final testing. Skip completed stages; preserve `selection-lock.json` and `final-test.json`. Launching either interface loads saved models; it does not require another training run. The selected random forest needs only the core packages once its saved model and comparison exist. See the [report](docs/report.md) for the experiment settings and recorded findings.
+Validation freezes model choices before final testing. Skip completed stages; preserve `selection-lock.json` and `final-test.json`. Launching either interface loads saved models; it does not require another training run. The selected random forest needs only the core packages once its saved model and comparison exist. See the [report](docs/StockSense_AI_Report.pdf) for the experiment settings and recorded findings.
 
 </details>
 
@@ -129,20 +129,13 @@ Validation freezes model choices before final testing. Skip completed stages; pr
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
 
-## Submission review files
+## Submission files
 
-- [Report PDF](docs/StockSense_AI_Report_Review.pdf)
-- [Editable report source](docs/report.md)
+- [Report PDF, including Grammarly results](docs/StockSense_AI_Report.pdf)
 - [Digital poster PDF](docs/StockSense_AI_Poster.pdf)
-- [Presentation PDF](docs/StockSense_AI_Presentation_Review.pdf)
-- [Editable presentation](docs/StockSense_AI_Presentation_Review.pptx)
-- [Short Canva presentation](https://www.canva.com/d/2RFK1oMsYT8z4wv) — the latest visual version has 12 essential slides and presenter notes, with proposed roles covering all ten members. The PDF and PowerPoint above remain the earlier 20-slide exported version.
+- [Presentation PDF — 12 slides](docs/StockSense_AI_Presentation.pdf)
 
-The presentation has 20 slides with plain-English speaking prompts, worked examples and PowerPoint speaker notes. The notes propose two slides per member and a 20-minute schedule including the app demonstration. Agree the speaking roles together and rehearse the timing. Open the Notes pane or Presenter View to read the suggested explanation for each slide. The PDF shows the slides only.
-
-For group meetings, use the [editable teaching deck](docs/StockSense_AI_Team_Meeting.pptx) or its [PDF copy](docs/StockSense_AI_Team_Meeting.pdf). It covers the app, terms and models, with presenter notes and practice questions in the PowerPoint.
-
-The images in `docs/assets/` support the report and presentation. These are review drafts for the group. The signed submission copy is kept locally with all ten supplied signatures, dated 14 October 2026; signatures are omitted from the public report. The latest Grammarly results, generated on 16 October 2026 at 15:38 for the shortened text (3,693 words; score 97/100), are supplied as a separate PDF. The export lists three correctness flags and 26 advanced suggestions. The group must still check the final PDFs before the single Blackboard submission. The poster and slides need a group content review and a timed rehearsal.
+The presentation is the corrected Canva export. Previous drafts and supporting files remain available in Git history.
 
 ## Team contributions
 
@@ -150,7 +143,7 @@ Use the [StockSense AI Projects board](https://github.com/orgs/VUT-AI-SOLUTIONS-
 
 The board uses **Todo**, **In Progress** and **Done**. Existing completed issues #23–31 and #41 retain their owners in Done. Signature task #51 and Grammarly task #52 are complete. Issues #50, #54 and #55 cover the remaining group review, rehearsal and final submission checks. Issue #53 records an optional future usability trial; no human reviewer results are claimed. Move your card to In Progress when starting, record actual work with a commit or discussion link, and move it to Done after its completion criteria are checked.
 
-A [dated board screenshot](docs/assets/project-board-2026-10-14.png) is included with the report's evidence. The board is private to the organisation; the screenshot allows external reviewers to see the recorded status.
+A dated project-board screenshot is included in the report. The board is private to the organisation; the screenshot allows external reviewers to see the recorded status.
 
 Morris Sambo is the primary author (`240699874@edu.vut.ac.za`). The team confirmed shared contributions; include the nine contributing teammates using the exact `Co-authored-by` trailers in `.gitmessage`. Nkambule's corrected email is `akim.nkambule@icloud.com`. Do not randomly rotate authors or treat task assignments as completed work. Each member's email must be linked to their GitHub account for profile attribution.
 
