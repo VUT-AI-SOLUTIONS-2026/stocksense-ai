@@ -142,6 +142,8 @@ The presentation has 20 slides with plain-English speaking prompts, worked examp
 
 For group meetings, use the [editable teaching deck](docs/StockSense_AI_Team_Meeting.pptx) or its [PDF copy](docs/StockSense_AI_Team_Meeting.pdf). It covers the app, terms and models, with presenter notes and practice questions in the PowerPoint.
 
+For presentation preparation, use the [two-hour study course](docs/StockSense_AI_Study_Course.pdf) or its [editable text copy](docs/StockSense_AI_Study_Course.md). It covers the rubric, business case, data, models, stock calculations, chatbot and demonstration, with a quiz, answer key and final revision card.
+
 The images in `docs/assets/` support the report and presentation. These are review drafts for the group. The signed submission copy is kept locally with all ten supplied signatures, dated 14 October 2026; signatures are omitted from the public report. The latest Grammarly results, generated on 16 October 2026 at 15:38 for the shortened text (3,693 words; score 97/100), are supplied as a separate PDF. The export lists three correctness flags and 26 advanced suggestions. The group must still check the final PDFs before the single Blackboard submission. The poster and slides need a group content review and a timed rehearsal.
 
 ## Team contributions
