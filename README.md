@@ -137,6 +137,10 @@ Validation freezes model choices before final testing. Skip completed stages; pr
 
 The presentation is the corrected Canva export. Previous drafts and supporting files remain available in Git history.
 
+## Study course
+
+For presentation preparation, use the [two-hour study course](docs/StockSense_AI_Study_Course.pdf) or its [editable text copy](docs/StockSense_AI_Study_Course.md). It covers the rubric, business case, data, models, stock calculations, chatbot and demonstration, with a quiz, answer key and final revision card.
+
 ## Team contributions
 
 Use the [StockSense AI Projects board](https://github.com/orgs/VUT-AI-SOLUTIONS-2026/projects/1) to track work. It is linked from the repository's **Projects** tab. Organisation members can view and edit it.
